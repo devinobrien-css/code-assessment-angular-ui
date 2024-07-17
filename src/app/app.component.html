@@ -1,0 +1,31 @@
+<main class="min-h-screen min-w-screen bg-city-street bg-cover bg-no-repeat">
+  <div class="h-screen w-screen bg-blue-900 bg-opacity-60">
+    <header class="flex justify-between items-center p-4">
+      <h1 class="text-3xl text-white font-lato font-thin">
+        Book Nook Library
+      </h1>
+      <button (click)="toggleNav()">
+        <span class="icon-[fontisto--nav-icon-grid] w-10 h-10 bg-white"></span>
+      </button>
+    </header>
+    <nav class="bg-gray-800 text-white w-1/5 p-4 absolute top-0 right-0 transition-all overflow-hidden" [ngClass]="{'w-[0%] p-0 -right-10': !show_nav}">
+      <div class="w-full flex justify-end">
+        <button (click)="toggleNav()">
+          <span class="icon-[maki--arrow] w-10 h-10"></span>
+        </button>
+      </div>
+      <div class="flex flex-col gap-y-4">
+        <a routerLink="/" routerLinkActive="text-blue-300">
+          <h2 class="text-3xl">Home</h2>
+        </a>
+        <a routerLink="/books" routerLinkActive="text-blue-300">
+          <h2 class="text-3xl">Books</h2>
+        </a>
+        
+      </div>
+    </nav>
+    <router-outlet />
+    <p-toast />
+  </div>
+</main>
+
