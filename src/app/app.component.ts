@@ -1,12 +1,10 @@
-import { CommonModule } from '@angular/common';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Component, NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { Component } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { ToastModule } from 'primeng/toast';
+import { CurrentUserInfoResponse } from './shared/models/user';
+import { UserService } from './core/services/user.service';
 import { AuthenticationService } from './core/services/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -15,25 +13,43 @@ import { AuthenticationService } from './core/services/authentication.service';
 })
 export class AppComponent {
   show_nav = false;
+  is_employee = false;
 
-  constructor(private messageService: MessageService, private http: HttpClient) {}
+  constructor(
+    private messageService: MessageService,
+    private http: HttpClient,
+    private userService: UserService,
+    private authService: AuthenticationService,
+    private router: Router,
+  ) {}
 
   ngOnInit() {
-    console.log(this.isEmployee());
+    this.router.events.subscribe(() => {
+      this.show_nav = false;
+    });
+
+    if (this.isAuthenticated()) {
+      try {
+        this.userService
+          .getCurrentUser()
+          .subscribe((response: CurrentUserInfoResponse) => {
+            this.is_employee = response.roles.includes('Employee');
+          });
+      } catch (e) {
+        this.authService.logout();
+      }
+    }
   }
 
   toggleNav() {
     this.show_nav = !this.show_nav;
   }
 
-  isEmployee(): boolean {
-    this.http.get('/api/account/current-user').subscribe((response: any) => {
-      console.log(response);
-      if(response.roles.includes('Employee')) {
-        return true;
-      }
-      return false;
-    });
-    return false;
+  logout() {
+    this.authService.logout();
+  }
+
+  isAuthenticated() {
+    return this.authService.getIsAuthenticated();
   }
 }

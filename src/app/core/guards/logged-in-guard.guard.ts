@@ -7,7 +7,7 @@ export const loggedInGuardGuard: CanActivateFn = () => {
 
   const router = new Router();
 
-  if(authService.getIsAuthenticated()) {
+  if (authService.getIsAuthenticated()) {
     return true;
   }
 

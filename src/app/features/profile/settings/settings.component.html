@@ -1,0 +1,27 @@
+<div class="bg-white w-4/5 mx-auto rounded p-8">
+  <div>
+    <h1 class="text-3xl font-lato font-thin">Settings</h1>
+
+    <div class="flex">
+      <div class="w-1/4 border-r-2 flex flex-col p-4 gap-y-1">
+        <a
+          routerLink="profile"
+          routerLinkActive="text-blue-300 bg-gray-100 rounded"
+          class="flex text-lg gap-x-2 p-2"
+          ><span class="icon-[solar--user-bold-duotone] my-auto"></span>
+          Profile</a
+        >
+        <a
+          routerLink="password"
+          routerLinkActive="text-blue-300 bg-gray-100 rounded"
+          class="flex text-lg gap-x-2 p-2"
+          ><span class="icon-[solar--lock-bold-duotone] my-auto"></span>
+          Password</a
+        >
+      </div>
+      <div class="p-4">
+        <router-outlet />
+      </div>
+    </div>
+  </div>
+</div>

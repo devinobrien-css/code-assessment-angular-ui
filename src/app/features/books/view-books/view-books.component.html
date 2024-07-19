@@ -1,0 +1,73 @@
+<router-outlet />
+<div class="bg-white w-4/5 h-4/5 overflow-y-auto mx-auto rounded">
+  <div
+    class="flex justify-between bg-white sticky top-0 p-8 border shadow z-50"
+  >
+    <h1 class="text-3xl font-lato font-thin">Manage Books</h1>
+    <div class="flex gap-x-4">
+      <a
+        routerLink="/books/add"
+        class="text-blue-400 text-xs flex flex-col hover:scale-105 active:scale-95 cursor-pointer"
+        title="add book"
+      >
+        <span
+          class="icon-[solar--add-square-bold-duotone] w-8 h-8 m-auto"
+        ></span>
+        <span class="m-auto"> Add Book </span>
+      </a>
+      <input
+        type="text"
+        class="p-2 shadow border-gray-300 font-light placeholder-blue-500 rounded"
+        placeholder="Search"
+        [formControl]="search"
+      />
+    </div>
+  </div>
+
+  <div class="flex flex-col space-y-2 divide-y-2">
+    <div *ngFor="let book of getBooks()" class="p-2">
+      <div class="flex justify-between">
+        <div class="flex gap-2">
+          <img
+            [src]="book.image"
+            alt="book cover"
+            class="w-18 h-24 rounded shadow-lg"
+          />
+          <div class="flex flex-col justify-between">
+            <div>
+              <p class="text-xl">{{ book.title }}</p>
+              <p class="font-light">{{ book.author }}</p>
+            </div>
+            <p class="font-light">
+              <span class="font-bold">ISBN: </span>{{ book.isbn }}
+            </p>
+          </div>
+        </div>
+        <div class="flex flex-col items-center mr-4">
+          <div class="flex gap-6 my-auto">
+            <a
+              routerLink="/books/edit/{{ book.id }}"
+              class="text-blue-400 text-xs flex flex-col hover:scale-105 active:scale-95 cursor-pointer"
+              title="edit book"
+            >
+              <span
+                class="icon-[solar--server-square-update-bold-duotone] w-8 h-8"
+              ></span>
+              <span class="m-auto"> Edit </span>
+            </a>
+            <button
+              class="text-red-400 text-xs flex flex-col hover:scale-105 active:scale-95 cursor-pointer"
+              title="delete book"
+            >
+              <!-- (click)="deleteBook(book.id)" -->
+              <span
+                class="icon-[solar--trash-bin-trash-bold-duotone] w-8 h-8"
+              ></span>
+              <span class="m-auto"> Delete </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

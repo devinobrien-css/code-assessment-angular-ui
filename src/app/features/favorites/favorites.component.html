@@ -1,0 +1,47 @@
+<div class="bg-white w-4/5 mx-auto rounded h-4/5 overflow-y-auto">
+  <div class="relative">
+    <div
+      class="flex justify-between shadow sticky top-0 p-8 bg-white z-50 border w-full"
+    >
+      <h1 class="text-3xl font-lato font-thin">Your Curated Collection</h1>
+    </div>
+    <br />
+    <div class="flex flex-wrap justify-evenly gap-4">
+      <div
+        *ngFor="let book of favorites"
+        class="w-1/5 min-w-56 hover:shadow bg-gray-50 p-4 rounded relative"
+      >
+        <button class="my-auto" title="Favorite" (click)="removeFavorite(book)">
+          <span
+            class="icon-[solar--star-bold-duotone] w-10 h-10 hover:scale-105 transition-all active:scale-95 absolute top-2 right-2"
+            [ngClass]="{
+              'bg-yellow-400': isBookFavorite(book),
+              'bg-gray-400': !isBookFavorite(book),
+            }"
+          ></span>
+        </button>
+        <button
+          class="rounded p-2 shadow bg-blue-400 text-white absolute top-2 left-2 hover:scale-105 active:scale-95"
+        >
+          Borrow
+        </button>
+        <div>
+          <img
+            alt="{{ book.title }}"
+            src="{{ book.image }}"
+            width="640"
+            height="480"
+          />
+        </div>
+        <p
+          class="text-sm md:text-lg font-lato font-light pt-2 overflow-x-clip text-ellipsis whitespace-nowrap"
+        >
+          {{ book.title }}
+        </p>
+        <p class="text-sm md:text-md font-lato font-thin whitespace-nowrap">
+          {{ book.author }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

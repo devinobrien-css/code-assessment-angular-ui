@@ -1,8 +1,8 @@
 {
-    "/api": {
-        "secure": false,
-        "target": "https://localhost:7120",
-        "changeOrigin": true,
-        "logLevel": "debug"
-    }
+  "/api": {
+    "secure": false,
+    "target": "https://localhost:7120",
+    "changeOrigin": true,
+    "logLevel": "debug"
   }
+}

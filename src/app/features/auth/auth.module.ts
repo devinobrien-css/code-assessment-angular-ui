@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
-import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
+import {
+  BrowserAnimationsModule,
+  NoopAnimationsModule,
+} from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { ToastModule } from 'primeng/toast';
-
-
 
 @NgModule({
   declarations: [],
@@ -11,7 +12,7 @@ import { ToastModule } from 'primeng/toast';
     ToastModule,
     BrowserModule,
     BrowserAnimationsModule,
-    NoopAnimationsModule
-  ]
+    NoopAnimationsModule,
+  ],
 })
-export class AuthModule { }
+export class AuthModule {}

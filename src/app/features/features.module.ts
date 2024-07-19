@@ -4,11 +4,7 @@ import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule
-  ],
-  providers: [
-    MessageService
-  ]
+  imports: [CommonModule],
+  providers: [MessageService],
 })
-export class FeaturesModule { }
+export class FeaturesModule {}

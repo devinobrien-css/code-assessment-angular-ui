@@ -1,8 +1,17 @@
-import { HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
+import {
+  HttpClientModule,
+  provideHttpClient,
+  withInterceptors,
+} from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterLink, RouterLinkActive, RouterOutlet, provideRouter } from '@angular/router';
+import {
+  RouterLink,
+  RouterLinkActive,
+  RouterOutlet,
+  provideRouter,
+} from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { AppComponent } from './app.component';
@@ -14,25 +23,21 @@ import { authInterceptor } from './core/interceptors/auth.interceptor';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    
+
     ToastModule,
-    
+
     HttpClientModule,
-    
-    RouterLink, 
-    RouterOutlet, 
+
+    RouterLink,
+    RouterOutlet,
     RouterLinkActive,
   ],
-  declarations: [ AppComponent ],
-  bootstrap: [ AppComponent ],
-  providers: [ 
+  declarations: [AppComponent],
+  bootstrap: [AppComponent],
+  providers: [
     MessageService,
     provideRouter(routes),
-    provideHttpClient(
-      withInterceptors([
-        loggingInterceptor, authInterceptor
-      ])
-    ),
-   ]
+    provideHttpClient(withInterceptors([loggingInterceptor, authInterceptor])),
+  ],
 })
 export class AppModule {}

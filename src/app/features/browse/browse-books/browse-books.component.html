@@ -1,0 +1,158 @@
+<app-view-book
+  *ngIf="selected_book"
+  [book]="selected_book"
+  (close)="deselectBook()"
+/>
+<div class="bg-white w-4/5 mx-auto rounded h-4/5 overflow-y-auto">
+  <div
+    class="flex justify-between shadow sticky top-0 p-8 bg-white z-50 border w-full"
+  >
+    <h1 class="text-3xl font-lato font-thin">Browse Books</h1>
+
+    <div class="flex gap-x-2 relative">
+      <button
+        class="rounded p-1 shadow my-auto"
+        title="Filter"
+        (click)="toggleDisplayFilter()"
+      >
+        <span
+          class="icon-[solar--filter-bold-duotone] w-10 h-10 bg-gray-400"
+        ></span>
+      </button>
+      <div
+        *ngIf="display_filter"
+        class="absolute top-12 right-0 bg-white shadow-xl border p-4 rounded"
+      >
+        <div class="flex flex-col gap-y-2 z-50">
+          <div class="flex gap-x-2">
+            <p class="text-lg">Genre</p>
+            <button (click)="clearGenres()">
+              <span
+                class="icon-[basil--cancel-solid] w-8 h-8 bg-gray-300 hover:bg-blue-300"
+              ></span>
+            </button>
+          </div>
+          <div class="flex gap-2">
+            <button
+              *ngFor="let genre of genres"
+              class="rounded p-1 shadow whitespace-nowrap"
+              (click)="toggleGenre(genre.id)"
+              [ngClass]="{
+                'bg-gray-400': genreIsSelected(genre.id),
+                'bg-gray-200': !genreIsSelected(genre.id),
+              }"
+            >
+              {{ genre.name }}
+            </button>
+          </div>
+
+          <br />
+
+          <div class="flex gap-x-2">
+            <p class="text-lg">Sort</p>
+            <button (click)="clearSort()">
+              <span
+                class="icon-[basil--cancel-solid] w-8 h-8 bg-gray-300 hover:bg-blue-300"
+              ></span>
+            </button>
+          </div>
+          <div class="flex gap-2">
+            <div *ngFor="let sort of sorts" class="flex gap-2">
+              <button
+                class="rounded p-1 shadow whitespace-nowrap"
+                (click)="selectSort(sort.value)"
+                [ngClass]="{
+                  'bg-gray-400': sort.value === selected_sort,
+                  'bg-gray-200': sort.value !== selected_sort,
+                }"
+              >
+                {{ sort.label }}
+              </button>
+            </div>
+          </div>
+
+          <br />
+
+          <div class="flex gap-x-2">
+            <input
+              type="checkbox"
+              title="show_unavailable"
+              id="show_unavailable"
+              (change)="toggleAvailability()"
+              [checked]="show_unavailable.value"
+            />
+            <label class="text-lg" for="show_unavailable"
+              >Show Unavailable</label
+            >
+          </div>
+        </div>
+      </div>
+
+      <input
+        type="text"
+        class="p-2 shadow border-gray-300 font-light"
+        placeholder="Search"
+        [formControl]="search"
+      />
+    </div>
+  </div>
+
+  <div class="flex justify-end w-full">
+    <p class="pt-4 pr-4 text-gray-500 italic font-light">
+      returning ({{ getBooks().length }}) result(s)
+    </p>
+  </div>
+  <div class="flex flex-wrap gap-4 justify-evenly p-8">
+    <button
+      *ngFor="let book of getBooks()"
+      class="w-1/5 min-w-56 hover:shadow bg-gray-50 p-4 rounded relative"
+      (click)="selectBook(book)"
+      [ngClass]="{
+        grayscale: !book.isAvailable,
+      }"
+    >
+      <p
+        *ngIf="selected_genres.length > 0 || selected_sort === 'genre'"
+        class="text-sm font-lato font-thin absolute left-0 top-4 p-2 bg-blue-500 text-white"
+      >
+        {{ book.genre.name }}
+      </p>
+      <p
+        *ngIf="selected_sort === 'page count'"
+        class="text-sm font-lato font-thin absolute left-0 top-16 p-2 bg-blue-500 text-white"
+      >
+        {{ book.pages }} pages
+      </p>
+      <p
+        *ngIf="!book.isAvailable"
+        class="text-sm font-lato font-thin absolute left-0 top-16 p-2 bg-gray-500 text-white"
+      >
+        Expected Available {{ book.expectedReturnDate.slice(0, 10) }}
+      </p>
+      <div>
+        <img
+          alt="{{ book.title }}"
+          src="{{ book.image }}"
+          onerror="this.src='https://via.placeholder.com/360x480.png?text=No+Image+Available'"
+          width="640"
+          height="480"
+        />
+      </div>
+      <p
+        class="text-sm md:text-lg font-lato font-light pt-2 overflow-x-clip text-ellipsis whitespace-nowrap"
+      >
+        {{ book.title }}
+      </p>
+      <p class="text-sm md:text-md font-lato font-thin whitespace-nowrap">
+        {{ book.author }}
+      </p>
+
+      <!-- <p class="text-sm font-lato font-thin">{{ book.year }}</p>
+          <p class="text-sm font-lato font-thin">{{ book.genre }}</p>
+          <p class="text-sm font-lato font-thin">{{ book.pages }}</p>
+          <p class="text-sm font-lato font-thin">{{ book.publisher }}</p>
+          <p class="text-sm font-lato font-thin">{{ book.isbn }}</p>
+          <p class="text-sm font-lato font-thin">{{ book.description }}</p> -->
+    </button>
+  </div>
+</div>
