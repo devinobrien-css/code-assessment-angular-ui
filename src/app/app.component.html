@@ -39,12 +39,12 @@
             Books
           </h2>
         </a>
-        <a routerLink="/events" routerLinkActive="text-blue-300">
+        <!-- <a routerLink="/events" routerLinkActive="text-blue-300">
           <h2 class="text-xl hover:text-blue-200 font-light flex gap-1">
             <span class="icon-[solar--calendar-bold-duotone] my-auto"></span
             >Upcoming Events
           </h2>
-        </a>
+        </a> -->
 
         <hr />
         <h2 class="text-3xl">Your Data</h2>
@@ -76,20 +76,20 @@
           routerLinkActive="text-blue-300"
         >
           <h2 class="text-xl hover:text-blue-200 font-light flex gap-1">
-            <span class="icon-[solar--clipboard-bold-duotone]"></span>Manage
-            Returns
+            <span class="icon-[solar--clipboard-bold-duotone] my-auto"></span>
+            Manage Returns
           </h2>
         </a>
-        <a
+        <!-- <a
           *ngIf="is_employee"
           routerLink="/users"
           routerLinkActive="text-blue-300"
         >
           <h2 class="text-xl hover:text-blue-200 font-light flex gap-1">
-            <span class="icon-[solar--user-bold-duotone] my-auto"></span>Manage
-            Users
+            <span class="icon-[solar--user-bold-duotone] my-auto"></span>
+            Manage Users
           </h2>
-        </a>
+        </a> -->
         <a
           *ngIf="is_employee"
           routerLink="/books"

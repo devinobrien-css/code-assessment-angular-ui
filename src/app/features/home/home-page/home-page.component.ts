@@ -1,21 +1,35 @@
 import { Component } from '@angular/core';
-import { AuthenticationService } from '../../../core/services/authentication.service';
-import { UserService } from '../../../core/services/user.service';
+import { BookService } from '../../../core/services/book.service';
+import { BookResponse } from '../../../shared/models/book';
+import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-home-page',
   standalone: true,
-  imports: [],
+  imports: [NgFor],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.css',
 })
 export class HomePageComponent {
-  constructor(
-    private authService: AuthenticationService,
-    private userService: UserService,
-  ) {}
+  books: BookResponse[] | null = null;
+
+  constructor(private bookService: BookService) {}
 
   ngOnInit() {
-    this.userService.getCurrentUser();
+    this.bookService.getBooks().subscribe((response) => {
+      this.books = response;
+    });
+  }
+
+  getFeaturedBooks() {
+    return this.books?.filter((book) => book.isFeatured);
+  }
+
+  getNewBooks() {
+    return this.books?.filter((book) => book.isNewArrival);
+  }
+
+  getBestSellingBooks() {
+    return this.books?.filter((book) => book.isBestSeller);
   }
 }

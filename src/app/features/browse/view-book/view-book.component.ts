@@ -1,12 +1,13 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { BookResponse } from '../../../shared/models/book';
 import { UserService } from '../../../core/services/user.service';
-import { NgClass } from '@angular/common';
+import { NgClass, NgFor, NgIf } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-view-book',
   standalone: true,
-  imports: [NgClass],
+  imports: [NgIf, NgClass, RouterModule, NgFor],
   templateUrl: './view-book.component.html',
   styleUrl: './view-book.component.css',
 })
@@ -18,6 +19,14 @@ export class ViewBookComponent {
   favorited = false;
 
   constructor(private userService: UserService) {}
+
+  ngOnInit() {
+    this.userService.getCurrentUser().subscribe((response) => {
+      this.current_user_id = response.id;
+
+      this.favorited = this.isBookFavorite();
+    });
+  }
 
   closeBook() {
     this.close.emit();
@@ -48,13 +57,5 @@ export class ViewBookComponent {
     }
 
     this.favorited = !this.favorited;
-  }
-
-  ngOnInit() {
-    this.userService.getCurrentUser().subscribe((response) => {
-      this.current_user_id = response.id;
-
-      this.favorited = this.isBookFavorite();
-    });
   }
 }

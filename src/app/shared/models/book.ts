@@ -12,6 +12,20 @@ interface Favorite {
   userId: string;
 }
 
+export interface BookReviews {
+  id: number;
+  reviewer: {
+    id: string;
+    first: string;
+    last: string;
+    email: string;
+    profileAvatar: string;
+  };
+  rating: number;
+  description: string;
+  dateReviewed: string;
+}
+
 export interface BookResponse {
   id: number;
   title: string;
@@ -20,6 +34,8 @@ export interface BookResponse {
   genre: Genre;
   transactions: BookTransaction[];
   favorites: Favorite[];
+  reviews: BookReviews[];
+  averageRating: number;
   isAvailable: boolean;
   expectedReturnDate: string;
   image: string;
@@ -27,6 +43,9 @@ export interface BookResponse {
   publisher: string;
   year: number;
   pages: number;
+  isBestSeller: boolean;
+  isFeatured: boolean;
+  isNewArrival: boolean;
 }
 
 export interface AddBookRequest {
@@ -39,5 +58,27 @@ export interface AddBookRequest {
   publisher: string;
   year: number;
   pages: number;
-  is_best_seller: boolean;
+  isBestSeller: boolean;
+}
+
+export interface UpdateBookRequest {
+  id: number;
+  title: string;
+  author: string;
+  description: string;
+  genreId: string;
+  image: string;
+  isbn: string;
+  publisher: string;
+  year: number;
+  pages: number;
+  isBestSeller: boolean;
+  isFeatured: boolean;
+}
+
+export interface Review {
+  BookId: number;
+  UserId: string;
+  Rating: number;
+  Description: string;
 }

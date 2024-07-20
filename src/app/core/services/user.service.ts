@@ -5,6 +5,7 @@ import {
   ProfileAvatar,
 } from '../../shared/models/user';
 import { BookResponse } from '../../shared/models/book';
+import { UserTransactionResponse } from '../../shared/models/transactions';
 
 @Injectable({
   providedIn: 'root',
@@ -38,5 +39,11 @@ export class UserService {
 
   userUnfavoritesBook(userId: string, bookId: number) {
     return this.http.delete(`/api/User/${userId}/favorite/${bookId}`);
+  }
+
+  getTransactions(userId: string) {
+    return this.http.get<UserTransactionResponse[]>(
+      `/api/User/${userId}/transactions`,
+    );
   }
 }

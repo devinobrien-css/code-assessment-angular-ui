@@ -1,5 +1,27 @@
-<div class="bg-white w-4/5 mx-auto rounded p-8">
-  <div>
-    <h1 class="text-3xl font-lato font-thin">Featured Reading</h1>
+<div class="bg-white w-4/5 mx-auto rounded p-8 h-4/5 overflow-y-scroll">
+  <h1 class="text-3xl font-lato font-thin">Featured Reading</h1>
+  <div class="flex overflow-x-scroll mt-4">
+    <div *ngFor="let book of getFeaturedBooks()" class="p-4 min-w-64">
+      <img
+        [src]="book.image"
+        alt="book.title"
+        class="w-full h-64 object-cover"
+      />
+      <h2 class="text-lg font-lato font-thin mt-2">{{ book.title }}</h2>
+      <p class="text-sm font-lato font-thin">{{ book.author }}</p>
+    </div>
+  </div>
+
+  <h1 class="text-3xl font-lato font-thin">Popular Books</h1>
+  <div class="flex overflow-x-scroll mt-4">
+    <div *ngFor="let book of getBestSellingBooks()" class="p-4 min-w-64">
+      <img
+        [src]="book.image"
+        alt="book.title"
+        class="w-full h-64 object-cover"
+      />
+      <h2 class="text-lg font-lato font-thin mt-2">{{ book.title }}</h2>
+      <p class="text-sm font-lato font-thin">{{ book.author }}</p>
+    </div>
   </div>
 </div>

@@ -76,7 +76,7 @@ export class AddBookComponent {
         publisher: this.publisher.value ?? '',
         image: this.image.value ?? '',
         description: this.description.value ?? '',
-        is_best_seller: this.is_best_seller.value ?? false,
+        isBestSeller: this.is_best_seller.value ?? false,
       })
       .subscribe(() => {
         this.messageService.add({

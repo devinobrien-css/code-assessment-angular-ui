@@ -1,1 +1,170 @@
-<p>edit-book works!</p>
+<div
+  class="bg-gray-800 bg-opacity-40 h-full w-full absolute top-0 z-[100] backdrop-blur-sm flex items-center"
+>
+  <div
+    class="bg-white h-screen md:h-5/6 md:w-3/5 mx-auto rounded-lg overflow-y-auto"
+  >
+    <div
+      class="flex justify-between shadow sticky top-0 p-4 bg-white z-50 border w-full"
+    >
+      <h1 class="text-3xl font-lato font-thin">Edit Book</h1>
+
+      <a href="/books" class="my-auto">
+        <span
+          class="icon-[basil--cancel-solid] w-10 h-10 bg-gray-400 hover:bg-blue-300"
+        ></span>
+      </a>
+    </div>
+
+    <div class="p-4">
+      <div>
+        <div class="flex flex-col space-y-2">
+          <div class="flex justify-between gap-4 md:flex-nowrap flex-wrap">
+            <div class="flex flex-col md:w-1/2 w-full">
+              <label for="title" class="text-md">Title</label>
+              <input
+                type="text"
+                id="title"
+                name="title"
+                [formControl]="title"
+                class="p-1 border border-gray-300 rounded-lg"
+                required
+              />
+            </div>
+
+            <div class="flex flex-col md:w-1/2 w-full">
+              <label for="author" class="text-md">Author</label>
+              <input
+                type="text"
+                id="author"
+                name="author"
+                [formControl]="author"
+                class="p-1 border border-gray-300 rounded-lg"
+                required
+              />
+            </div>
+          </div>
+          <div class="flex justify-between gap-4 md:flex-nowrap flex-wrap">
+            <div class="flex flex-col md:w-1/2 w-full">
+              <label for="publisher" class="text-md">Publisher</label>
+              <input
+                type="text"
+                id="publisher"
+                name="publisher"
+                [formControl]="publisher"
+                class="p-1 border border-gray-300 rounded-lg"
+                required
+              />
+            </div>
+            <div class="flex flex-col md:w-1/2 w-full">
+              <label for="year" class="text-md">Year Published</label>
+              <input
+                type="text"
+                id="year"
+                name="year"
+                [formControl]="year"
+                class="p-1 border border-gray-300 rounded-lg"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="flex justify-between gap-4 md:flex-nowrap flex-wrap">
+            <div class="flex flex-col md:w-1/2 w-full">
+              <label for="isbn" class="text-md">ISBN</label>
+              <input
+                type="text"
+                id="isbn"
+                name="isbn"
+                [formControl]="isbn"
+                class="p-1 border border-gray-300 rounded-lg"
+                required
+              />
+            </div>
+            <div class="flex flex-col md:w-1/2 w-full">
+              <label for="image" class="text-md">Image URL</label>
+              <input
+                type="text"
+                id="image"
+                name="image"
+                [formControl]="image"
+                class="p-1 border border-gray-300 rounded-lg"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="flex justify-between gap-4 md:flex-nowrap flex-wrap">
+            <div class="flex flex-col w-full md:w-1/2">
+              <label for="genre" class="text-md">Genre</label>
+              <select
+                id="genre"
+                name="genre"
+                [formControl]="selected_genre"
+                class="p-1 border border-gray-300 rounded-lg"
+                required
+              >
+                <option *ngFor="let genre of genres" [value]="genre">
+                  {{ genre.name }}
+                </option>
+              </select>
+            </div>
+            <div class="flex flex-col md:w-1/2 w-full">
+              <label for="pages" class="text-md">Pages</label>
+              <input
+                type="text"
+                id="pages"
+                name="pages"
+                [formControl]="pages"
+                class="p-1 border border-gray-300 rounded-lg"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="flex flex-col">
+            <label for="description" class="text-md">Description</label>
+            <textarea
+              id="description"
+              name="description"
+              [formControl]="description"
+              initialRows="2"
+              value="description"
+              class="p-1 border border-gray-300 rounded-lg"
+              required
+            ></textarea>
+          </div>
+          <div class="flex gap-x-2">
+            <input
+              type="checkbox"
+              title="is_best_seller"
+              id="is_best_seller"
+              (change)="toggleBestSeller()"
+              [checked]="is_best_seller.value"
+            />
+            <label class="text-lg" for="is_best_seller">Is Best Seller</label>
+          </div>
+          <div class="flex gap-x-2">
+            <input
+              type="checkbox"
+              title="is_featured"
+              id="is_featured"
+              (change)="toggleFeatured()"
+              [checked]="is_featured.value"
+            />
+            <label class="text-lg" for="is_featured">Is Featured</label>
+          </div>
+        </div>
+        <div class="flex justify-end">
+          <button
+            (click)="updateBook()"
+            type="button"
+            class="bg-blue-500 text-white p-2 rounded-lg"
+          >
+            Confirm
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

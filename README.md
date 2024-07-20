@@ -22,6 +22,10 @@ Run `ng test`
 
 Run `ng e2e`
 
+## Code Clean Up
+
+Run `npx prettier . --write` and `npx eslint src --fix`
+
 ## Documentation
 
 [Angular Standards](https://angular.dev/style-guide)

@@ -8,15 +8,17 @@ import { BrowseBooksComponent } from './features/browse/browse-books/browse-book
 import { SettingsComponent } from './features/profile/settings/settings.component';
 import { EditUserComponent } from './features/profile/edit-user/edit-user.component';
 import { ChangePasswordComponent } from './features/profile/change-password/change-password.component';
-import { ViewBookComponent } from './features/browse/view-book/view-book.component';
 import { ViewUsersComponent } from './features/users/view-users/view-users.component';
 import { ViewBooksComponent } from './features/books/view-books/view-books.component';
 import { EventsComponent } from './features/events/events.component';
 import { FavoritesComponent } from './features/favorites/favorites.component';
 import { CartComponent } from './features/cart/cart.component';
-import { ReturnsComponent } from './features/returns/returns.component';
+import { ReturnsComponent } from './features/transactions/returns/returns.component';
 import { AddBookComponent } from './features/books/add-book/add-book.component';
 import { EditBookComponent } from './features/books/edit-book/edit-book.component';
+import { CheckoutComponent } from './shared/components/books/checkout/checkout.component';
+import { ProcessReturnComponent } from './features/transactions/process-return/process-return.component';
+import { WriteReviewComponent } from './features/browse/write-review/write-review.component';
 
 export const routes: Routes = [
   { path: '', component: HomePageComponent, canActivate: [loggedInGuardGuard] },
@@ -36,8 +38,12 @@ export const routes: Routes = [
     canActivate: [loggedInGuardGuard],
     children: [
       {
-        path: ':id',
-        component: ViewBookComponent,
+        path: ':bookId/checkout/:userId',
+        component: CheckoutComponent,
+      },
+      {
+        path: ':bookId/review',
+        component: WriteReviewComponent,
       },
     ],
   },
@@ -95,5 +101,11 @@ export const routes: Routes = [
     path: 'returns',
     component: ReturnsComponent,
     canActivate: [loggedInGuardGuard],
+    children: [
+      {
+        path: ':transactionId',
+        component: ProcessReturnComponent,
+      },
+    ],
   },
 ];
