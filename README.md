@@ -75,7 +75,7 @@ ng test
 ### Code Clean Up
 
 ```bash
-npx prettier . --write
+npx prettier src --write
 npx eslint src --fix
 ```
 
