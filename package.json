@@ -8,7 +8,10 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint-staged": "npx eslint src",
+    "prettier": "npx prettier src --write",
+    "lint": "eslint src --fix",
+    "precommit-lint": "eslint",
+    "precommit-prettier": "npx prettier src --check",
     "prepare": "husky"
   },
   "private": true,
@@ -54,10 +57,5 @@
   "lint-staged": {
     "**/*.{js,ts}": "eslint --fix",
     "**/*": "prettier --write --ignore-unknown"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   }
 }

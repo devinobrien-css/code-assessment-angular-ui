@@ -66,6 +66,18 @@ Run `ng generate component component-name` to generate a new component.
 ng build
 ```
 
+### Guarding commits with Pre-Commits
+
+> note the included `/husky-sample` is configured for Mac/Homebrew environments. To prepare on a windows/linux machine, please set the expected root path accordingly in `/husky-sample/.pre-commit`
+
+#### Prepare Precommits
+```bash
+npm run prepare
+```
+#### Copy Shell Script
+
+Copy `/husky-sample/.pre-commit` to `./husky`
+
 ### Running unit tests
 
 ```bash
@@ -74,10 +86,12 @@ ng test
 
 ### Code Clean Up
 
+
 ```bash
-npx prettier src --write
-npx eslint src --fix
+npm run lint
+npm run prettier
 ```
+> Always run linting prior to prettifying!
 
 ## Documentation
 

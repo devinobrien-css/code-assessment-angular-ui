@@ -4,10 +4,6 @@ import { NgModule } from '@angular/core';
   declarations: [],
   imports: [],
 })
-export class SharedModule { 
-
-  constructor() {
-    console.log('SharedModule loaded');
-       }
-
-} 
+export class SharedModule {
+  constructor() {}
+}
