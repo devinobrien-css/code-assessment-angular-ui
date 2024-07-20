@@ -3,6 +3,7 @@
 ## Prerequisites
 
 - Knowledge of [Angular 18](https://angular.dev/overview)
+- [Angular Environment](https://v17.angular.io/guide/setup-local) setup on your machine
 - [Node](https://nodejs.org/en/download/package-manager) installed on your machine
 - [Git](https://git-scm.com/download/) installed on your machine
 
