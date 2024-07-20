@@ -5,6 +5,20 @@
     <h1 class="text-3xl font-lato font-thin">Checked Out Books</h1>
   </div>
 
+  <div
+    *ngIf="transactions.length === 0"
+    class="flex flex-col items-center justify-center h-4/5"
+  >
+    <span
+      class="icon-[solar--info-square-bold-duotone] text-6xl text-gray-400"
+    ></span>
+    <p class="text-gray-400 text-2xl font-light">No books checked out</p>
+
+    <a href="/browse" class="text-blue-500 underline mt-4 font-light"
+      >Browse Books</a
+    >
+  </div>
+
   <div *ngFor="let transaction of transactions" class="p-8">
     <div class="flex gap-4">
       <img

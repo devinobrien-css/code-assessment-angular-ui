@@ -10,7 +10,6 @@ import { TransactionService } from '../../../../core/services/transaction.servic
   standalone: true,
   imports: [],
   templateUrl: './checkout.component.html',
-  styleUrl: './checkout.component.css',
 })
 export class CheckoutComponent {
   bookId = this.route.snapshot.params['bookId'];
@@ -41,7 +40,7 @@ export class CheckoutComponent {
           summary: 'Success',
           detail: 'Book checked out successfully',
         });
-        this.router.navigate(['/cart']);
+        this.router.navigate(['/checked-out-books']);
       });
   }
 }

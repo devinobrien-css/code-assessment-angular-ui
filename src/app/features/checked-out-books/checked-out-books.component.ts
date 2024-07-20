@@ -8,10 +8,9 @@ import { NgFor, NgIf } from '@angular/common';
   selector: 'app-cart',
   standalone: true,
   imports: [NgFor, NgIf],
-  templateUrl: './cart.component.html',
-  styleUrl: './cart.component.css',
+  templateUrl: './checked-out-books.component.html',
 })
-export class CartComponent {
+export class CheckedOutBooksComponent {
   user: CurrentUserInfoResponse | null = null;
   transactions: UserTransactionResponse[] = [];
 
@@ -25,5 +24,9 @@ export class CartComponent {
         this.transactions = transactions;
       });
     });
+  }
+
+  userHasNoTransactions() {
+    return this.transactions.length === 0;
   }
 }
