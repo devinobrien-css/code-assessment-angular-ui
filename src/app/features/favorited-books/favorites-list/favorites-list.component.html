@@ -1,0 +1,35 @@
+<div class="bg-white w-4/5 m-auto rounded max-h-[80%] overflow-y-auto pb-8">
+  <div class="relative">
+    <div
+      class="flex justify-between shadow sticky top-0 p-8 bg-white z-50 border w-full"
+    >
+      <h1 class="text-3xl font-lato font-thin">Your Curated Collection</h1>
+    </div>
+    <br />
+
+    <div
+      *ngIf="favorites.length === 0"
+      class="flex flex-col items-center justify-center h-4/5"
+    >
+      <span
+        class="icon-[solar--info-square-bold-duotone] text-6xl text-gray-400"
+      ></span>
+      <p class="text-gray-400 text-2xl font-light">No Favorited Book</p>
+
+      <a href="/browse" class="text-blue-500 underline mt-4 font-light"
+        >Browse Books</a
+      >
+    </div>
+
+    <div class="flex flex-wrap gap-4 justify-evenly">
+      <div *ngFor="let book of favorites" class="w-1/5 min-w-56">
+        <app-favorited-book-card
+          [book]="book"
+          [isFavorite]="isBookFavorite(book)"
+          [current_user_id]="current_user_id"
+          (removeFavorite)="removeFavorite(book)"
+        ></app-favorited-book-card>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,7 +1,9 @@
 <div
   class="bg-gray-800 bg-opacity-40 h-full w-full absolute top-0 z-[100] backdrop-blur-sm flex items-center"
 >
-  <div class="bg-white md:h-4/5 md:w-3/5 mx-auto rounded-lg overflow-y-auto">
+  <div
+    class="bg-white h-fit max-h-[80%] md:w-3/5 mx-auto rounded-lg overflow-y-auto"
+  >
     <div
       class="flex justify-between shadow sticky top-0 p-4 bg-white z-50 border w-full"
     >
@@ -33,7 +35,7 @@
             class="bg-blue-500 text-white px-4 py-2 rounded-lg"
             (click)="checkout()"
           >
-            Confirm Checkout
+            Confirm
           </button>
           <a class="bg-gray-400 text-white px-4 py-2 rounded-lg" href="/browse">
             Cancel

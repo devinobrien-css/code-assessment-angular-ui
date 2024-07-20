@@ -9,7 +9,6 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   imports: [NgIf, NgClass, RouterModule, NgFor],
   templateUrl: './view-book.component.html',
-  styleUrl: './view-book.component.css',
 })
 export class ViewBookComponent {
   @Input() book: BookResponse | null = null;

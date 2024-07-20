@@ -11,7 +11,6 @@ import { ChangePasswordComponent } from './features/profile/change-password/chan
 import { ViewUsersComponent } from './features/users/view-users/view-users.component';
 import { ViewBooksComponent } from './features/books/view-books/view-books.component';
 import { EventsComponent } from './features/events/events.component';
-import { FavoritesComponent } from './features/favorites/favorites.component';
 import { ReturnsComponent } from './features/transactions/returns/returns.component';
 import { AddBookComponent } from './features/books/add-book/add-book.component';
 import { EditBookComponent } from './features/books/edit-book/edit-book.component';
@@ -19,6 +18,7 @@ import { CheckoutComponent } from './shared/components/books/checkout/checkout.c
 import { ProcessReturnComponent } from './features/transactions/process-return/process-return.component';
 import { WriteReviewComponent } from './features/browse/write-review/write-review.component';
 import { CheckedOutBooksComponent } from './features/checked-out-books/checked-out-books.component';
+import { FavoritesListComponent } from './features/favorited-books/favorites-list/favorites-list.component';
 
 export const routes: Routes = [
   { path: '', component: HomePageComponent, canActivate: [loggedInGuardGuard] },
@@ -89,7 +89,7 @@ export const routes: Routes = [
   },
   {
     path: 'favorites',
-    component: FavoritesComponent,
+    component: FavoritesListComponent,
     canActivate: [loggedInGuardGuard],
   },
   {

@@ -26,7 +26,6 @@ export enum Sort {
     ViewBookComponent,
   ],
   templateUrl: './browse-books.component.html',
-  styleUrl: './browse-books.component.css',
 })
 export class BrowseBooksComponent {
   genres: Genre[] = [];

@@ -5,16 +5,18 @@ import { BookService } from '../../../core/services/book.service';
 import { UserService } from '../../../core/services/user.service';
 import { MessageService } from 'primeng/api';
 import { ActivatedRoute, Router } from '@angular/router';
+import { BookResponse } from '../../../shared/models/book';
 
 @Component({
   selector: 'app-write-review',
   standalone: true,
   imports: [ReactiveFormsModule, NgClass, NgIf, NgFor],
   templateUrl: './write-review.component.html',
-  styleUrl: './write-review.component.css',
 })
 export class WriteReviewComponent {
   bookId = this.route.snapshot.params['bookId'];
+
+  book: BookResponse | null = null;
 
   rating = new FormControl(1);
   description = new FormControl('');
@@ -32,6 +34,10 @@ export class WriteReviewComponent {
   ngOnInit() {
     this.userService.getCurrentUser().subscribe((user) => {
       this.userId = user.id;
+    });
+
+    this.bookService.getBook(this.bookId).subscribe((book) => {
+      this.book = book;
     });
   }
 

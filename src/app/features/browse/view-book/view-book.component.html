@@ -1,7 +1,9 @@
 <div
   class="bg-gray-800 bg-opacity-40 h-full w-full absolute top-0 z-[100] backdrop-blur-sm flex items-center"
 >
-  <div class="bg-white h-4/5 w-3/5 mx-auto rounded-lg overflow-y-auto">
+  <div
+    class="bg-white h-fit max-h-[80%] w-3/5 mx-auto rounded-lg overflow-y-auto"
+  >
     <div
       class="flex justify-between shadow sticky top-0 p-4 bg-white z-50 border w-full"
     >
@@ -77,16 +79,33 @@
         >
       </div>
 
+      <div
+        *ngIf="book?.reviews?.length === 0"
+        class="flex flex-col items-center justify-center h-4/5"
+      >
+        <span
+          class="icon-[solar--info-square-bold-duotone] text-6xl text-gray-400"
+        ></span>
+        <p class="text-gray-400 text-2xl font-light">No Reviews Yet</p>
+        <a
+          href="browse/{{ book?.id }}/review"
+          class="text-blue-500 underline mt-4 font-light"
+        >
+          Be the first to review this book
+        </a>
+      </div>
+
       <div class="flex flex-col space-y-2 divide-y-2">
         <div
           *ngFor="let review of book?.reviews"
           class="flex flex-col gap-2 py-2"
         >
           <div class="flex justify-between">
-            <div class="flex">
+            <div class="flex gap-2">
               <img
                 [src]="review.reviewer.profileAvatar"
                 alt="User Avatar"
+                onerror="this.src='https://robohash.org/35'"
                 class="rounded-full w-14 h-14 shadow"
               />
               <div class="my-auto">

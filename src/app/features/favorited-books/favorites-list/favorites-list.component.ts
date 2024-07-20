@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
-import { UserService } from '../../core/services/user.service';
-import { BookResponse } from '../../shared/models/book';
-import { NgClass, NgFor } from '@angular/common';
+import { NgClass, NgFor, NgIf } from '@angular/common';
+import { UserService } from '../../../core/services/user.service';
+import { BookResponse } from '../../../shared/models/book';
+import { FavoritedBookCardComponent } from '../favorited-book-card/favorited-book-card.component';
 
 @Component({
   selector: 'app-favorites',
   standalone: true,
-  imports: [NgFor, NgClass],
-  templateUrl: './favorites.component.html',
-  styleUrl: './favorites.component.css',
+  imports: [NgFor, NgClass, NgIf, FavoritedBookCardComponent],
+  templateUrl: './favorites-list.component.html',
 })
-export class FavoritesComponent {
+export class FavoritesListComponent {
   favorites: BookResponse[] = [];
   current_user_id: string = '';
 

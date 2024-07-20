@@ -1,0 +1,40 @@
+<div class="hover:shadow bg-gray-50 p-4 rounded relative">
+  <button class="my-auto" title="Favorite" (click)="remove()">
+    <p
+      *ngIf="!book?.isAvailable"
+      class="text-sm font-lato font-thin absolute left-0 top-16 p-2 bg-gray-500 text-white"
+    >
+      Unavailable
+    </p>
+    <span
+      class="icon-[solar--star-bold-duotone] w-10 h-10 hover:scale-105 transition-all active:scale-95 absolute top-2 right-2"
+      [ngClass]="{
+        'bg-yellow-400': isFavorite,
+        'bg-gray-400': !isFavorite,
+      }"
+    ></span>
+  </button>
+  <a
+    *ngIf="book?.isAvailable"
+    class="rounded p-2 shadow bg-blue-400 text-white absolute top-2 left-2 hover:scale-105 active:scale-95"
+    href="browse/{{ book?.id }}/checkout/{{ current_user_id }}"
+  >
+    Borrow
+  </a>
+  <div>
+    <img
+      alt="{{ book?.title }}"
+      src="{{ book?.image }}"
+      width="640"
+      height="480"
+    />
+  </div>
+  <p
+    class="text-sm md:text-lg font-lato font-light pt-2 overflow-x-clip text-ellipsis whitespace-nowrap"
+  >
+    {{ book?.title }}
+  </p>
+  <p class="text-sm md:text-md font-lato font-thin whitespace-nowrap">
+    {{ book?.author }}
+  </p>
+</div>
