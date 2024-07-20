@@ -1,14 +1,6 @@
 #!/bin/sh
 
 echo "\n-------------------"
-echo "SETTING ROOT PATH TO ZPROFILE"
-# Note: This is a workaround for the issue where the PATH is not set correctly in the pre-commit hook on Macbooks
-# This is a known issue with Husky and Macbooks: https://stackoverflow.com/questions/65619529/fixing-zsh-command-not-found-brew-installing-homebrew
-echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
-eval "$(/opt/homebrew/bin/brew shellenv)"
-
-
-echo "\n-------------------"
 echo "LINTING"
 npm run precommit-lint
 

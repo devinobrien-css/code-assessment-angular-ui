@@ -68,7 +68,6 @@ ng build
 
 ### Guarding commits with Pre-Commits
 
-> note the included `/husky-sample` is configured for Mac/Homebrew environments. To prepare on a windows/linux machine, please set the expected root path accordingly in `/husky-sample/.pre-commit`
 
 #### Prepare Precommits
 ```bash
@@ -77,6 +76,14 @@ npm run prepare
 #### Copy Shell Script
 
 Copy `/husky-sample/.pre-commit` to `./husky`
+
+> Note Apple-Silicon devices may have trouble with precommits. See [here](https://stackoverflow.com/questions/65619529/fixing-zsh-command-not-found-brew-installing-homebrew)
+
+
+To fix an issue with commiting from an Apple-Silcon device with an environment set up using homebrew, add the following to ~/.zshrc
+```txt
+path+=/opt/homebrew/bin
+```
 
 ### Running unit tests
 
