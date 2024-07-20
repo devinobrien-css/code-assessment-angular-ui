@@ -14,8 +14,8 @@
 /CodeAssessmentUI
 │
 ├── /.husky             # Pre Commits
-├── /src                
-│   ├── /app            
+├── /src
+│   ├── /app
 │   │   ├── /core       # Services, infrastructure & middleware
 │   │   ├── /features   # Independent page modules and components
 │   │   ├── /shared     # Shared models and components
@@ -57,7 +57,7 @@ Navigate to `http://localhost:4200/`. The application will automatically reload 
 
 Run `ng generate component component-name` to generate a new component.
 
->You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+> You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
 ### Building the app
 
