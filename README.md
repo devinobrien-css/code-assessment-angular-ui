@@ -1,30 +1,82 @@
 # Codde Assessment Angular UI
 
-## Development server
+## Prerequisites
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- Knowledge of [Angular 18](https://angular.dev/overview)
+- [Node](https://nodejs.org/en/download/package-manager) installed on your machine
+- [Git](https://git-scm.com/download/) installed on your machine
 
-## Code scaffolding
+&nbsp;
+
+## Repository Overview
+
+```bash
+/CodeAssessmentUI
+│
+├── /.husky             # Pre Commits
+├── /src                
+│   ├── /app            
+│   │   ├── /core       # Services, infrastructure & middleware
+│   │   ├── /features   # Independent page modules and components
+│   │   ├── /shared     # Shared models and components
+│   │   └── ...
+│   ├── /assets
+│   ├── /environments   # Environment configuration
+│   ├── main.ts
+│   ├── styles.css
+│   └── ...
+├── tailwind.config.js  # Root style configuration
+└── README.md
+```
+
+&nbsp;
+
+## Getting Started / Running the app
+
+### Install Prerequisites
+
+```bash
+npm i
+```
+
+### Start the development server
+
+```bash
+ng serve
+```
+
+### View the app in browser
+
+Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+
+&nbsp;
+
+## Contributing
+
+### Code scaffolding
 
 Run `ng generate component component-name` to generate a new component.
 
-You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+>You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+### Building the app
 
-Run `ng build`
+```bash
+ng build
+```
 
-## Running unit tests
+### Running unit tests
 
-Run `ng test`
+```bash
+ng test
+```
 
-## Running end-to-end tests
+### Code Clean Up
 
-Run `ng e2e`
-
-## Code Clean Up
-
-Run `npx prettier . --write` and `npx eslint src --fix`
+```bash
+npx prettier . --write
+npx eslint src --fix
+```
 
 ## Documentation
 
