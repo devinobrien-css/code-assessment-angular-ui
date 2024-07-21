@@ -1,0 +1,21 @@
+<div class="flex justify-between">
+  <div class="flex gap-2">
+    <img
+      [src]="review?.reviewer?.profileAvatar"
+      alt="User Avatar"
+      onerror="this.src='https://robohash.org/35'"
+      class="rounded-full w-14 h-14 shadow"
+    />
+    <div class="my-auto">
+      <p class="text-lg font-lato font-light">
+        {{ review?.reviewer?.first }} {{ review?.reviewer?.last }}
+      </p>
+      <p class="text-md font-lato font-light">{{ review?.rating }} stars</p>
+    </div>
+  </div>
+  <p class="text-md font-lato font-light">
+    {{ review?.dateReviewed }}
+  </p>
+</div>
+
+<p class="text-lg font-lato font-light">{{ review?.description }}</p>

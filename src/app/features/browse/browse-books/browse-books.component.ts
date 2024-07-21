@@ -5,7 +5,7 @@ import { NgClass, NgFor, NgIf } from '@angular/common';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { GenreService } from '../../../core/services/genre.service';
 import { RouterModule } from '@angular/router';
-import { ViewBookComponent } from '../view-book/view-book.component';
+import { ViewBookComponent } from '../view-book-modal/view-book-modal.component';
 
 export enum Sort {
   Title = 'title',

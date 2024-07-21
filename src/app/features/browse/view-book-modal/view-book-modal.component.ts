@@ -3,12 +3,13 @@ import { BookResponse } from '../../../shared/models/book';
 import { UserService } from '../../../core/services/user.service';
 import { NgClass, NgFor, NgIf } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { BookReviewComponent } from '../book-review/book-review.component';
 
 @Component({
   selector: 'app-view-book',
   standalone: true,
-  imports: [NgIf, NgClass, RouterModule, NgFor],
-  templateUrl: './view-book.component.html',
+  imports: [NgIf, NgClass, RouterModule, NgFor, BookReviewComponent],
+  templateUrl: './view-book-modal.component.html',
 })
 export class ViewBookComponent {
   @Input() book: BookResponse | null = null;

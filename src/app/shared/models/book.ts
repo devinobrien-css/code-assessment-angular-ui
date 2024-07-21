@@ -12,7 +12,7 @@ interface Favorite {
   userId: string;
 }
 
-export interface BookReviews {
+export interface BookReview {
   id: number;
   reviewer: {
     id: string;
@@ -34,7 +34,7 @@ export interface BookResponse {
   genre: Genre;
   transactions: BookTransaction[];
   favorites: Favorite[];
-  reviews: BookReviews[];
+  reviews: BookReview[];
   averageRating: number;
   isAvailable: boolean;
   expectedReturnDate: string;
