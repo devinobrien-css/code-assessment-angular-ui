@@ -18,6 +18,7 @@ import { AppComponent } from './app.component';
 import { routes } from './app.routes';
 import { loggingInterceptor } from './core/interceptors/logging.interceptor';
 import { authInterceptor } from './core/interceptors/auth.interceptor';
+import { NavigationComponent } from './shared/components/navigation/navigation.component';
 
 @NgModule({
   imports: [
@@ -25,6 +26,8 @@ import { authInterceptor } from './core/interceptors/auth.interceptor';
     BrowserAnimationsModule,
 
     ToastModule,
+
+    NavigationComponent,
 
     HttpClientModule,
 

@@ -21,7 +21,6 @@ import { CheckedOutBooksComponent } from './features/checked-out-books/checked-o
 import { FavoritesListComponent } from './features/favorited-books/favorites-list/favorites-list.component';
 import { isEmployeeGuard } from './core/guards/is-employee.guard';
 import { UnauthorizedErrorComponent } from './shared/components/error/unauthorized-error/unauthorized-error.component';
-import { NotFoundError } from 'rxjs';
 import { NotFoundErrorComponent } from './shared/components/error/not-found-error/not-found-error.component';
 
 export const routes: Routes = [
