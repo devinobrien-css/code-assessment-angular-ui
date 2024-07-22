@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
-import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { AuthenticationService } from '../../../core/services/authentication.service';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
@@ -11,9 +16,16 @@ import { MessageService } from 'primeng/api';
   templateUrl: './login.component.html',
 })
 export class LoginComponent {
-  // email and password fields and login handler
-  email = new FormControl('', Validators.required);
-  password = new FormControl('', Validators.required);
+  loginForm = new FormGroup({
+    email: new FormControl<string>('', {
+      nonNullable: true,
+      ...Validators.required,
+    }),
+    password: new FormControl('', {
+      nonNullable: true,
+      ...Validators.required,
+    }),
+  });
 
   constructor(
     private authService: AuthenticationService,
@@ -21,12 +33,7 @@ export class LoginComponent {
   ) {}
 
   onLogin(): void {
-    if (
-      this.email.invalid ||
-      this.password.invalid ||
-      this.email.value === '' ||
-      this.password.value === ''
-    ) {
+    if (!this.loginForm.valid) {
       this.messageService.add({
         severity: 'error',
         summary: 'Error',
@@ -35,6 +42,11 @@ export class LoginComponent {
       return;
     }
 
-    this.authService.login(this.email.value ?? '', this.password.value ?? '');
+    const loginCredentials = this.loginForm.value;
+
+    this.authService.login(
+      loginCredentials.email ?? '',
+      loginCredentials.password ?? '',
+    );
   }
 }
