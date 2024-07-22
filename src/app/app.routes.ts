@@ -119,10 +119,10 @@ export const routes: Routes = [
   {
     path: 'unauthorized',
     component: UnauthorizedErrorComponent,
+    canActivate: [loggedInGuardGuard],
   },
   {
     path: '**',
-    component: NotFoundErrorComponent,
-    pathMatch: 'full',
+    redirectTo: '/login',
   },
 ];

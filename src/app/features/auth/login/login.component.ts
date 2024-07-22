@@ -9,7 +9,6 @@ import { MessageService } from 'primeng/api';
   standalone: true,
   imports: [ToastModule, ReactiveFormsModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css',
 })
 export class LoginComponent {
   // email and password fields and login handler
