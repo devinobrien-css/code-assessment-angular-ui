@@ -2,7 +2,10 @@ import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, tap } from 'rxjs';
-import { TokenResponse } from '../../shared/models/authentication';
+import {
+  EmailExistsResponse,
+  TokenResponse,
+} from '../../shared/models/authentication';
 
 @Injectable({
   providedIn: 'root',
@@ -71,5 +74,11 @@ export class AuthenticationService {
     localStorage.removeItem('refreshToken');
 
     this.router.navigate(['/login']);
+  }
+
+  async emailExists(email: string) {
+    return this.http.get<EmailExistsResponse>(
+      `/api/account/email-exists?email=${email}`,
+    );
   }
 }

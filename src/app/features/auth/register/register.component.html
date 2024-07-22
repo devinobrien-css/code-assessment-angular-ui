@@ -108,25 +108,120 @@
                 <label for="password" class="block text-gray-600 font-lato"
                   >Password</label
                 >
-                <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  class="w-full p-2 border border-gray-600 font-lato rounded-lg"
-                  [formControl]="password"
-                />
+                <div
+                  class="w-full border border-gray-600 font-lato rounded-lg flex overflow-clip"
+                >
+                  <input
+                    [type]="show_password ? 'text' : 'password'"
+                    id="password"
+                    name="password"
+                    class="w-full p-2"
+                    [formControl]="password"
+                  />
+                  <button
+                    type="button"
+                    (click)="togglePassword()"
+                    class="flex flex-col items-center"
+                    [ngClass]="{
+                      'bg-blue-300': show_password,
+                      'bg-gray-200': !show_password,
+                    }"
+                  >
+                    <span
+                      class="icon-[solar--eye-bold-duotone] w-8 h-8 my-auto"
+                      [ngClass]="{
+                        'bg-white': show_password,
+                        'bg-gray-400': !show_password,
+                      }"
+                    ></span>
+                  </button>
+                </div>
               </div>
               <div class="mb-4">
                 <label for="password" class="block text-gray-600 font-lato"
                   >Confirm Password</label
                 >
-                <input
-                  type="password"
-                  id="confirmPassword"
-                  name="confirmPassword"
-                  class="w-full p-2 border border-gray-600 font-lato rounded-lg"
-                  [formControl]="confirmPassword"
-                />
+                <div
+                  class="w-full border border-gray-600 font-lato rounded-lg flex overflow-clip"
+                >
+                  <input
+                    [type]="show_confirm_password ? 'text' : 'password'"
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    class="w-full p-2"
+                    [formControl]="confirmPassword"
+                  />
+                  <button
+                    type="button"
+                    (click)="toggleConfirmPassword()"
+                    class="flex flex-col items-center"
+                    [ngClass]="{
+                      'bg-blue-300': show_confirm_password,
+                      'bg-gray-200': !show_confirm_password,
+                    }"
+                  >
+                    <span
+                      class="icon-[solar--eye-bold-duotone] w-8 h-8 my-auto"
+                      [ngClass]="{
+                        'bg-white': show_confirm_password,
+                        'bg-gray-400': !show_confirm_password,
+                      }"
+                    ></span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="text-sm">
+                <div class="flex gap-2">
+                  <span
+                    class="icon-[solar--shield-warning-bold-duotone] w-8 h-8 my-auto"
+                    [ngClass]="{
+                      'text-red-500': passwordErrors().includes('length'),
+                      'text-blue-500': !passwordErrors().includes('length'),
+                    }"
+                  ></span>
+                  <span class="my-auto">At least 8 characters</span>
+                </div>
+                <div class="flex gap-2">
+                  <span
+                    class="icon-[solar--shield-warning-bold-duotone] w-8 h-8 my-auto"
+                    [ngClass]="{
+                      'text-red-500': passwordErrors().includes('uppercase'),
+                      'text-blue-500': !passwordErrors().includes('uppercase'),
+                    }"
+                  ></span>
+                  <span class="my-auto">At least 1 uppercase letter</span>
+                </div>
+                <div class="flex gap-2">
+                  <span
+                    class="icon-[solar--shield-warning-bold-duotone] w-8 h-8 my-auto"
+                    [ngClass]="{
+                      'text-red-500': passwordErrors().includes('lowercase'),
+                      'text-blue-500': !passwordErrors().includes('lowercase'),
+                    }"
+                  ></span>
+                  <span class="my-auto">At least 1 lowercase letter</span>
+                </div>
+                <div class="flex gap-2">
+                  <span
+                    class="icon-[solar--shield-warning-bold-duotone] w-8 h-8 my-auto"
+                    [ngClass]="{
+                      'text-red-500': passwordErrors().includes('number'),
+                      'text-blue-500': !passwordErrors().includes('number'),
+                    }"
+                  ></span>
+                  <span class="my-auto">At least 1 number</span>
+                </div>
+                <div class="flex gap-2">
+                  <span
+                    [ngClass]="{
+                      'text-red-500': passwordErrors().includes('character'),
+                      'text-blue-500': !passwordErrors().includes('character'),
+                    }"
+                    class="icon-[solar--shield-warning-bold-duotone] w-8 h-8 my-auto"
+                  ></span>
+                  <span class="my-auto">At least 1 special character</span>
+                </div>
               </div>
             </form>
 

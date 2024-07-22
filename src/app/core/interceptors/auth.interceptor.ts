@@ -15,6 +15,10 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   return next(cloneReq).pipe(
     catchError((error) => {
       if (error.status === 401) {
+        if (localStorage.getItem('refreshToken') === null) {
+          return throwError(() => error);
+        }
+
         // Refresh the access token
         return authService.refreshAccessToken().pipe(
           switchMap(() => {
