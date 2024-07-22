@@ -1,20 +1,28 @@
 import { CanActivateFn, Router } from '@angular/router';
-import { AuthenticationService } from '../services/authentication.service';
 import { inject } from '@angular/core';
 import { UserService } from '../services/user.service';
+import { catchError, map, Observable, switchMap, throwError } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
 
-export const isEmployeeGuard: CanActivateFn = async (route, state) => {
+export const isEmployeeGuard: CanActivateFn = (
+  req,
+  next,
+): Observable<boolean> => {
   const userService = inject(UserService);
 
   const router = new Router();
 
-  userService.getCurrentUser().subscribe((user) => {
-    if (user.roles.includes('Employee')) {
-      return true;
-    }
-    router.navigate(['/unauthorized']);
-    return false;
-  });
-
-  return false;
+  return userService.getCurrentUser().pipe(
+    map((userInfo) => {
+      if (userInfo) {
+        return true;
+      } else {
+        router.navigate(['/unauthorized']);
+        return false;
+      }
+    }),
+    catchError((error: HttpErrorResponse) => {
+      return throwError(() => error);
+    }),
+  );
 };

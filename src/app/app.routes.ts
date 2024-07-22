@@ -73,12 +73,12 @@ export const routes: Routes = [
   {
     path: 'users',
     component: ViewUsersComponent,
-    canActivate: [loggedInGuardGuard, isEmployeeGuard],
+    canActivate: [isEmployeeGuard],
   },
   {
     path: 'book-manager',
     component: ViewBooksComponent,
-    canActivate: [loggedInGuardGuard, isEmployeeGuard],
+    canActivate: [isEmployeeGuard],
     children: [
       {
         path: 'add',
@@ -108,7 +108,7 @@ export const routes: Routes = [
   {
     path: 'returns',
     component: ReturnsComponent,
-    canActivate: [loggedInGuardGuard, isEmployeeGuard],
+    canActivate: [isEmployeeGuard],
     children: [
       {
         path: ':transactionId',
