@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
 import { HomePageComponent } from './features/home/home-page/home-page.component';
 import { LoginComponent } from './features/auth/login/login.component';
-import { loggedInGuardGuard } from './core/guards/logged-in-guard.guard';
-import { loggedOutGuardGuard } from './core/guards/logged-out-guard.guard';
+import { loggedInGuardGuard } from './core/guards/logged-in.guard';
+import { loggedOutGuardGuard } from './core/guards/logged-out.guard';
 import { RegisterComponent } from './features/auth/register/register.component';
 import { BrowseBooksComponent } from './features/browse/browse-books/browse-books.component';
 import { SettingsComponent } from './features/profile/settings/settings.component';
@@ -19,6 +19,10 @@ import { ProcessReturnComponent } from './features/transactions/process-return/p
 import { WriteReviewComponent } from './features/browse/write-review/write-review.component';
 import { CheckedOutBooksComponent } from './features/checked-out-books/checked-out-books.component';
 import { FavoritesListComponent } from './features/favorited-books/favorites-list/favorites-list.component';
+import { isEmployeeGuard } from './core/guards/is-employee.guard';
+import { UnauthorizedErrorComponent } from './shared/components/error/unauthorized-error/unauthorized-error.component';
+import { NotFoundError } from 'rxjs';
+import { NotFoundErrorComponent } from './shared/components/error/not-found-error/not-found-error.component';
 
 export const routes: Routes = [
   { path: '', component: HomePageComponent, canActivate: [loggedInGuardGuard] },
@@ -65,12 +69,12 @@ export const routes: Routes = [
   {
     path: 'users',
     component: ViewUsersComponent,
-    canActivate: [loggedInGuardGuard],
+    canActivate: [loggedInGuardGuard, isEmployeeGuard],
   },
   {
-    path: 'books',
+    path: 'book-manager',
     component: ViewBooksComponent,
-    canActivate: [loggedInGuardGuard],
+    canActivate: [loggedInGuardGuard, isEmployeeGuard],
     children: [
       {
         path: 'add',
@@ -100,12 +104,21 @@ export const routes: Routes = [
   {
     path: 'returns',
     component: ReturnsComponent,
-    canActivate: [loggedInGuardGuard],
+    canActivate: [loggedInGuardGuard, isEmployeeGuard],
     children: [
       {
         path: ':transactionId',
         component: ProcessReturnComponent,
       },
     ],
+  },
+  {
+    path: 'unauthorized',
+    component: UnauthorizedErrorComponent,
+  },
+  {
+    path: '**',
+    component: NotFoundErrorComponent,
+    pathMatch: 'full',
   },
 ];

@@ -6,7 +6,7 @@
     <h1 class="text-3xl font-lato font-thin">Manage Books</h1>
     <div class="flex gap-x-4">
       <a
-        routerLink="/books/add"
+        routerLink="/book-manager/add"
         class="text-blue-400 text-xs flex flex-col hover:scale-105 active:scale-95 cursor-pointer"
         title="add book"
       >
@@ -46,7 +46,7 @@
         <div class="flex flex-col items-center mr-4">
           <div class="flex gap-6 my-auto">
             <a
-              routerLink="/books/edit/{{ book.id }}"
+              routerLink="/book-manager/edit/{{ book.id }}"
               class="text-blue-400 text-xs flex flex-col hover:scale-105 active:scale-95 cursor-pointer"
               title="edit book"
             >

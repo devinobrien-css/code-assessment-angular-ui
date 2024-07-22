@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { CanActivateFn } from '@angular/router';
 
-import { loggedOutGuardGuard } from './logged-out-guard.guard';
+import { loggedOutGuardGuard } from './logged-out.guard';
 
 describe('loggedOutGuardGuard', () => {
   const executeGuard: CanActivateFn = (...guardParameters) =>

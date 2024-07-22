@@ -11,6 +11,6 @@ export const loggedInGuardGuard: CanActivateFn = () => {
     return true;
   }
 
-  router.navigate(['/login']);
+  router.navigate(['/unauthorized']);
   return false;
 };
