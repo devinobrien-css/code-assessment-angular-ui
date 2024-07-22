@@ -2,8 +2,9 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { BookResponse } from '../../../shared/models/book';
 import { UserService } from '../../../core/services/user.service';
 import { NgClass, NgFor, NgIf } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { BookReviewComponent } from '../book-review/book-review.component';
+import { BookService } from '../../../core/services/book.service';
 
 @Component({
   selector: 'app-view-book',
@@ -12,24 +13,31 @@ import { BookReviewComponent } from '../book-review/book-review.component';
   templateUrl: './view-book-modal.component.html',
 })
 export class ViewBookComponent {
-  @Input() book: BookResponse | null = null;
-  @Output() close: EventEmitter<void> = new EventEmitter();
+  bookId = this.route.snapshot.paramMap.get('bookId');
+
+  book: BookResponse | null = null;
 
   current_user_id: string = '';
   favorited = false;
 
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private bookService: BookService,
+    private route: ActivatedRoute,
+  ) {}
 
   ngOnInit() {
+    if (this.bookId) {
+      this.bookService.getBook(Number(this.bookId)).subscribe((response) => {
+        this.book = response;
+      });
+    }
+
     this.userService.getCurrentUser().subscribe((response) => {
       this.current_user_id = response.id;
 
       this.favorited = this.isBookFavorite();
     });
-  }
-
-  closeBook() {
-    this.close.emit();
   }
 
   isBookFavorite() {

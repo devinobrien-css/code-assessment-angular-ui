@@ -1,9 +1,4 @@
 <router-outlet />
-<app-view-book
-  *ngIf="selected_book"
-  [book]="selected_book"
-  (close)="deselectBook()"
-/>
 <div class="bg-white w-4/5 mx-auto rounded h-4/5 overflow-y-auto">
   <div
     class="flex justify-between shadow sticky top-0 p-8 bg-white z-50 border w-full"
@@ -105,10 +100,10 @@
   </div>
 
   <div class="flex flex-wrap gap-4 justify-evenly p-8">
-    <button
+    <a
       *ngFor="let book of getBooks()"
       class="w-1/5 min-w-56 hover:shadow bg-gray-50 p-4 rounded relative"
-      (click)="selectBook(book)"
+      href="/browse/{{ book.id }}"
       [ngClass]="{
         grayscale: !book.isAvailable,
       }"
@@ -155,6 +150,6 @@
           <p class="text-sm font-lato font-thin">{{ book.publisher }}</p>
           <p class="text-sm font-lato font-thin">{{ book.isbn }}</p>
           <p class="text-sm font-lato font-thin">{{ book.description }}</p> -->
-    </button>
+    </a>
   </div>
 </div>

@@ -14,7 +14,6 @@ import { EventsComponent } from './features/events/events.component';
 import { ReturnsComponent } from './features/transactions/returns/returns.component';
 import { AddBookComponent } from './features/books/add-book/add-book.component';
 import { EditBookComponent } from './features/books/edit-book/edit-book.component';
-import { CheckoutComponent } from './shared/components/books/checkout/checkout.component';
 import { ProcessReturnComponent } from './features/transactions/process-return/process-return.component';
 import { WriteReviewComponent } from './features/browse/write-review/write-review.component';
 import { CheckedOutBooksComponent } from './features/checked-out-books/checked-out-books.component';
@@ -22,6 +21,8 @@ import { FavoritesListComponent } from './features/favorited-books/favorites-lis
 import { isEmployeeGuard } from './core/guards/is-employee.guard';
 import { UnauthorizedErrorComponent } from './shared/components/error/unauthorized-error/unauthorized-error.component';
 import { NotFoundErrorComponent } from './shared/components/error/not-found-error/not-found-error.component';
+import { ViewBookComponent } from './features/browse/view-book-modal/view-book-modal.component';
+import { CheckoutComponent } from './features/browse/checkout/checkout.component';
 
 export const routes: Routes = [
   { path: '', component: HomePageComponent, canActivate: [loggedInGuardGuard] },
@@ -40,6 +41,10 @@ export const routes: Routes = [
     component: BrowseBooksComponent,
     canActivate: [loggedInGuardGuard],
     children: [
+      {
+        path: ':bookId',
+        component: ViewBookComponent,
+      },
       {
         path: ':bookId/checkout/:userId',
         component: CheckoutComponent,

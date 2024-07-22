@@ -52,6 +52,8 @@ export class BrowseBooksComponent {
   ) {}
 
   ngOnInit() {
+    this.loadSearchSettings();
+
     this.bookService.getBooks().subscribe((response) => {
       this.books = response;
     });
@@ -59,6 +61,10 @@ export class BrowseBooksComponent {
     this.genreService.getGenres().subscribe((response) => {
       this.genres = response;
     });
+  }
+
+  ngBeforeDestroy() {
+    this.saveSearchSettings();
   }
 
   selectBook(book: BookResponse) {
@@ -71,6 +77,7 @@ export class BrowseBooksComponent {
 
   toggleAvailability() {
     this.show_unavailable.setValue(!this.show_unavailable.value);
+    this.saveSearchSettings();
   }
 
   toggleGenre(id: number) {
@@ -81,6 +88,8 @@ export class BrowseBooksComponent {
     } else {
       this.selected_genres.push(id);
     }
+
+    this.saveSearchSettings();
   }
 
   genreIsSelected(id: number) {
@@ -97,10 +106,12 @@ export class BrowseBooksComponent {
 
   selectSort(sort: string) {
     this.selected_sort = sort;
+    this.saveSearchSettings();
   }
 
   clearSort() {
     this.selected_sort = '';
+    this.saveSearchSettings();
   }
 
   getBooks() {
@@ -141,5 +152,24 @@ export class BrowseBooksComponent {
           return 0;
         }
       });
+  }
+
+  saveSearchSettings() {
+    localStorage.setItem('search', this.search.value ?? '');
+    localStorage.setItem('sort', this.selected_sort);
+    localStorage.setItem('genres', JSON.stringify(this.selected_genres));
+    localStorage.setItem(
+      'show_unavailable',
+      this.show_unavailable.value ? 'true' : 'false',
+    );
+  }
+
+  loadSearchSettings() {
+    this.search.setValue(localStorage.getItem('search') ?? '');
+    this.selected_sort = localStorage.getItem('sort') ?? '';
+    this.selected_genres = JSON.parse(localStorage.getItem('genres') ?? '[]');
+    this.show_unavailable.setValue(
+      localStorage.getItem('show_unavailable') === 'true',
+    );
   }
 }

@@ -26,15 +26,15 @@
           ></span>
         </button>
 
-        <button (click)="closeBook()" class="my-auto">
+        <a href="/browse" class="my-auto">
           <span
             class="icon-[basil--cancel-solid] w-10 h-10 bg-gray-400 hover:bg-blue-300"
           ></span>
-        </button>
+        </a>
       </div>
     </div>
     <div class="flex gap-8 p-8">
-      <div class="w-1/3">
+      <div class="w-1/3 max-w-[200px]">
         <img [src]="book?.image" alt="Book Cover" class="rounded-lg" />
       </div>
       <div class="w-2/3 flex flex-col gap-2">

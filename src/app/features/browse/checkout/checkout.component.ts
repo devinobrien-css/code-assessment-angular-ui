@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { BookResponse } from '../../../models/book';
-import { BookService } from '../../../../core/services/book.service';
-import { TransactionService } from '../../../../core/services/transaction.service';
+import { BookResponse } from '../../../shared/models/book';
+import { BookService } from '../../../core/services/book.service';
+import { TransactionService } from '../../../core/services/transaction.service';
 
 @Component({
   selector: 'app-checkout',
