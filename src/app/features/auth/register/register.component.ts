@@ -44,17 +44,14 @@ export class RegisterComponent {
         this.step = to;
         break;
       case 1:
+        if (to === 0) {
+          this.step = to;
+          return;
+        }
+
         (await this.authService.emailExists(this.email.value ?? '')).subscribe(
           (response) => {
             const emailExists = response.exists;
-
-            if (this.email.value === '') {
-              if (to === 0) {
-                this.step = to;
-              } else {
-                return;
-              }
-            }
 
             if (this.email.invalid) {
               this.messageService.add({

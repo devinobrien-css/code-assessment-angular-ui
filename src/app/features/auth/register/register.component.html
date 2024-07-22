@@ -1,254 +1,252 @@
-<div>
-  <div class="flex justify-center items-center my-8">
-    <div class="md:w-2/3 md:h-3/5 w-full h-full">
-      <div class="bg-white rounded-lg shadow-lg flex h-full">
-        <div
-          class="md:w-1/2 min-h-full bg-book-shelves bg-cover bg-no-repeat"
-        ></div>
-        <div class="md:w-1/2 p-4">
-          <h2 class="text-2xl font-light text-gray-600 font-lato">
-            Become a Book Nook Member
-          </h2>
+<div class="absolute h-full w-full top-0 flex flex-col items-center">
+  <div
+    class="bg-white rounded-lg shadow-lg flex h-full sm:h-fit m-auto sm:w-2/3 max-w-screen-md w-full overflow-scroll"
+  >
+    <div
+      class="md:w-1/2 min-h-full bg-book-shelves bg-cover bg-no-repeat"
+    ></div>
+    <div class="md:w-1/2 p-4">
+      <h2 class="text-2xl font-light text-gray-600 font-lato">
+        Become a Book Nook Member
+      </h2>
 
-          <div *ngIf="step == 0">
-            <form class="mt-4">
-              <div class="mb-4">
-                <label for="name" class="block text-gray-600 font-lato"
-                  >First Name</label
-                >
-                <input
-                  type="text"
-                  id="first"
-                  name="first"
-                  class="w-full p-2 border border-gray-600 font-lato rounded-lg"
-                  [formControl]="first"
-                />
-              </div>
-              <div class="mb-4">
-                <label for="name" class="block text-gray-600 font-lato"
-                  >Last Name</label
-                >
-                <input
-                  type="text"
-                  id="last"
-                  name="last"
-                  class="w-full p-2 border border-gray-600 font-lato rounded-lg"
-                  [formControl]="last"
-                />
-              </div>
-              <div class="mb-4">
-                <button
-                  class="w-full flex justify-evenly rounded-lg overflow-clip"
-                  (click)="toggleLibrarian()"
-                  type="button"
-                >
-                  <div
-                    class="w-1/2 text-center transition-colors py-2"
-                    [ngClass]="{
-                      'bg-blue-300': !is_librarian.value,
-                      'bg-gray-100 text-gray-400': is_librarian.value,
-                    }"
-                  >
-                    Customer
-                  </div>
-                  <span
-                    class="w-1/2 text-center transition-colors py-2"
-                    [ngClass]="{
-                      'bg-blue-300': is_librarian.value,
-                      'bg-gray-100 text-gray-400': !is_librarian.value,
-                    }"
-                  >
-                    Librarian
-                  </span>
-                </button>
-              </div>
-            </form>
-            <div class="mb-4">
-              <button
-                (click)="goToStep(0, 1)"
-                class="w-full bg-gray-600 font-lato text-white p-2 rounded-lg hover:bg-gray-500 active:ring-2 ring-gray-300 transition-colors"
-              >
-                Next
-              </button>
-            </div>
-          </div>
-          <div *ngIf="step == 1">
-            <form class="mt-4">
-              <div class="mb-4">
-                <label for="email" class="block text-gray-600 font-lato"
-                  >Email</label
-                >
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  class="w-full p-2 border border-gray-600 font-lato rounded-lg"
-                  [formControl]="email"
-                />
-              </div>
-            </form>
-            <div class="mb-4 flex justify-between gap-x-2">
-              <button
-                (click)="goToStep(1, 0)"
-                class="w-full border-gray-600 font-lato text-gray-600 p-2 rounded-lg hover:bg-gray-300 active:ring-2 ring-gray-300 transition-colors"
-              >
-                Back
-              </button>
-              <button
-                (click)="goToStep(1, 2)"
-                class="w-full bg-gray-600 font-lato text-white p-2 rounded-lg hover:bg-gray-500 active:ring-2 ring-gray-300 transition-colors"
-              >
-                Next
-              </button>
-            </div>
-          </div>
-          <div *ngIf="step == 2">
-            <form class="mt-4">
-              <div class="mb-4">
-                <label for="password" class="block text-gray-600 font-lato"
-                  >Password</label
-                >
-                <div
-                  class="w-full border border-gray-600 font-lato rounded-lg flex overflow-clip"
-                >
-                  <input
-                    [type]="show_password ? 'text' : 'password'"
-                    id="password"
-                    name="password"
-                    class="w-full p-2"
-                    [formControl]="password"
-                  />
-                  <button
-                    type="button"
-                    (click)="togglePassword()"
-                    class="flex flex-col items-center"
-                    [ngClass]="{
-                      'bg-blue-300': show_password,
-                      'bg-gray-200': !show_password,
-                    }"
-                  >
-                    <span
-                      class="icon-[solar--eye-bold-duotone] w-8 h-8 my-auto"
-                      [ngClass]="{
-                        'bg-white': show_password,
-                        'bg-gray-400': !show_password,
-                      }"
-                    ></span>
-                  </button>
-                </div>
-              </div>
-              <div class="mb-4">
-                <label for="password" class="block text-gray-600 font-lato"
-                  >Confirm Password</label
-                >
-                <div
-                  class="w-full border border-gray-600 font-lato rounded-lg flex overflow-clip"
-                >
-                  <input
-                    [type]="show_confirm_password ? 'text' : 'password'"
-                    id="confirmPassword"
-                    name="confirmPassword"
-                    class="w-full p-2"
-                    [formControl]="confirmPassword"
-                  />
-                  <button
-                    type="button"
-                    (click)="toggleConfirmPassword()"
-                    class="flex flex-col items-center"
-                    [ngClass]="{
-                      'bg-blue-300': show_confirm_password,
-                      'bg-gray-200': !show_confirm_password,
-                    }"
-                  >
-                    <span
-                      class="icon-[solar--eye-bold-duotone] w-8 h-8 my-auto"
-                      [ngClass]="{
-                        'bg-white': show_confirm_password,
-                        'bg-gray-400': !show_confirm_password,
-                      }"
-                    ></span>
-                  </button>
-                </div>
-              </div>
-
-              <div class="text-sm">
-                <div class="flex gap-2">
-                  <span
-                    class="icon-[solar--shield-warning-bold-duotone] w-8 h-8 my-auto"
-                    [ngClass]="{
-                      'text-red-500': passwordErrors().includes('length'),
-                      'text-blue-500': !passwordErrors().includes('length'),
-                    }"
-                  ></span>
-                  <span class="my-auto">At least 8 characters</span>
-                </div>
-                <div class="flex gap-2">
-                  <span
-                    class="icon-[solar--shield-warning-bold-duotone] w-8 h-8 my-auto"
-                    [ngClass]="{
-                      'text-red-500': passwordErrors().includes('uppercase'),
-                      'text-blue-500': !passwordErrors().includes('uppercase'),
-                    }"
-                  ></span>
-                  <span class="my-auto">At least 1 uppercase letter</span>
-                </div>
-                <div class="flex gap-2">
-                  <span
-                    class="icon-[solar--shield-warning-bold-duotone] w-8 h-8 my-auto"
-                    [ngClass]="{
-                      'text-red-500': passwordErrors().includes('lowercase'),
-                      'text-blue-500': !passwordErrors().includes('lowercase'),
-                    }"
-                  ></span>
-                  <span class="my-auto">At least 1 lowercase letter</span>
-                </div>
-                <div class="flex gap-2">
-                  <span
-                    class="icon-[solar--shield-warning-bold-duotone] w-8 h-8 my-auto"
-                    [ngClass]="{
-                      'text-red-500': passwordErrors().includes('number'),
-                      'text-blue-500': !passwordErrors().includes('number'),
-                    }"
-                  ></span>
-                  <span class="my-auto">At least 1 number</span>
-                </div>
-                <div class="flex gap-2">
-                  <span
-                    [ngClass]="{
-                      'text-red-500': passwordErrors().includes('character'),
-                      'text-blue-500': !passwordErrors().includes('character'),
-                    }"
-                    class="icon-[solar--shield-warning-bold-duotone] w-8 h-8 my-auto"
-                  ></span>
-                  <span class="my-auto">At least 1 special character</span>
-                </div>
-              </div>
-            </form>
-
-            <div class="mb-4 flex justify-between gap-x-2">
-              <button
-                (click)="goToStep(2, 1)"
-                class="w-full border-gray-600 font-lato text-gray-600 p-2 rounded-lg hover:bg-gray-300 active:ring-2 ring-gray-300 transition-colors"
-              >
-                Back
-              </button>
-              <button
-                (click)="register()"
-                class="w-full bg-gray-600 font-lato text-white p-2 rounded-lg hover:bg-gray-500 active:ring-2 ring-gray-300 transition-colors"
-              >
-                Next
-              </button>
-            </div>
-          </div>
-
-          <div class="flex flex-col gap-y-4">
-            <a
-              href="/login"
-              class="text-blue-400 mx-auto text-center underline font-lato"
-              >Already have an account?</a
+      <div *ngIf="step == 0">
+        <form class="mt-4">
+          <div class="mb-4">
+            <label for="name" class="block text-gray-600 font-lato"
+              >First Name</label
             >
+            <input
+              type="text"
+              id="first"
+              name="first"
+              class="w-full p-2 border border-gray-600 font-lato rounded-lg"
+              [formControl]="first"
+            />
           </div>
+          <div class="mb-4">
+            <label for="name" class="block text-gray-600 font-lato"
+              >Last Name</label
+            >
+            <input
+              type="text"
+              id="last"
+              name="last"
+              class="w-full p-2 border border-gray-600 font-lato rounded-lg"
+              [formControl]="last"
+            />
+          </div>
+          <div class="mb-4">
+            <button
+              class="w-full flex justify-evenly rounded-lg overflow-clip"
+              (click)="toggleLibrarian()"
+              type="button"
+            >
+              <div
+                class="w-1/2 text-center transition-colors py-2"
+                [ngClass]="{
+                  'bg-blue-300': !is_librarian.value,
+                  'bg-gray-100 text-gray-400': is_librarian.value,
+                }"
+              >
+                Customer
+              </div>
+              <span
+                class="w-1/2 text-center transition-colors py-2"
+                [ngClass]="{
+                  'bg-blue-300': is_librarian.value,
+                  'bg-gray-100 text-gray-400': !is_librarian.value,
+                }"
+              >
+                Librarian
+              </span>
+            </button>
+          </div>
+        </form>
+        <div class="mb-4">
+          <button
+            (click)="goToStep(0, 1)"
+            class="w-full bg-gray-600 font-lato text-white p-2 rounded-lg hover:bg-gray-500 active:ring-2 ring-gray-300 transition-colors"
+          >
+            Next
+          </button>
         </div>
+      </div>
+      <div *ngIf="step == 1">
+        <form class="mt-4">
+          <div class="mb-4">
+            <label for="email" class="block text-gray-600 font-lato"
+              >Email</label
+            >
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="w-full p-2 border border-gray-600 font-lato rounded-lg"
+              [formControl]="email"
+            />
+          </div>
+        </form>
+        <div class="mb-4 flex justify-between gap-x-2">
+          <button
+            (click)="goToStep(1, 0)"
+            class="w-full border-gray-600 font-lato text-gray-600 p-2 rounded-lg hover:bg-gray-300 active:ring-2 ring-gray-300 transition-colors"
+          >
+            Back
+          </button>
+          <button
+            (click)="goToStep(1, 2)"
+            class="w-full bg-gray-600 font-lato text-white p-2 rounded-lg hover:bg-gray-500 active:ring-2 ring-gray-300 transition-colors"
+          >
+            Next
+          </button>
+        </div>
+      </div>
+      <div *ngIf="step == 2">
+        <form class="mt-4">
+          <div class="mb-4">
+            <label for="password" class="block text-gray-600 font-lato"
+              >Password</label
+            >
+            <div
+              class="w-full border border-gray-600 font-lato rounded-lg flex overflow-clip"
+            >
+              <input
+                [type]="show_password ? 'text' : 'password'"
+                id="password"
+                name="password"
+                class="w-full p-2"
+                [formControl]="password"
+              />
+              <button
+                type="button"
+                (click)="togglePassword()"
+                class="flex flex-col items-center"
+                [ngClass]="{
+                  'bg-blue-300': show_password,
+                  'bg-gray-200': !show_password,
+                }"
+              >
+                <span
+                  class="icon-[solar--eye-bold-duotone] w-8 h-8 my-auto"
+                  [ngClass]="{
+                    'bg-white': show_password,
+                    'bg-gray-400': !show_password,
+                  }"
+                ></span>
+              </button>
+            </div>
+          </div>
+          <div class="mb-4">
+            <label for="password" class="block text-gray-600 font-lato"
+              >Confirm Password</label
+            >
+            <div
+              class="w-full border border-gray-600 font-lato rounded-lg flex overflow-clip"
+            >
+              <input
+                [type]="show_confirm_password ? 'text' : 'password'"
+                id="confirmPassword"
+                name="confirmPassword"
+                class="w-full p-2"
+                [formControl]="confirmPassword"
+              />
+              <button
+                type="button"
+                (click)="toggleConfirmPassword()"
+                class="flex flex-col items-center"
+                [ngClass]="{
+                  'bg-blue-300': show_confirm_password,
+                  'bg-gray-200': !show_confirm_password,
+                }"
+              >
+                <span
+                  class="icon-[solar--eye-bold-duotone] w-8 h-8 my-auto"
+                  [ngClass]="{
+                    'bg-white': show_confirm_password,
+                    'bg-gray-400': !show_confirm_password,
+                  }"
+                ></span>
+              </button>
+            </div>
+          </div>
+
+          <div class="text-sm">
+            <div class="flex gap-2">
+              <span
+                class="icon-[solar--shield-warning-bold-duotone] w-8 h-8 my-auto"
+                [ngClass]="{
+                  'text-red-500': passwordErrors().includes('length'),
+                  'text-blue-500': !passwordErrors().includes('length'),
+                }"
+              ></span>
+              <span class="my-auto">At least 8 characters</span>
+            </div>
+            <div class="flex gap-2">
+              <span
+                class="icon-[solar--shield-warning-bold-duotone] w-8 h-8 my-auto"
+                [ngClass]="{
+                  'text-red-500': passwordErrors().includes('uppercase'),
+                  'text-blue-500': !passwordErrors().includes('uppercase'),
+                }"
+              ></span>
+              <span class="my-auto">At least 1 uppercase letter</span>
+            </div>
+            <div class="flex gap-2">
+              <span
+                class="icon-[solar--shield-warning-bold-duotone] w-8 h-8 my-auto"
+                [ngClass]="{
+                  'text-red-500': passwordErrors().includes('lowercase'),
+                  'text-blue-500': !passwordErrors().includes('lowercase'),
+                }"
+              ></span>
+              <span class="my-auto">At least 1 lowercase letter</span>
+            </div>
+            <div class="flex gap-2">
+              <span
+                class="icon-[solar--shield-warning-bold-duotone] w-8 h-8 my-auto"
+                [ngClass]="{
+                  'text-red-500': passwordErrors().includes('number'),
+                  'text-blue-500': !passwordErrors().includes('number'),
+                }"
+              ></span>
+              <span class="my-auto">At least 1 number</span>
+            </div>
+            <div class="flex gap-2">
+              <span
+                [ngClass]="{
+                  'text-red-500': passwordErrors().includes('character'),
+                  'text-blue-500': !passwordErrors().includes('character'),
+                }"
+                class="icon-[solar--shield-warning-bold-duotone] w-8 h-8 my-auto"
+              ></span>
+              <span class="my-auto">At least 1 special character</span>
+            </div>
+          </div>
+        </form>
+
+        <div class="mb-4 flex justify-between gap-x-2">
+          <button
+            (click)="goToStep(2, 1)"
+            class="w-full border-gray-600 font-lato text-gray-600 p-2 rounded-lg hover:bg-gray-300 active:ring-2 ring-gray-300 transition-colors"
+          >
+            Back
+          </button>
+          <button
+            (click)="register()"
+            class="w-full bg-gray-600 font-lato text-white p-2 rounded-lg hover:bg-gray-500 active:ring-2 ring-gray-300 transition-colors"
+          >
+            Next
+          </button>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-y-4">
+        <a
+          href="/login"
+          class="text-blue-400 mx-auto text-center underline font-lato"
+          >Already have an account?</a
+        >
       </div>
     </div>
   </div>
