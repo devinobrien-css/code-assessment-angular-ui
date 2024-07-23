@@ -1,0 +1,55 @@
+<div
+  class="bg-gray-800 bg-opacity-40 h-full w-full absolute top-0 z-[100] backdrop-blur-sm flex items-center"
+>
+  <div
+    class="bg-white h-fit max-h-[80%] w-3/5 mx-auto rounded-lg overflow-y-auto"
+  >
+    <div
+      class="flex justify-between shadow sticky top-0 p-4 bg-white z-50 border w-full"
+    >
+      <h1 class="text-3xl font-lato font-thin my-auto">View User</h1>
+
+      <a href="/user-manager" class="my-auto">
+        <span
+          class="icon-[basil--cancel-solid] w-10 h-10 bg-gray-400 hover:bg-blue-300"
+        ></span>
+      </a>
+    </div>
+
+    <div class="p-8">
+      <div class="flex gap-4">
+        <img
+          [src]="user.profileAvatar"
+          onerror="this.src = `https://robohash.org/2`"
+          alt="user avatar"
+          class="w-20 h-20 rounded shadow border"
+        />
+        <div class="flex flex-col gap-2">
+          <h2 class="text-2xl font-lato font-thin">
+            {{ user.first }} {{ user.last }}
+          </h2>
+          <p class="text-gray-500">{{ user.email }}</p>
+        </div>
+      </div>
+    </div>
+
+    <hr />
+    <div class="p-6">
+      <h2 class="text-lg font-light">Transactions</h2>
+      <table class="w-full">
+        <thead>
+          <tr>
+            <th class="text-left">Book</th>
+            <th class="text-left">Amount</th>
+            <th class="text-left">Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let transaction of user.transactions">
+            <td>{{ transaction.book.author }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

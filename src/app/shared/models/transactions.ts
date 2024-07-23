@@ -1,10 +1,12 @@
 import { BookResponse } from './book';
+import { ProfileAvatar } from './user';
 
 export interface TransactionUserResponse {
   id: string;
   email: string;
   first: string;
   last: string;
+  profileAvatar: ProfileAvatar;
 }
 
 export interface UserTransactionResponse {

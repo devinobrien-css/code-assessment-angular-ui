@@ -8,7 +8,7 @@ import { BrowseBooksComponent } from './features/browse/browse-books/browse-book
 import { SettingsComponent } from './features/profile/settings/settings.component';
 import { EditUserComponent } from './features/profile/edit-user/edit-user.component';
 import { ChangePasswordComponent } from './features/profile/change-password/change-password.component';
-import { ViewUsersComponent } from './features/users/view-users/view-users.component';
+import { ViewUsersComponent } from './features/user-manager/view-users-list/view-users-list.component';
 import { ViewBooksComponent } from './features/books/view-books/view-books.component';
 import { EventsComponent } from './features/events/events.component';
 import { ReturnsComponent } from './features/transactions/returns/returns.component';
@@ -23,6 +23,7 @@ import { UnauthorizedErrorComponent } from './shared/components/error/unauthoriz
 import { NotFoundErrorComponent } from './shared/components/error/not-found-error/not-found-error.component';
 import { ViewBookComponent } from './features/browse/view-book-modal/view-book-modal.component';
 import { CheckoutComponent } from './features/browse/checkout/checkout.component';
+import { ViewUserModalComponent } from './features/user-manager/view-user-modal/view-user-modal.component';
 
 export const routes: Routes = [
   { path: '', component: HomePageComponent, canActivate: [loggedInGuardGuard] },
@@ -71,9 +72,15 @@ export const routes: Routes = [
     ],
   },
   {
-    path: 'users',
+    path: 'user-manager',
     component: ViewUsersComponent,
     canActivate: [isEmployeeGuard],
+    children: [
+      {
+        path: ':id',
+        component: ViewUserModalComponent,
+      },
+    ],
   },
   {
     path: 'book-manager',

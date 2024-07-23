@@ -9,7 +9,6 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   imports: [NgIf, NgFor, RouterModule],
   templateUrl: './returns.component.html',
-  styleUrl: './returns.component.css',
 })
 export class ReturnsComponent {
   transactions: UserTransactionResponse[] = [];
@@ -18,6 +17,8 @@ export class ReturnsComponent {
 
   ngOnInit() {
     this.transactionService.getTransactions().subscribe((transactions) => {
+      console.log('transactions');
+      console.log(transactions);
       this.transactions = transactions;
     });
   }

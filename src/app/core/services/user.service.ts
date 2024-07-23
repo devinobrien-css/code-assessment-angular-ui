@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import {
   CurrentUserInfoResponse,
   ProfileAvatar,
+  UserResponse,
 } from '../../shared/models/user';
 import { BookResponse } from '../../shared/models/book';
 import { UserTransactionResponse } from '../../shared/models/transactions';
@@ -12,6 +13,14 @@ import { UserTransactionResponse } from '../../shared/models/transactions';
 })
 export class UserService {
   constructor(private http: HttpClient) {}
+
+  getUsers() {
+    return this.http.get<UserResponse[]>('/api/User');
+  }
+
+  getUser(userId: string) {
+    return this.http.get<UserResponse>(`/api/User/${userId}`);
+  }
 
   getCurrentUser() {
     return this.http.get<CurrentUserInfoResponse>('/api/account/current-user');

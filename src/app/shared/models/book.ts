@@ -3,7 +3,7 @@ export interface Genre {
   name: string;
 }
 
-interface BookTransaction {
+export interface BookTransaction {
   userId: string;
   checkedInById: string;
 }
