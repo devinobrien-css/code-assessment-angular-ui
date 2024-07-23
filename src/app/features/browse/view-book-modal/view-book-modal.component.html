@@ -8,22 +8,32 @@
       class="flex justify-between shadow sticky top-0 p-4 bg-white z-50 border w-full"
     >
       <h1 class="text-3xl font-lato font-thin my-auto">View Book</h1>
-      <div class="flex">
+      <div class="flex gap-2">
         <a
           *ngIf="book?.isAvailable"
           href="browse/{{ book?.id }}/checkout/{{ current_user_id }}"
-          class="rounded p-2 shadow bg-blue-400 text-white w-fit my-auto"
+          class="my-auto p-2 flex flex-col items-center"
         >
-          Borrow
-        </a>
-        <button class="my-auto p-2" title="Favorite" (click)="toggleFavorite()">
           <span
-            class="icon-[solar--star-bold-duotone] my-auto w-10 h-10 hover:scale-105 transition-all active:scale-95"
+            class="icon-[solar--backpack-bold-duotone] bg-gray-500 m-auto w-8 h-8 hover:scale-110 transition-all active:scale-95"
+          ></span>
+          <span class="text-sm">borrow</span>
+        </a>
+        <button
+          class="my-auto p-2 flex flex-col items-center"
+          title="Favorite"
+          (click)="toggleFavorite()"
+        >
+          <span
+            class="icon-[solar--star-bold-duotone] m-auto w-8 h-8 hover:scale-110 transition-all active:scale-95"
             [ngClass]="{
               'bg-yellow-400': favorited,
               'bg-gray-400': !favorited,
             }"
           ></span>
+          <span class="text-sm">{{
+            favorited ? "favorited" : "favorite"
+          }}</span>
         </button>
 
         <a href="/browse" class="my-auto">

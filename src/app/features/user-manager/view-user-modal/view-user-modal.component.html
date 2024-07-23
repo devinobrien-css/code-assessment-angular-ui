@@ -34,19 +34,53 @@
     </div>
 
     <hr />
+
     <div class="p-6">
       <h2 class="text-lg font-light">Transactions</h2>
+      <br />
       <table class="w-full">
         <thead>
           <tr>
             <th class="text-left">Book</th>
-            <th class="text-left">Amount</th>
-            <th class="text-left">Type</th>
+            <th class="text-left">Checkout Date</th>
+            <th class="text-left">Return Due Date</th>
+            <th class="text-left">Status</th>
+            <th class="text-left">Actions</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let transaction of user.transactions">
-            <td>{{ transaction.book.author }}</td>
+          <tr *ngFor="let transaction of user.transactions" class="border-b">
+            <td class="font-light py-3">{{ transaction.book.title }}</td>
+            <td class="font-light">
+              <input
+                type="date"
+                class="border border-gray-300 rounded p-1"
+                value="{{ transaction.checkOutTime.slice(0, 10) }}"
+                disabled
+              />
+            </td>
+            <td class="font-light">
+              <input
+                type="date"
+                class="border border-gray-300 rounded p-1"
+                value="{{ transaction.dueTime?.slice(0, 10) }}"
+                disabled
+              />
+            </td>
+            <td class="font-light">
+              <span
+                class="px-2 py-1 rounded text-white"
+                [ngClass]="{
+                  'bg-green-300': transaction.isCheckedIn,
+                  'bg-red-300': !transaction.isCheckedIn,
+                }"
+              >
+                {{ transaction.isCheckedIn ? "Returned" : "Not Returned" }}
+              </span>
+            </td>
+            <td class="font-light">
+              <a class="bg-blue-300 text-white px-2 py-1 rounded"> Check In </a>
+            </td>
           </tr>
         </tbody>
       </table>

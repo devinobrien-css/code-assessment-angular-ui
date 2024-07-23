@@ -12,7 +12,6 @@ import { ToastModule } from 'primeng/toast';
   standalone: true,
   imports: [RouterModule, ReactiveFormsModule, NgIf, NgFor, ToastModule],
   templateUrl: './view-books.component.html',
-  styleUrl: './view-books.component.css',
 })
 export class ViewBooksComponent {
   books: BookResponse[] = [];

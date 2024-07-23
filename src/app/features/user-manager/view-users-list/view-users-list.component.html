@@ -45,14 +45,16 @@
             <div class="relative">
               <div
                 *ngIf="view_actions == user.id"
-                class="absolute top-8 right-full bg-white p-2 border border-gray-300 rounded z-50 flex flex-col"
+                class="absolute top-6 right-full bg-white p-2 border border-gray-300 rounded z-50 flex gap-2"
               >
                 <a
                   href="/user-manager/{{ user.id }}"
-                  class="transition hover:underline"
-                  >View</a
+                  class="transition hover:underline flex flex-col items-center text-blue-500"
                 >
-                <a class="transition hover:underline">Edit</a>
+                  <span class="icon-[solar--user-bold-duotone]"></span>
+                  <span class="text-sm">view</span>
+                </a>
+                <!-- <a class="transition hover:underline">Edit</a> -->
               </div>
               <button
                 class="transition-all border flex flex-col items-center shadow"

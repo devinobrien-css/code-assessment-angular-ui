@@ -24,9 +24,9 @@
         <div class="flex justify-between w-full">
           <div>
             <h2 class="text-gray-600">Checked Out User</h2>
-            <a
-              class="flex gap-1 rounded border px-2 h-min"
-              href="user-manager/{{ transaction.user.id }}"
+            <button
+              class="flex gap-1 rounded border px-2 h-min text-left"
+              (click)="onConfirmLeave(transaction.user.id)"
             >
               <!-- <img
                 [src]="transaction.user.profileAvatar.url"
@@ -42,7 +42,7 @@
                   {{ transaction.user.email }}
                 </p>
               </div>
-            </a>
+            </button>
           </div>
 
           <div class="flex flex-col">
@@ -113,3 +113,39 @@
     </div>
   </div>
 </div>
+
+<p-toast
+  position="center"
+  key="confirm-leave"
+  (onClose)="onCanceledLeave()"
+  [baseZIndex]="5000"
+  class="fixed"
+>
+  <ng-template let-message pTemplate="message" class="border">
+    <div class="flex flex-col w-full">
+      <div class="text-center mx-auto">
+        <h4 class="text-lg font-bold">{{ message.summary }}</h4>
+        <p>{{ message.detail }}</p>
+      </div>
+      <br />
+      <div class="flex gap-x-2">
+        <div
+          class="w-1/2 text-center p-2 rounded bg-red-100 hover:bg-red-200 active:ring-red-300 active:ring-2 text-red-500 hover:text-white transition-all"
+          label="Yes"
+          type="button"
+          (click)="onLeave()"
+        >
+          Confirm
+        </div>
+        <button
+          class="w-1/2 text-center p-2 rounded text-gray-500 bg-gray-100 hover:bg-gray-200 active:ring-blue-300 active:ring-2 transition-all"
+          label="No"
+          type="button"
+          (click)="onCanceledLeave()"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  </ng-template>
+</p-toast>
