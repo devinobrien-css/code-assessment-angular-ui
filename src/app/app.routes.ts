@@ -9,11 +9,11 @@ import { SettingsComponent } from './features/profile/settings/settings.componen
 import { EditUserComponent } from './features/profile/edit-user/edit-user.component';
 import { ChangePasswordComponent } from './features/profile/change-password/change-password.component';
 import { ViewUsersComponent } from './features/user-manager/view-users-list/view-users-list.component';
-import { ViewBooksComponent } from './features/books/view-books/view-books.component';
+import { ViewBooksComponent } from './features/book-manager/view-books/view-books.component';
 import { EventsComponent } from './features/events/events.component';
 import { ReturnsComponent } from './features/transactions/returns/returns.component';
-import { AddBookComponent } from './features/books/add-book/add-book.component';
-import { EditBookComponent } from './features/books/edit-book/edit-book.component';
+import { AddBookComponent } from './features/book-manager/add-book/add-book.component';
+import { EditBookComponent } from './features/book-manager/edit-book/edit-book.component';
 import { ProcessReturnComponent } from './features/transactions/process-return/process-return.component';
 import { WriteReviewComponent } from './features/browse/write-review/write-review.component';
 import { CheckedOutBooksComponent } from './features/checked-out-books/checked-out-books.component';

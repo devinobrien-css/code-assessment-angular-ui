@@ -11,7 +11,6 @@ import { MessageService } from 'primeng/api';
   standalone: true,
   imports: [],
   templateUrl: './process-return.component.html',
-  styleUrl: './process-return.component.css',
 })
 export class ProcessReturnComponent {
   transactionId = this.route.snapshot.params['transactionId'];

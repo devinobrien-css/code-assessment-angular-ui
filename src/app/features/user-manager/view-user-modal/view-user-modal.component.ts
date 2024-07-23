@@ -31,7 +31,6 @@ export class ViewUserModalComponent {
   ngOnInit() {
     this.userService.getUser(this.userId).subscribe((user) => {
       this.user = user;
-      console.log(user);
     });
   }
 }

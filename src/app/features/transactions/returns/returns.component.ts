@@ -17,8 +17,6 @@ export class ReturnsComponent {
 
   ngOnInit() {
     this.transactionService.getTransactions().subscribe((transactions) => {
-      console.log('transactions');
-      console.log(transactions);
       this.transactions = transactions;
     });
   }

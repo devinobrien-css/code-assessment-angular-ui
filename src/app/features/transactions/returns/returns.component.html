@@ -22,21 +22,27 @@
         </div>
 
         <div class="flex justify-between w-full">
-          <div class="flex gap-1 rounded border px-2 h-min">
-            <!-- <img
-              [src]="transaction.user.profileAvatar.url"
-              alt="user avatar"
-              class="w-10 h-10 rounded-full"
-            /> -->
+          <div>
+            <h2 class="text-gray-600">Checked Out User</h2>
+            <a
+              class="flex gap-1 rounded border px-2 h-min"
+              href="user-manager/{{ transaction.user.id }}"
+            >
+              <!-- <img
+                [src]="transaction.user.profileAvatar.url"
+                alt="user avatar"
+                class="w-10 h-10 rounded-full"
+              /> -->
 
-            <div>
-              <p class="font-lato font-thin">
-                {{ transaction.user.first }} {{ transaction.user.last }}
-              </p>
-              <p class="font-lato font-thin">
-                {{ transaction.user.email }}
-              </p>
-            </div>
+              <div>
+                <p class="font-lato font-thin">
+                  {{ transaction.user.first }} {{ transaction.user.last }}
+                </p>
+                <p class="font-lato font-thin">
+                  {{ transaction.user.email }}
+                </p>
+              </div>
+            </a>
           </div>
 
           <div class="flex flex-col">
