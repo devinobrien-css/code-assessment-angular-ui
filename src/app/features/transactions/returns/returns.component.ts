@@ -5,15 +5,18 @@ import { NgFor, NgIf } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-returns',
   standalone: true,
-  imports: [NgIf, NgFor, RouterModule, ToastModule],
+  imports: [NgIf, NgFor, RouterModule, ToastModule, ReactiveFormsModule],
   templateUrl: './returns.component.html',
 })
 export class ReturnsComponent {
   transactions: UserTransactionResponse[] = [];
+
+  search = new FormControl('');
 
   jumpToUserId = '';
 
@@ -47,5 +50,15 @@ export class ReturnsComponent {
 
   onLeave() {
     this.router.navigate([`user-manager/${this.jumpToUserId}`]);
+  }
+
+  getFilteredTransactions() {
+    return this.transactions.filter(
+      (transaction) =>
+        transaction.user.email.includes(this.search.value ?? '') ||
+        transaction.book.title.includes(this.search.value ?? '') ||
+        transaction.user.first.includes(this.search.value ?? '') ||
+        transaction.user.last.includes(this.search.value ?? ''),
+    );
   }
 }

@@ -4,10 +4,17 @@
     class="flex justify-between bg-white sticky top-0 p-8 border shadow z-50"
   >
     <h1 class="text-3xl font-lato font-thin">Transactions</h1>
+
+    <input
+      type="text"
+      class="p-2 shadow border-gray-300 font-light"
+      placeholder="Search"
+      [formControl]="search"
+    />
   </div>
 
   <div class="flex flex-col">
-    <div *ngFor="let transaction of transactions" class="p-8">
+    <div *ngFor="let transaction of getFilteredTransactions()" class="p-8">
       <div class="flex gap-4">
         <img
           [src]="transaction.book.image"
@@ -73,18 +80,18 @@
               class="flex flex-col items-center"
             >
               <span
-                class="icon-[ph--warning-duotone] bg-red-500 w-10 h-10 mx-auto"
+                class="icon-[ph--warning-duotone] bg-red-500 w-8 h-8 mx-auto"
               ></span>
-              <span class="text-red-500 mx-auto">Overdue</span>
+              <span class="text-red-500 mx-auto text-sm">Overdue</span>
             </div>
             <div
               *ngIf="!transaction.isCheckedIn && !transaction.isOverdue"
               class="flex flex-col items-center"
             >
               <span
-                class="icon-[solar--bell-bold-duotone] bg-yellow-500 w-10 h-10 mx-auto"
+                class="icon-[solar--bell-bold-duotone] bg-yellow-500 w-8 h-8 mx-auto"
               ></span>
-              <span class="text-yellow-500 mx-auto whitespace-nowrap"
+              <span class="text-yellow-500 mx-auto whitespace-nowrap text-sm"
                 >Due Soon</span
               >
             </div>
@@ -94,18 +101,21 @@
               class="flex flex-col items-center"
             >
               <span
-                class="icon-[solar--bill-check-bold-duotone] bg-green-500 w-10 h-10 mx-auto"
+                class="icon-[solar--bill-check-bold-duotone] bg-green-500 w-8 h-8 mx-auto"
               ></span>
-              <span class="text-green-500 mx-auto">Returned</span>
+              <span class="text-green-500 mx-auto text-sm">Returned</span>
             </div>
           </div>
           <div>
             <a
-              class="bg-blue-500 text-white px-4 py-2 rounded-lg"
+              class="flex flex-col items-center"
               href="returns/{{ transaction.id }}"
               *ngIf="!transaction.isCheckedIn"
             >
-              Return
+              <span
+                class="icon-[solar--rewind-back-circle-bold-duotone] w-8 h-8 m-auto hover:scale-110 active:scale-95 hover:bg-blue-300 bg-gray-500"
+              ></span>
+              <span class="text-sm"> Return </span>
             </a>
           </div>
         </div>
