@@ -25,13 +25,34 @@
           <label for="password" class="block text-gray-600 font-lato"
             >Password</label
           >
-          <input
-            type="password"
-            id="password"
-            name="password"
-            class="w-full p-2 border border-gray-600 font-lato rounded-lg"
-            formControlName="password"
-          />
+          <div
+            class="w-full border border-gray-600 font-lato rounded-lg flex overflow-clip"
+          >
+            <input
+              [type]="showPassword ? 'text' : 'password'"
+              id="password"
+              name="password"
+              class="w-full p-2"
+              formControlName="password"
+            />
+            <button
+              type="button"
+              (click)="togglePasswordVisibility()"
+              class="flex flex-col items-center"
+              [ngClass]="{
+                'bg-blue-300': showPassword,
+                'bg-gray-200': !showPassword,
+              }"
+            >
+              <span
+                class="icon-[solar--eye-bold-duotone] w-8 h-8 my-auto"
+                [ngClass]="{
+                  'bg-white': showPassword,
+                  'bg-gray-400': !showPassword,
+                }"
+              ></span>
+            </button>
+          </div>
         </div>
         <div class="mb-4">
           <button

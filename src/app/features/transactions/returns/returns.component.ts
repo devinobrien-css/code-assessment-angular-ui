@@ -5,7 +5,7 @@ import { NgFor, NgIf } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-returns',
@@ -19,6 +19,14 @@ export class ReturnsComponent {
   search = new FormControl('');
 
   jumpToUserId = '';
+
+  filters = new FormGroup({
+    showFilterMenu: new FormControl(false),
+    checkedIn: new FormControl(false),
+    overdue: new FormControl(false),
+    checkedOut: new FormControl(false),
+    returned: new FormControl(false),
+  });
 
   constructor(
     private transactionService: TransactionService,
@@ -60,5 +68,15 @@ export class ReturnsComponent {
         transaction.user.first.includes(this.search.value ?? '') ||
         transaction.user.last.includes(this.search.value ?? ''),
     );
+  }
+
+  toggleFilterMenu() {
+    this.filters
+      .get('showFilterMenu')
+      ?.setValue(!this.filters.get('showFilterMenu')?.value);
+  }
+
+  showFilterMenu() {
+    return this.filters.get('showFilterMenu')?.value;
   }
 }

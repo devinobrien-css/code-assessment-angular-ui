@@ -14,10 +14,10 @@ import { AuthenticationService } from '../../../core/services/authentication.ser
 export class RegisterComponent {
   step = 0;
 
-  is_librarian = new FormControl(false);
+  isLibrarian = new FormControl(false);
 
-  show_password = false;
-  show_confirm_password = false;
+  showPassword = false;
+  showConfirmPassword = false;
 
   first = new FormControl('', Validators.required);
   last = new FormControl('', Validators.required);
@@ -128,12 +128,12 @@ export class RegisterComponent {
       this.last.value,
       this.email.value,
       this.password.value,
-      this.is_librarian.value ?? false,
+      this.isLibrarian.value ?? false,
     );
   }
 
   toggleLibrarian(): void {
-    this.is_librarian.setValue(!this.is_librarian.value);
+    this.isLibrarian.setValue(!this.isLibrarian.value);
   }
 
   passwordErrors(): string[] {
@@ -166,11 +166,11 @@ export class RegisterComponent {
     return errors;
   }
 
-  togglePassword(): void {
-    this.show_password = !this.show_password;
+  togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
   }
 
-  toggleConfirmPassword(): void {
-    this.show_confirm_password = !this.show_confirm_password;
+  toggleConfirmPasswordVisibility(): void {
+    this.showConfirmPassword = !this.showConfirmPassword;
   }
 }

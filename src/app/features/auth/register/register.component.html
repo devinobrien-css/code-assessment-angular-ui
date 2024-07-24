@@ -45,8 +45,8 @@
               <div
                 class="w-1/2 text-center transition-colors py-2"
                 [ngClass]="{
-                  'bg-blue-300': !is_librarian.value,
-                  'bg-gray-100 text-gray-400': is_librarian.value,
+                  'bg-blue-300': !isLibrarian.value,
+                  'bg-gray-100 text-gray-400': isLibrarian.value,
                 }"
               >
                 Customer
@@ -54,8 +54,8 @@
               <span
                 class="w-1/2 text-center transition-colors py-2"
                 [ngClass]="{
-                  'bg-blue-300': is_librarian.value,
-                  'bg-gray-100 text-gray-400': !is_librarian.value,
+                  'bg-blue-300': isLibrarian.value,
+                  'bg-gray-100 text-gray-400': !isLibrarian.value,
                 }"
               >
                 Librarian
@@ -112,7 +112,7 @@
               class="w-full border border-gray-600 font-lato rounded-lg flex overflow-clip"
             >
               <input
-                [type]="show_password ? 'text' : 'password'"
+                [type]="showPassword ? 'text' : 'password'"
                 id="password"
                 name="password"
                 class="w-full p-2"
@@ -120,18 +120,18 @@
               />
               <button
                 type="button"
-                (click)="togglePassword()"
+                (click)="togglePasswordVisibility()"
                 class="flex flex-col items-center"
                 [ngClass]="{
-                  'bg-blue-300': show_password,
-                  'bg-gray-200': !show_password,
+                  'bg-blue-300': showPassword,
+                  'bg-gray-200': !showPassword,
                 }"
               >
                 <span
                   class="icon-[solar--eye-bold-duotone] w-8 h-8 my-auto"
                   [ngClass]="{
-                    'bg-white': show_password,
-                    'bg-gray-400': !show_password,
+                    'bg-white': showPassword,
+                    'bg-gray-400': !showPassword,
                   }"
                 ></span>
               </button>
@@ -145,7 +145,7 @@
               class="w-full border border-gray-600 font-lato rounded-lg flex overflow-clip"
             >
               <input
-                [type]="show_confirm_password ? 'text' : 'password'"
+                [type]="showConfirmPassword ? 'text' : 'password'"
                 id="confirmPassword"
                 name="confirmPassword"
                 class="w-full p-2"
@@ -153,18 +153,18 @@
               />
               <button
                 type="button"
-                (click)="toggleConfirmPassword()"
+                (click)="toggleConfirmPasswordVisibility()"
                 class="flex flex-col items-center"
                 [ngClass]="{
-                  'bg-blue-300': show_confirm_password,
-                  'bg-gray-200': !show_confirm_password,
+                  'bg-blue-300': showConfirmPassword,
+                  'bg-gray-200': !showConfirmPassword,
                 }"
               >
                 <span
                   class="icon-[solar--eye-bold-duotone] w-8 h-8 my-auto"
                   [ngClass]="{
-                    'bg-white': show_confirm_password,
-                    'bg-gray-400': !show_confirm_password,
+                    'bg-white': showConfirmPassword,
+                    'bg-gray-400': !showConfirmPassword,
                   }"
                 ></span>
               </button>

@@ -5,12 +5,46 @@
   >
     <h1 class="text-3xl font-lato font-thin">Transactions</h1>
 
-    <input
-      type="text"
-      class="p-2 shadow border-gray-300 font-light"
-      placeholder="Search"
-      [formControl]="search"
-    />
+    <div class="flex gap-4 relative">
+      <button
+        class="flex flex-col items-center my-auto"
+        title="Filter"
+        (click)="toggleFilterMenu()"
+      >
+        <span
+          class="icon-[solar--filter-bold-duotone] w-8 h-8 bg-gray-300"
+        ></span>
+        <span class="text-sm text-gray-600">filter</span>
+      </button>
+
+      <form
+        [formGroup]="filters"
+        *ngIf="showFilterMenu()"
+        class="absolute top-12 right-full bg-white shadow-xl border p-4 rounded"
+      >
+        <div class="flex flex-col gap-4">
+          <div class="flex gap-2">
+            <input type="checkbox" formControlName="overdue" id="overdue" />
+            <label for="overdue" class="whitespace-nowrap">Overdue</label>
+          </div>
+          <div class="flex gap-2">
+            <input type="checkbox" formControlName="dueSoon" id="dueSoon" />
+            <label for="dueSoon" class="whitespace-nowrap">Due Soon</label>
+          </div>
+          <div class="flex gap-2">
+            <input type="checkbox" formControlName="returned" id="returned" />
+            <label for="returned" class="whitespace-nowrap">Returned</label>
+          </div>
+        </div>
+      </form>
+
+      <input
+        type="text"
+        class="p-2 shadow border-gray-300 font-light"
+        placeholder="Search"
+        [formControl]="search"
+      />
+    </div>
   </div>
 
   <div class="flex flex-col">
@@ -113,9 +147,9 @@
               *ngIf="!transaction.isCheckedIn"
             >
               <span
-                class="icon-[solar--rewind-back-circle-bold-duotone] w-8 h-8 m-auto hover:scale-110 active:scale-95 hover:bg-blue-300 bg-gray-500"
+                class="icon-[solar--rewind-back-circle-bold-duotone] w-8 h-8 m-auto hover:scale-110 active:scale-95 hover:bg-blue-300 bg-gray-500 transition-all"
               ></span>
-              <span class="text-sm"> Return </span>
+              <span class="text-sm"> return </span>
             </a>
           </div>
         </div>

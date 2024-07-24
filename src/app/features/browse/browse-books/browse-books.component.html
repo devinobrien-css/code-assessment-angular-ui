@@ -5,15 +5,16 @@
   >
     <h1 class="text-3xl font-lato font-thin">Browse Books</h1>
 
-    <div class="flex gap-x-2 relative">
+    <div class="flex gap-4 relative">
       <button
-        class="rounded p-1 shadow my-auto"
+        class="flex flex-col items-center my-auto"
         title="Filter"
         (click)="toggleDisplayFilter()"
       >
         <span
-          class="icon-[solar--filter-bold-duotone] w-10 h-10 bg-gray-400"
+          class="icon-[solar--filter-bold-duotone] w-8 h-8 bg-gray-300"
         ></span>
+        <span class="text-sm text-gray-600">filter</span>
       </button>
       <div
         *ngIf="display_filter"

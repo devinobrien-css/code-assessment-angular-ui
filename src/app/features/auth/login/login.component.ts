@@ -8,11 +8,12 @@ import {
 import { AuthenticationService } from '../../../core/services/authentication.service';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ToastModule, ReactiveFormsModule],
+  imports: [ToastModule, ReactiveFormsModule, NgClass],
   templateUrl: './login.component.html',
 })
 export class LoginComponent {
@@ -26,6 +27,8 @@ export class LoginComponent {
       ...Validators.required,
     }),
   });
+
+  showPassword = false;
 
   constructor(
     private authService: AuthenticationService,
@@ -48,5 +51,9 @@ export class LoginComponent {
       loginCredentials.email ?? '',
       loginCredentials.password ?? '',
     );
+  }
+
+  togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
   }
 }
