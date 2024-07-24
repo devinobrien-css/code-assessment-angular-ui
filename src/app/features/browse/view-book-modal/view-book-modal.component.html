@@ -25,7 +25,7 @@
           (click)="toggleFavorite()"
         >
           <span
-            class="icon-[solar--star-bold-duotone] m-auto w-8 h-8 hover:scale-110 transition-all active:scale-95"
+            class="icon-[solar--star-bold-duotone] m-auto w-8 h-8 hover:scale-110 transition-all active:scale-95 hover:bg-yellow-300"
             [ngClass]="{
               'bg-yellow-400': favorited,
               'bg-gray-400': !favorited,
@@ -82,11 +82,17 @@
       </div>
     </div>
     <div class="px-8 py-4 border-t">
-      <div class="flex justify-between">
-        <h2 class="text-xl font-light">Reviews</h2>
-        <a href="browse/{{ book?.id }}/review" class="text-blue-400"
-          >Write a review</a
+      <div class="flex justify-between border-b p-2">
+        <h2 class="text-3xl font-light">Reviews</h2>
+        <a
+          href="browse/{{ book?.id }}/review"
+          class="flex flex-col items-center"
         >
+          <span
+            class="icon-[solar--pen-new-square-bold-duotone] w-6 h-6 m-auto bg-gray-400 hover:bg-blue-300 active:scale-95 hover:scale-110 transition-all"
+          ></span>
+          <span class="text-sm"> review </span>
+        </a>
       </div>
 
       <div

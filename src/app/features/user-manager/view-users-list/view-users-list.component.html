@@ -31,39 +31,29 @@
               [src]="user.profileAvatar"
               onerror="this.src = `https://robohash.org/2`"
               alt="user avatar"
-              class="w-10 h-10 rounded shadow border"
+              class="w-10 h-10 rounded shadow border ml-2"
             />
             <span class="my-auto"> {{ user.first }} {{ user.last }} </span>
           </td>
-          <td class="">
-            {{ user.email }}
-          </td>
-          <td class="">
-            {{ user.roles.join(", ") }}
+          <td>
+            <a href="mailto:{{ user.email }}">
+              {{ user.email }}
+            </a>
           </td>
           <td>
-            <div class="relative">
-              <div
-                *ngIf="view_actions == user.id"
-                class="absolute top-6 right-full bg-white p-2 border border-gray-300 rounded z-50 flex gap-2"
+            <span class="bg-blue-300 p-1 rounded font-light text-white">
+              {{ user.roles.length ? user.roles.join(", ") : "Test User" }}
+            </span>
+          </td>
+          <td>
+            <div class="flex">
+              <a
+                href="/user-manager/{{ user.id }}"
+                class="transition hover:underline flex flex-col items-center text-blue-500"
               >
-                <a
-                  href="/user-manager/{{ user.id }}"
-                  class="transition hover:underline flex flex-col items-center text-blue-500"
-                >
-                  <span class="icon-[solar--user-bold-duotone]"></span>
-                  <span class="text-sm">view</span>
-                </a>
-                <!-- <a class="transition hover:underline">Edit</a> -->
-              </div>
-              <button
-                class="transition-all border flex flex-col items-center shadow"
-                (click)="toggleViewActions(user.id)"
-              >
-                <span
-                  class="icon-[solar--alt-arrow-up-bold-duotone] bg-gray-800 w-8 h-8 rotate-180 my-auto hover:scale-105 active:scale-95"
-                ></span>
-              </button>
+                <span class="icon-[solar--user-bold-duotone]"></span>
+                <span class="text-sm">view</span>
+              </a>
             </div>
           </td>
         </tr>

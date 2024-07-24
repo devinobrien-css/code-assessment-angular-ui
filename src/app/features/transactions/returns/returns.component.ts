@@ -22,9 +22,8 @@ export class ReturnsComponent {
 
   filters = new FormGroup({
     showFilterMenu: new FormControl(false),
-    checkedIn: new FormControl(false),
-    overdue: new FormControl(false),
-    checkedOut: new FormControl(false),
+    overdue: new FormControl(true),
+    dueSoon: new FormControl(true),
     returned: new FormControl(false),
   });
 
@@ -61,13 +60,31 @@ export class ReturnsComponent {
   }
 
   getFilteredTransactions() {
-    return this.transactions.filter(
-      (transaction) =>
-        transaction.user.email.includes(this.search.value ?? '') ||
-        transaction.book.title.includes(this.search.value ?? '') ||
-        transaction.user.first.includes(this.search.value ?? '') ||
-        transaction.user.last.includes(this.search.value ?? ''),
-    );
+    return this.transactions
+      .filter(
+        (transaction) =>
+          transaction.user.email.includes(this.search.value ?? '') ||
+          transaction.book.title.includes(this.search.value ?? '') ||
+          transaction.user.first.includes(this.search.value ?? '') ||
+          transaction.user.last.includes(this.search.value ?? ''),
+      )
+      .filter((transaction) => {
+        const overdueFilter =
+          this.filters.get('overdue')?.value && transaction.isOverdue;
+        const dueSoonFilter =
+          this.filters.get('dueSoon')?.value && !transaction.isCheckedIn;
+        const returnedFilter =
+          this.filters.get('returned')?.value && transaction.isCheckedIn;
+
+        return (
+          overdueFilter ||
+          dueSoonFilter ||
+          returnedFilter ||
+          (!this.filters.get('overdue')?.value &&
+            !this.filters.get('dueSoon')?.value &&
+            !this.filters.get('returned')?.value)
+        );
+      });
   }
 
   toggleFilterMenu() {

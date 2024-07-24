@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserResponse } from '../../../shared/models/user';
 import { UserService } from '../../../core/services/user.service';
-import { NgClass, NgFor } from '@angular/common';
+import { NgClass, NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-view-user-modal',
   standalone: true,
-  imports: [NgFor, NgClass],
+  imports: [NgFor, NgClass, NgIf],
   templateUrl: './view-user-modal.component.html',
 })
 export class ViewUserModalComponent {

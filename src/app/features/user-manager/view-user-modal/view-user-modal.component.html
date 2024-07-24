@@ -68,18 +68,44 @@
               />
             </td>
             <td class="font-light">
-              <span
-                class="px-2 py-1 rounded text-white"
-                [ngClass]="{
-                  'bg-green-300': transaction.isCheckedIn,
-                  'bg-red-300': !transaction.isCheckedIn,
-                }"
-              >
-                {{ transaction.isCheckedIn ? "Returned" : "Not Returned" }}
-              </span>
+              <div class="flex">
+                <span
+                  *ngIf="transaction.isOverdue"
+                  class="text-red-500 flex flex-col"
+                >
+                  <span
+                    class="icon-[solar--danger-triangle-bold-duotone] w-8 h-8 bg-red m-auto"
+                  ></span>
+                  <span class="text-center text-sm"> overdue </span>
+                </span>
+                <span
+                  *ngIf="!transaction.isOverdue"
+                  class="flex flex-col items-center"
+                >
+                  <span
+                    *ngIf="transaction.isCheckedIn"
+                    class="icon-[solar--archive-check-bold-duotone] w-8 h-8 m-auto bg-green-400"
+                  ></span>
+                  <span
+                    *ngIf="!transaction.isCheckedIn"
+                    class="icon-[solar--calendar-bold-duotone] w-8 h-8 m-auto bg-yellow-500"
+                  ></span>
+                  {{ transaction.isCheckedIn ? "returned" : "out" }}
+                </span>
+              </div>
             </td>
             <td class="font-light">
-              <a class="bg-blue-300 text-white px-2 py-1 rounded"> Check In </a>
+              <div class="flex">
+                <a
+                  href="/returns/{{ transaction.book.id }}"
+                  class="flex flex-col items-center text-blue-500"
+                >
+                  <span
+                    class="icon-[solar--bill-check-bold-duotone] m-auto w-8 h-8 bg-blue-300 hover:scale-110 active:scale-105 transition-all"
+                  ></span>
+                  <span class="text-sm"> return </span>
+                </a>
+              </div>
             </td>
           </tr>
         </tbody>

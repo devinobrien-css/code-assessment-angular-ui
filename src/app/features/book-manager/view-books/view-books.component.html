@@ -7,17 +7,17 @@
     <div class="flex gap-x-4">
       <a
         routerLink="/book-manager/add"
-        class="text-blue-400 text-xs flex flex-col hover:scale-105 active:scale-95 cursor-pointer"
+        class="text-blue-400 text-sm flex flex-col hover:scale-105 active:scale-95 cursor-pointer"
         title="add book"
       >
         <span
           class="icon-[solar--add-square-bold-duotone] w-8 h-8 m-auto"
         ></span>
-        <span class="m-auto"> Add Book </span>
+        <span class="m-auto"> add book </span>
       </a>
       <input
         type="text"
-        class="p-2 shadow border-gray-300 font-light placeholder-blue-500 rounded"
+        class="p-2 shadow border-gray-300 font-light rounded"
         placeholder="Search"
         [formControl]="search"
       />
@@ -47,23 +47,23 @@
           <div class="flex gap-6 my-auto">
             <a
               routerLink="/book-manager/edit/{{ book.id }}"
-              class="text-blue-400 text-xs flex flex-col hover:scale-105 active:scale-95 cursor-pointer"
+              class="text-blue-400 text-sm flex flex-col hover:scale-105 active:scale-95 cursor-pointer"
               title="edit book"
             >
               <span
-                class="icon-[solar--server-square-update-bold-duotone] w-8 h-8"
+                class="icon-[solar--server-square-update-bold-duotone] w-8 h-8 m-auto"
               ></span>
-              <span class="m-auto"> Edit </span>
+              <span class="m-auto"> edit </span>
             </a>
             <button
-              class="text-red-400 text-xs flex flex-col hover:scale-105 active:scale-95 cursor-pointer"
+              class="text-red-400 text-sm flex flex-col hover:scale-105 active:scale-95 cursor-pointer"
               (click)="onConfirmDelete(book.id)"
               title="delete book"
             >
               <span
-                class="icon-[solar--trash-bin-trash-bold-duotone] w-8 h-8"
+                class="icon-[solar--trash-bin-trash-bold-duotone] w-8 h-8 m-auto"
               ></span>
-              <span class="m-auto"> Delete </span>
+              <span class="m-auto"> delete </span>
             </button>
           </div>
         </div>
