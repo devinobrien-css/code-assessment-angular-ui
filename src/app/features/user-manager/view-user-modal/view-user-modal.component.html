@@ -1,17 +1,17 @@
 <div
-  class="bg-gray-800 bg-opacity-40 h-full w-full absolute top-0 z-[100] backdrop-blur-sm flex items-center"
+  class="absolute left-0 top-0 z-[100] flex h-full w-full items-center bg-gray-800 bg-opacity-40 backdrop-blur-sm"
 >
   <div
-    class="bg-white h-fit max-h-[80%] w-3/5 mx-auto rounded-lg overflow-y-auto"
+    class="mx-auto h-fit max-h-[80%] w-3/5 overflow-y-auto rounded-lg bg-white"
   >
     <div
-      class="flex justify-between shadow sticky top-0 p-4 bg-white z-50 border w-full"
+      class="sticky top-0 z-50 flex w-full justify-between border bg-white p-4 shadow"
     >
-      <h1 class="text-3xl font-lato font-thin my-auto">View User</h1>
+      <h1 class="my-auto font-lato text-3xl font-thin">View User</h1>
 
       <a href="/user-manager" class="my-auto">
         <span
-          class="icon-[basil--cancel-solid] w-10 h-10 bg-gray-400 hover:bg-blue-300"
+          class="icon-[basil--cancel-solid] h-10 w-10 bg-gray-400 hover:bg-blue-300"
         ></span>
       </a>
     </div>
@@ -22,10 +22,10 @@
           [src]="user.profileAvatar"
           onerror="this.src = `https://robohash.org/2`"
           alt="user avatar"
-          class="w-20 h-20 rounded shadow border"
+          class="h-20 w-20 rounded border shadow"
         />
         <div class="flex flex-col gap-2">
-          <h2 class="text-2xl font-lato font-thin">
+          <h2 class="font-lato text-2xl font-thin">
             {{ user.first }} {{ user.last }}
           </h2>
           <p class="text-gray-500">{{ user.email }}</p>
@@ -50,11 +50,11 @@
         </thead>
         <tbody>
           <tr *ngFor="let transaction of user.transactions" class="border-b">
-            <td class="font-light py-3">{{ transaction.book.title }}</td>
+            <td class="py-3 font-light">{{ transaction.book.title }}</td>
             <td class="font-light">
               <input
                 type="date"
-                class="border border-gray-300 rounded p-1"
+                class="rounded border border-gray-300 p-1"
                 value="{{ transaction.checkOutTime.slice(0, 10) }}"
                 disabled
               />
@@ -62,7 +62,7 @@
             <td class="font-light">
               <input
                 type="date"
-                class="border border-gray-300 rounded p-1"
+                class="rounded border border-gray-300 p-1"
                 value="{{ transaction.dueTime?.slice(0, 10) }}"
                 disabled
               />
@@ -71,10 +71,10 @@
               <div class="flex">
                 <span
                   *ngIf="transaction.isOverdue"
-                  class="text-red-500 flex flex-col"
+                  class="flex flex-col text-red-500"
                 >
                   <span
-                    class="icon-[solar--danger-triangle-bold-duotone] w-8 h-8 bg-red m-auto"
+                    class="bg-red icon-[solar--danger-triangle-bold-duotone] m-auto h-8 w-8"
                   ></span>
                   <span class="text-center text-sm"> overdue </span>
                 </span>
@@ -84,11 +84,11 @@
                 >
                   <span
                     *ngIf="transaction.isCheckedIn"
-                    class="icon-[solar--archive-check-bold-duotone] w-8 h-8 m-auto bg-green-400"
+                    class="icon-[solar--archive-check-bold-duotone] m-auto h-8 w-8 bg-green-400"
                   ></span>
                   <span
                     *ngIf="!transaction.isCheckedIn"
-                    class="icon-[solar--calendar-bold-duotone] w-8 h-8 m-auto bg-yellow-500"
+                    class="icon-[solar--calendar-bold-duotone] m-auto h-8 w-8 bg-yellow-500"
                   ></span>
                   {{ transaction.isCheckedIn ? "returned" : "out" }}
                 </span>
@@ -101,7 +101,7 @@
                   class="flex flex-col items-center text-blue-500"
                 >
                   <span
-                    class="icon-[solar--bill-check-bold-duotone] m-auto w-8 h-8 bg-blue-300 hover:scale-110 active:scale-105 transition-all"
+                    class="icon-[solar--bill-check-bold-duotone] m-auto h-8 w-8 bg-blue-300 transition-all hover:scale-110 active:scale-105"
                   ></span>
                   <span class="text-sm"> return </span>
                 </a>

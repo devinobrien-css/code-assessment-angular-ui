@@ -6,6 +6,9 @@ import {
   EmailExistsResponse,
   TokenResponse,
 } from '../../shared/models/authentication';
+import { UserService } from './user.service';
+
+// TODO: fix endpoint url
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +17,7 @@ export class AuthenticationService {
   constructor(
     private http: HttpClient,
     private router: Router,
+    private userService: UserService,
   ) {}
 
   //TODO
@@ -27,6 +31,12 @@ export class AuthenticationService {
       .subscribe((response) => {
         localStorage.setItem('accessToken', response.accessToken);
         localStorage.setItem('refreshToken', response.refreshToken);
+
+        this.userService.getCurrentUser().subscribe((user) => {
+          localStorage.setItem('currentUser', JSON.stringify(user));
+        });
+
+        // TODO - Redirect to explore
         this.router.navigate(['/']);
       });
   }
@@ -51,8 +61,8 @@ export class AuthenticationService {
       });
   }
 
+  // Call the refresh token endpoint to get a new access token
   refreshAccessToken(): Observable<unknown> {
-    // Call the refresh token endpoint to get a new access token
     const refreshToken = localStorage.getItem('refreshToken');
     return this.http
       .post<TokenResponse>(`https://localhost:7120/refresh`, { refreshToken })
@@ -72,10 +82,12 @@ export class AuthenticationService {
     // Your logout logic here
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
+    localStorage.removeItem('currentUser');
 
     this.router.navigate(['/login']);
   }
 
+  //TODO
   async emailExists(email: string) {
     return this.http.get<EmailExistsResponse>(
       `/api/account/email-exists?email=${email}`,

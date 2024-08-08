@@ -7,6 +7,7 @@ import {
 } from '../../shared/models/user';
 import { BookResponse } from '../../shared/models/book';
 import { UserTransactionResponse } from '../../shared/models/transactions';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -18,12 +19,12 @@ export class UserService {
     return this.http.get<UserResponse[]>('/api/User');
   }
 
-  getUser(userId: string) {
-    return this.http.get<UserResponse>(`/api/User/${userId}`);
+  getCurrentUser(): Observable<CurrentUserInfoResponse> {
+    return this.http.get<CurrentUserInfoResponse>('/api/account/current-user');
   }
 
-  getCurrentUser() {
-    return this.http.get<CurrentUserInfoResponse>('/api/account/current-user');
+  getUser(userId: string): Observable<UserResponse> {
+    return this.http.get<UserResponse>(`/api/User/${userId}`);
   }
 
   updateUser(userId: string, first: string, last: string) {

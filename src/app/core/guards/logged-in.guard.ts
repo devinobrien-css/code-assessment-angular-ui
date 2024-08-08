@@ -11,6 +11,7 @@ export const loggedInGuardGuard: CanActivateFn = () => {
     return true;
   }
 
-  router.navigate(['/login']);
+  // TODO: redirect to landing
+  router.navigate(['/']);
   return false;
 };

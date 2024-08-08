@@ -9,10 +9,13 @@ export const theme = {
         "url('https://ychef.files.bbci.co.uk/1280x720/p0gtwr8t.jpg')",
       "book-shelves":
         "url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?fm=jpg&w=3000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGlicmFyeXxlbnwwfHwwfHx8MA%3D%3D')",
+      "landing": "url('/assets/landing.svg')",
     },
     fontFamily: {
       lato: ['"Lato"', "sans-serif"],
     },
   },
 };
-export const plugins = [addDynamicIconSelectors()];
+export const plugins = [
+  addDynamicIconSelectors(),
+];

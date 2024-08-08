@@ -35,6 +35,10 @@ export class LoginComponent {
     private messageService: MessageService,
   ) {}
 
+  ngOnInit(): void {
+    console.log('login ');
+  }
+
   onLogin(): void {
     if (!this.loginForm.valid) {
       this.messageService.add({

@@ -1,195 +1,207 @@
 <router-outlet />
-<div class="bg-white h-4/5 w-4/5 mx-auto rounded overflow-auto">
-  <div
-    class="flex justify-between bg-white sticky top-0 p-8 border shadow z-50"
-  >
-    <h1 class="text-3xl font-lato font-thin">Transactions</h1>
+<div class="h-screen px-6 pt-6">
+  <div class="flex max-h-full flex-col">
+    <div
+      class="sticky top-0 z-50 flex justify-between rounded border bg-white p-8 shadow"
+    >
+      <h1 class="font-lato text-3xl font-thin">Transactions</h1>
 
-    <div class="flex gap-4 relative">
-      <button
-        class="flex flex-col items-center my-auto"
-        title="Filter"
-        (click)="toggleFilterMenu()"
-      >
-        <span
-          class="icon-[solar--filter-bold-duotone] w-8 h-8 bg-gray-300"
-        ></span>
-        <span class="text-sm text-gray-600">filter</span>
-      </button>
+      <div class="relative flex gap-4">
+        <button
+          class="my-auto flex flex-col items-center"
+          title="Filter"
+          (click)="toggleFilterMenu()"
+        >
+          <span
+            class="icon-[solar--filter-bold-duotone] h-8 w-8 bg-gray-300"
+          ></span>
+          <span class="text-sm text-gray-600">filter</span>
+        </button>
 
-      <form
-        [formGroup]="filters"
-        *ngIf="showFilterMenu()"
-        class="absolute top-12 right-full bg-white shadow-xl border p-4 rounded"
-      >
-        <div class="flex flex-col gap-4">
-          <div class="flex gap-2">
-            <input type="checkbox" formControlName="overdue" id="overdue" />
-            <label for="overdue" class="whitespace-nowrap">Overdue</label>
+        <form
+          [formGroup]="filters"
+          *ngIf="showFilterMenu()"
+          class="absolute right-full top-12 rounded border bg-white p-4 shadow-xl"
+        >
+          <div class="flex flex-col gap-4">
+            <div class="flex gap-2">
+              <input type="checkbox" formControlName="overdue" id="overdue" />
+              <label for="overdue" class="whitespace-nowrap">Overdue</label>
+            </div>
+            <div class="flex gap-2">
+              <input type="checkbox" formControlName="dueSoon" id="dueSoon" />
+              <label for="dueSoon" class="whitespace-nowrap">Due Soon</label>
+            </div>
+            <div class="flex gap-2">
+              <input type="checkbox" formControlName="returned" id="returned" />
+              <label for="returned" class="whitespace-nowrap">Returned</label>
+            </div>
           </div>
-          <div class="flex gap-2">
-            <input type="checkbox" formControlName="dueSoon" id="dueSoon" />
-            <label for="dueSoon" class="whitespace-nowrap">Due Soon</label>
-          </div>
-          <div class="flex gap-2">
-            <input type="checkbox" formControlName="returned" id="returned" />
-            <label for="returned" class="whitespace-nowrap">Returned</label>
-          </div>
-        </div>
-      </form>
+        </form>
 
-      <input
-        type="text"
-        class="p-2 shadow border-gray-300 font-light"
-        placeholder="Search"
-        [formControl]="search"
-      />
-    </div>
-  </div>
-
-  <div class="flex flex-col">
-    <div *ngFor="let transaction of getFilteredTransactions()" class="p-8">
-      <div class="flex gap-4">
-        <img
-          [src]="transaction.book.image"
-          alt="book cover"
-          class="w-24 h-32 object-cover"
+        <input
+          type="text"
+          class="border-gray-300 p-2 font-light shadow"
+          placeholder="Search"
+          [formControl]="search"
         />
-        <div class="w-1/3">
-          <h2 class="text-xl font-lato font-thin">
-            {{ transaction.book.title }}
-          </h2>
-          <p class="text-gray-600">{{ transaction.book.author }}</p>
-        </div>
+      </div>
+    </div>
 
-        <div class="flex justify-between w-full">
-          <div>
-            <h2 class="text-gray-600">Checked Out User</h2>
-            <button
-              class="flex gap-1 rounded border px-2 h-min text-left"
-              (click)="onConfirmLeave(transaction.user.id)"
-            >
-              <!-- <img
+    <div class="flex flex-col overflow-y-scroll bg-white">
+      <div
+        *ngFor="let transaction of getFilteredTransactions()"
+        class="p-2 odd:bg-blue-50"
+      >
+        <div class="flex gap-4">
+          <img
+            [src]="transaction.book.image"
+            alt="book cover"
+            class="w-18 h-20 object-cover"
+          />
+          <div class="w-1/4 border-r">
+            <h2 class="font-lato text-xl font-thin">
+              {{ transaction.book.title }}
+            </h2>
+            <p class="text-gray-600">{{ transaction.book.author }}</p>
+          </div>
+
+          <div class="flex w-full justify-between">
+            <div class="w-1/3">
+              <h2 class="text-gray-600">Checked Out User</h2>
+              <button
+                class="flex h-min gap-1 rounded border px-2 text-left"
+                (click)="onConfirmLeave(transaction.user.id)"
+              >
+                <!-- <img
                 [src]="transaction.user.profileAvatar.url"
                 alt="user avatar"
                 class="w-10 h-10 rounded-full"
               /> -->
 
-              <div>
+                <div>
+                  <p class="font-lato font-thin">
+                    {{ transaction.user.first }} {{ transaction.user.last }}
+                  </p>
+                  <p class="font-lato font-thin">
+                    {{ transaction.user.email }}
+                  </p>
+                </div>
+              </button>
+            </div>
+
+            <div class="flex w-2/5 flex-col border-l border-r px-4">
+              <div class="flex gap-1">
+                <p class="text-gray-600">Checkout Date</p>
                 <p class="font-lato font-thin">
-                  {{ transaction.user.first }} {{ transaction.user.last }}
-                </p>
-                <p class="font-lato font-thin">
-                  {{ transaction.user.email }}
+                  {{ transaction.checkOutTime.slice(0, 10) }}
                 </p>
               </div>
-            </button>
-          </div>
 
-          <div class="flex flex-col">
-            <div class="flex gap-1">
-              <p class="text-gray-600">Checkout Date</p>
-              <p class="font-lato font-thin">
-                {{ transaction.checkOutTime.slice(0, 10) }}
-              </p>
-            </div>
+              <div class="flex gap-1" *ngIf="transaction.isCheckedIn">
+                <p class="text-gray-600">Checked In Date</p>
+                <p class="font-lato font-thin">
+                  {{ transaction.checkInTime?.slice(0, 10) }}
+                </p>
+              </div>
 
-            <div class="flex gap-1" *ngIf="transaction.isCheckedIn">
-              <p class="text-gray-600">Checked In Date</p>
-              <p class="font-lato font-thin">
-                {{ transaction.checkInTime?.slice(0, 10) }}
-              </p>
+              <div class="flex gap-1">
+                <p class="text-gray-600">Return Date</p>
+                <p class="font-lato font-thin">
+                  {{ transaction.dueTime?.slice(0, 10) }}
+                </p>
+              </div>
             </div>
 
-            <div class="flex gap-1">
-              <p class="text-gray-600">Return Date</p>
-              <p class="font-lato font-thin">
-                {{ transaction.dueTime?.slice(0, 10) }}
-              </p>
-            </div>
-          </div>
-          <div>
-            <div
-              *ngIf="transaction.isOverdue"
-              class="flex flex-col items-center"
-            >
-              <span
-                class="icon-[ph--warning-duotone] bg-red-500 w-8 h-8 mx-auto"
-              ></span>
-              <span class="text-red-500 mx-auto text-sm">Overdue</span>
-            </div>
-            <div
-              *ngIf="!transaction.isCheckedIn && !transaction.isOverdue"
-              class="flex flex-col items-center"
-            >
-              <span
-                class="icon-[solar--bell-bold-duotone] bg-yellow-500 w-8 h-8 mx-auto"
-              ></span>
-              <span class="text-yellow-500 mx-auto whitespace-nowrap text-sm"
-                >Due Soon</span
+            <div class="flex w-1/5 flex-col gap-2">
+              <div
+                *ngIf="transaction.isOverdue"
+                class="flex flex-col items-center"
               >
-            </div>
+                <span
+                  class="icon-[ph--warning-duotone] mx-auto h-8 w-8 bg-red-500"
+                ></span>
+                <span class="mx-auto text-sm text-red-500">
+                  {{
+                    transaction.isOverdue && !transaction.isCheckedIn
+                      ? "overdue"
+                      : "overdue, returned"
+                  }}
+                </span>
+              </div>
 
-            <div
-              *ngIf="transaction.isCheckedIn"
-              class="flex flex-col items-center"
-            >
-              <span
-                class="icon-[solar--bill-check-bold-duotone] bg-green-500 w-8 h-8 mx-auto"
-              ></span>
-              <span class="text-green-500 mx-auto text-sm">Returned</span>
+              <div
+                *ngIf="!transaction.isCheckedIn && !transaction.isOverdue"
+                class="flex flex-col items-center"
+              >
+                <span
+                  class="icon-[solar--bell-bold-duotone] mx-auto h-8 w-8 bg-yellow-500"
+                ></span>
+                <span class="mx-auto whitespace-nowrap text-sm text-yellow-500"
+                  >due soon</span
+                >
+              </div>
             </div>
-          </div>
-          <div>
-            <a
-              class="flex flex-col items-center"
-              href="returns/{{ transaction.id }}"
-              *ngIf="!transaction.isCheckedIn"
-            >
-              <span
-                class="icon-[solar--rewind-back-circle-bold-duotone] w-8 h-8 m-auto hover:scale-110 active:scale-95 hover:bg-blue-300 bg-gray-500 transition-all"
-              ></span>
-              <span class="text-sm"> return </span>
-            </a>
+            <div class="w-1/6">
+              <a
+                class="flex flex-col items-center"
+                href="returns/{{ transaction.id }}"
+                *ngIf="!transaction.isCheckedIn"
+              >
+                <span
+                  class="icon-[solar--rewind-back-circle-bold-duotone] m-auto h-8 w-8 bg-gray-500 transition-all hover:scale-110 hover:bg-blue-300 active:scale-95"
+                ></span>
+                <span class="text-sm"> return </span>
+              </a>
+              <div
+                *ngIf="transaction.isCheckedIn"
+                class="flex flex-col items-center"
+              >
+                <span
+                  class="icon-[solar--bill-check-bold-duotone] mx-auto h-8 w-8 bg-green-500"
+                ></span>
+                <span class="mx-auto text-sm text-green-500">complete</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<p-toast
-  position="center"
-  key="confirm-leave"
-  (onClose)="onCanceledLeave()"
-  [baseZIndex]="5000"
-  class="fixed"
->
-  <ng-template let-message pTemplate="message" class="border">
-    <div class="flex flex-col w-full">
-      <div class="text-center mx-auto">
-        <h4 class="text-lg font-bold">{{ message.summary }}</h4>
-        <p>{{ message.detail }}</p>
-      </div>
-      <br />
-      <div class="flex gap-x-2">
-        <div
-          class="w-1/2 text-center p-2 rounded bg-red-100 hover:bg-red-200 active:ring-red-300 active:ring-2 text-red-500 hover:text-white transition-all"
-          label="Yes"
-          type="button"
-          (click)="onLeave()"
-        >
-          Confirm
+  <p-toast
+    position="center"
+    key="confirm-leave"
+    (onClose)="onCanceledLeave()"
+    [baseZIndex]="5000"
+    class="fixed"
+  >
+    <ng-template let-message pTemplate="message" class="border">
+      <div class="flex w-full flex-col">
+        <div class="mx-auto text-center">
+          <h4 class="text-lg font-bold">{{ message.summary }}</h4>
+          <p>{{ message.detail }}</p>
         </div>
-        <button
-          class="w-1/2 text-center p-2 rounded text-gray-500 bg-gray-100 hover:bg-gray-200 active:ring-blue-300 active:ring-2 transition-all"
-          label="No"
-          type="button"
-          (click)="onCanceledLeave()"
-        >
-          Cancel
-        </button>
+        <br />
+        <div class="flex gap-x-2">
+          <div
+            class="w-1/2 rounded bg-red-100 p-2 text-center text-red-500 transition-all hover:bg-red-200 hover:text-white active:ring-2 active:ring-red-300"
+            label="Yes"
+            type="button"
+            (click)="onLeave()"
+          >
+            Confirm
+          </div>
+          <button
+            class="w-1/2 rounded bg-gray-100 p-2 text-center text-gray-500 transition-all hover:bg-gray-200 active:ring-2 active:ring-blue-300"
+            label="No"
+            type="button"
+            (click)="onCanceledLeave()"
+          >
+            Cancel
+          </button>
+        </div>
       </div>
-    </div>
-  </ng-template>
-</p-toast>
+    </ng-template>
+  </p-toast>
+</div>

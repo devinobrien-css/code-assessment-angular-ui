@@ -1,27 +1,58 @@
-<div class="bg-white w-4/5 mx-auto rounded p-8 h-4/5 overflow-y-scroll">
-  <h1 class="text-3xl font-lato font-thin">Featured Reading</h1>
-  <div class="flex overflow-x-scroll mt-4">
-    <div *ngFor="let book of getFeaturedBooks()" class="p-4 min-w-64">
-      <img
-        [src]="book.image"
-        alt="book.title"
-        class="w-full h-64 object-cover"
-      />
-      <h2 class="text-lg font-lato font-thin mt-2">{{ book.title }}</h2>
-      <p class="text-sm font-lato font-thin">{{ book.author }}</p>
+<div class="flex max-h-full flex-col gap-8 overflow-scroll px-6 pt-6">
+  <div class="rounded border bg-white p-4 shadow">
+    <h1 class="font-lato text-3xl font-thin">Featured Reading</h1>
+    <div class="mt-4 flex overflow-x-scroll">
+      <a
+        href="/browse/{{ book.id }}"
+        *ngFor="let book of getFeaturedBooks()"
+        class="min-w-64 p-4"
+      >
+        <img
+          [src]="book.image"
+          alt="book.title"
+          class="h-64 w-full object-cover"
+        />
+        <h2 class="mt-2 font-lato text-lg font-thin">{{ book.title }}</h2>
+        <p class="font-lato text-sm font-thin">{{ book.author }}</p>
+      </a>
     </div>
   </div>
 
-  <h1 class="text-3xl font-lato font-thin">Popular Books</h1>
-  <div class="flex overflow-x-scroll mt-4">
-    <div *ngFor="let book of getBestSellingBooks()" class="p-4 min-w-64">
-      <img
-        [src]="book.image"
-        alt="book.title"
-        class="w-full h-64 object-cover"
-      />
-      <h2 class="text-lg font-lato font-thin mt-2">{{ book.title }}</h2>
-      <p class="text-sm font-lato font-thin">{{ book.author }}</p>
+  <div class="rounded border bg-white p-4 shadow">
+    <h1 class="font-lato text-3xl font-thin">Popular Books</h1>
+    <div class="mt-4 flex overflow-x-scroll">
+      <a
+        href="/browse/{{ book.id }}"
+        *ngFor="let book of getBestSellingBooks()"
+        class="min-w-64 p-4"
+      >
+        <img
+          [src]="book.image"
+          alt="book.title"
+          class="h-64 w-full object-cover"
+        />
+        <h2 class="mt-2 font-lato text-lg font-thin">{{ book.title }}</h2>
+        <p class="font-lato text-sm font-thin">{{ book.author }}</p>
+      </a>
+    </div>
+  </div>
+
+  <div class="rounded border bg-white p-4 shadow">
+    <h1 class="font-lato text-3xl font-thin">Highly Rated (TODO)</h1>
+    <div class="mt-4 flex overflow-x-scroll">
+      <a
+        href="/browse/{{ book.id }}"
+        *ngFor="let book of getBestSellingBooks()"
+        class="min-w-64 p-4"
+      >
+        <img
+          [src]="book.image"
+          alt="book.title"
+          class="h-64 w-full object-cover"
+        />
+        <h2 class="mt-2 font-lato text-lg font-thin">{{ book.title }}</h2>
+        <p class="font-lato text-sm font-thin">{{ book.author }}</p>
+      </a>
     </div>
   </div>
 </div>

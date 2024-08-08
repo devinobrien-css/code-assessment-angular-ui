@@ -100,11 +100,29 @@ npm run prettier
 ```
 > Always run linting prior to prettifying!
 
+## Want to format on save?
+
+Add the following snippet to `.vscode` in the root of the repo:
+
+```json
+{
+    "editor.formatOnSave": true,
+}
+```
+
 ## Documentation
 
 [Angular Standards](https://angular.dev/style-guide)
+
 [Security Standards](https://angular.dev/best-practices/security)
+
 [HTTP Client](https://angular.dev/guide/http/setup)
+
 [Configure Middleware](https://angular.dev/guide/http/interceptors)
+
 [ES Lint Configuration](https://eslint.org/docs/latest/contribute/development-environment)
+
 [Prettier Configuration](https://prettier.io/docs/en/install.html)
+
+[Prettier <3 Tailwind](https://tailwindcss.com/blog/automatic-class-sorting-with-prettier)
+

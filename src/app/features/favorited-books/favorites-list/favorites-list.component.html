@@ -1,35 +1,32 @@
-<div class="bg-white w-4/5 m-auto rounded max-h-[80%] overflow-y-auto pb-8">
-  <div class="relative">
-    <div
-      class="flex justify-between shadow sticky top-0 p-8 bg-white z-50 border w-full"
+<div class="flex max-h-full flex-col gap-8 px-6 pt-6">
+  <div
+    class="sticky top-0 z-50 flex w-full justify-between rounded-lg border bg-white p-8 shadow"
+  >
+    <h1 class="font-lato text-3xl font-thin">Your Curated Collection</h1>
+  </div>
+
+  <div
+    *ngIf="favorites.length === 0"
+    class="flex h-4/5 flex-col items-center justify-center"
+  >
+    <span
+      class="icon-[solar--info-square-bold-duotone] text-6xl text-gray-400"
+    ></span>
+    <p class="text-2xl font-light text-gray-400">No Favorited Books</p>
+
+    <a href="/browse" class="mt-4 font-light text-blue-500 underline"
+      >Browse Books</a
     >
-      <h1 class="text-3xl font-lato font-thin">Your Curated Collection</h1>
-    </div>
-    <br />
+  </div>
 
-    <div
-      *ngIf="favorites.length === 0"
-      class="flex flex-col items-center justify-center h-4/5"
-    >
-      <span
-        class="icon-[solar--info-square-bold-duotone] text-6xl text-gray-400"
-      ></span>
-      <p class="text-gray-400 text-2xl font-light">No Favorited Book</p>
-
-      <a href="/browse" class="text-blue-500 underline mt-4 font-light"
-        >Browse Books</a
-      >
-    </div>
-
-    <div class="flex flex-wrap gap-4 justify-evenly">
-      <div *ngFor="let book of favorites" class="w-1/5 min-w-56">
-        <app-favorited-book-card
-          [book]="book"
-          [isFavorite]="isBookFavorite(book)"
-          [current_user_id]="current_user_id"
-          (removeFavorite)="removeFavorite(book)"
-        ></app-favorited-book-card>
-      </div>
+  <div class="flex max-h-full flex-wrap justify-evenly gap-4 overflow-y-scroll">
+    <div *ngFor="let book of favorites" class="w-1/5 min-w-56">
+      <app-favorited-book-card
+        [book]="book"
+        [isFavorite]="isBookFavorite(book)"
+        [current_user_id]="current_user_id"
+        (removeFavorite)="removeFavorite(book)"
+      ></app-favorited-book-card>
     </div>
   </div>
 </div>

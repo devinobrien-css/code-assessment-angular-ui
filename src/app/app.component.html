@@ -1,14 +1,16 @@
-<main
-  class="min-h-screen min-w-screen bg-city-street bg-cover bg-no-repeat fixed"
->
-  <div class="h-screen w-screen bg-blue-900 bg-opacity-60">
-    <header class="flex justify-between items-center p-4">
-      <h1 class="text-3xl text-white font-lato font-light">
-        Book Nook Library
-      </h1>
-    </header>
-    <app-navigation></app-navigation>
-    <router-outlet />
-    <p-toast />
+<img
+  src="assets/top-banner.svg"
+  alt="hero"
+  class="absolute top-0 z-0 h-64 w-full object-cover"
+/>
+<main id="root" class="invisible fixed h-screen w-screen transition-all">
+  <div class="flex h-full w-full flex-nowrap overflow-clip">
+    <div class="w-1/4">
+      <app-navigation />
+    </div>
+    <div class="w-3/4">
+      <router-outlet />
+    </div>
   </div>
+  <p-toast />
 </main>

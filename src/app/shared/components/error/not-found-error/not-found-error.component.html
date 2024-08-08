@@ -1,15 +1,15 @@
 <div
-  class="bg-gray-800 bg-opacity-40 h-full w-full absolute top-0 z-[100] backdrop-blur-sm flex items-center"
+  class="absolute top-0 z-[100] flex h-full w-full items-center bg-gray-800 bg-opacity-40 backdrop-blur-sm"
 >
   <div
-    class="bg-white h-fit max-h-[80%] w-fit mx-auto rounded-lg overflow-y-auto"
+    class="mx-auto h-fit max-h-[80%] w-fit overflow-y-auto rounded-lg bg-white"
   >
-    <div class="shadow sticky top-0 p-4 bg-white z-50 border w-full">
-      <div class="text-red-500 flex">
-        <span class="icon-[tabler--error-404] w-32 h-32 m-auto"></span>
-        <div class="h-fit my-auto">
-          <p class="text-3xl font-light text-left">That's an error!</p>
-          <p class="text-lg font-light text-left">
+    <div class="sticky top-0 z-50 w-full border bg-white p-4 shadow">
+      <div class="flex text-red-500">
+        <span class="icon-[tabler--error-404] m-auto h-32 w-32"></span>
+        <div class="my-auto h-fit">
+          <p class="text-left text-3xl font-light">That's an error!</p>
+          <p class="text-left text-lg font-light">
             The page you're looking for doesn't exist.
           </p>
         </div>
@@ -19,9 +19,9 @@
 
       <a
         href="/browse"
-        class="flex underline text-blue-400 gap-2 justify-center"
+        class="flex justify-center gap-2 text-blue-400 underline"
       >
-        <span class="icon-[solar--rewind-back-bold-duotone] w-8 h-8"></span>
+        <span class="icon-[solar--rewind-back-bold-duotone] h-8 w-8"></span>
         <span class="my-auto"> Go Back to Browsing </span>
       </a>
     </div>

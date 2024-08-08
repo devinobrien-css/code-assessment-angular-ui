@@ -1,31 +1,31 @@
 <div
-  class="bg-gray-800 bg-opacity-40 h-full w-full absolute top-0 z-[100] backdrop-blur-sm flex items-center"
+  class="absolute left-0 top-0 z-[100] flex h-full w-full items-center bg-gray-800 bg-opacity-40 backdrop-blur-sm"
 >
   <div
-    class="bg-white h-fit max-h-[80%] w-3/5 mx-auto rounded-lg overflow-y-auto"
+    class="mx-auto h-fit max-h-[80%] w-3/5 overflow-y-auto rounded-lg bg-white"
   >
     <div
-      class="flex justify-between shadow sticky top-0 p-4 bg-white z-50 border w-full"
+      class="sticky top-0 z-50 flex w-full justify-between border bg-white p-4 shadow"
     >
-      <h1 class="text-3xl font-lato font-thin my-auto">View Book</h1>
+      <h1 class="my-auto font-lato text-3xl font-thin">View Book</h1>
       <div class="flex gap-2">
         <a
           *ngIf="book?.isAvailable"
           href="browse/{{ book?.id }}/checkout/{{ current_user_id }}"
-          class="my-auto p-2 flex flex-col items-center"
+          class="my-auto flex flex-col items-center p-2"
         >
           <span
-            class="icon-[solar--backpack-bold-duotone] bg-gray-500 m-auto w-8 h-8 hover:scale-110 transition-all active:scale-95 hover:bg-blue-300"
+            class="icon-[solar--backpack-bold-duotone] m-auto h-8 w-8 bg-gray-500 transition-all hover:scale-110 hover:bg-blue-300 active:scale-95"
           ></span>
           <span class="text-sm">borrow</span>
         </a>
         <button
-          class="my-auto p-2 flex flex-col items-center"
+          class="my-auto flex flex-col items-center p-2"
           title="Favorite"
           (click)="toggleFavorite()"
         >
           <span
-            class="icon-[solar--star-bold-duotone] m-auto w-8 h-8 hover:scale-110 transition-all active:scale-95 hover:bg-yellow-300"
+            class="icon-[solar--star-bold-duotone] m-auto h-8 w-8 transition-all hover:scale-110 hover:bg-yellow-300 active:scale-95"
             [ngClass]="{
               'bg-yellow-400': favorited,
               'bg-gray-400': !favorited,
@@ -38,7 +38,7 @@
 
         <a href="/browse" class="my-auto">
           <span
-            class="icon-[basil--cancel-solid] w-10 h-10 bg-gray-400 hover:bg-blue-300"
+            class="icon-[basil--cancel-solid] h-10 w-10 bg-gray-400 hover:bg-blue-300"
           ></span>
         </a>
       </div>
@@ -47,10 +47,10 @@
       <div class="w-1/3 max-w-[200px]">
         <img [src]="book?.image" alt="Book Cover" class="rounded-lg" />
       </div>
-      <div class="w-2/3 flex flex-col gap-2">
+      <div class="flex w-2/3 flex-col gap-2">
         <div>
-          <h2 class="text-2xl font-lato font-light">{{ book?.title }}</h2>
-          <p class="text-lg font-lato font-light">{{ book?.author }}</p>
+          <h2 class="font-lato text-2xl font-light">{{ book?.title }}</h2>
+          <p class="font-lato text-lg font-light">{{ book?.author }}</p>
           <div class="flex gap-2">
             <p class="text-md font-lato">Rating:</p>
             <p class="text-md font-lato font-light">
@@ -81,7 +81,7 @@
         </div>
       </div>
     </div>
-    <div class="px-8 py-4 border-t">
+    <div class="border-t px-8 py-4">
       <div class="flex justify-between border-b p-2">
         <h2 class="text-3xl font-light">Reviews</h2>
         <a
@@ -89,7 +89,7 @@
           class="flex flex-col items-center"
         >
           <span
-            class="icon-[solar--pen-new-square-bold-duotone] w-6 h-6 m-auto bg-gray-400 hover:bg-blue-300 active:scale-95 hover:scale-110 transition-all"
+            class="icon-[solar--pen-new-square-bold-duotone] m-auto h-6 w-6 bg-gray-400 transition-all hover:scale-110 hover:bg-blue-300 active:scale-95"
           ></span>
           <span class="text-sm"> review </span>
         </a>
@@ -97,15 +97,15 @@
 
       <div
         *ngIf="book?.reviews?.length === 0"
-        class="flex flex-col items-center justify-center h-4/5"
+        class="flex h-4/5 flex-col items-center justify-center"
       >
         <span
           class="icon-[solar--info-square-bold-duotone] text-6xl text-gray-400"
         ></span>
-        <p class="text-gray-400 text-2xl font-light">No Reviews Yet</p>
+        <p class="text-2xl font-light text-gray-400">No Reviews Yet</p>
         <a
           href="browse/{{ book?.id }}/review"
-          class="text-blue-500 underline mt-4 font-light"
+          class="mt-4 font-light text-blue-500 underline"
         >
           Be the first to review this book
         </a>

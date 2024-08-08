@@ -1,80 +1,84 @@
-<div class="bg-white h-4/5 w-4/5 mx-auto rounded overflow-auto">
+<div class="flex max-h-full flex-col gap-8 px-6 pt-6">
   <div
-    class="flex justify-between bg-white sticky top-0 p-8 border shadow z-50"
+    class="sticky top-0 z-50 flex justify-between rounded-md border bg-white p-8 shadow"
   >
-    <h1 class="text-3xl font-lato font-thin">Checked Out Books</h1>
+    <h1 class="font-lato text-3xl font-thin">Checked Out Books</h1>
   </div>
 
   <div
     *ngIf="transactions.length === 0"
-    class="flex flex-col items-center justify-center h-4/5"
+    class="flex h-4/5 flex-col items-center justify-center"
   >
     <span
       class="icon-[solar--info-square-bold-duotone] text-6xl text-gray-400"
     ></span>
-    <p class="text-gray-400 text-2xl font-light">No books checked out</p>
+    <p class="text-2xl font-light text-gray-400">No books checked out</p>
 
-    <a href="/browse" class="text-blue-500 underline mt-4 font-light"
+    <a href="/browse" class="mt-4 font-light text-blue-500 underline"
       >Browse Books</a
     >
   </div>
-
-  <div *ngFor="let transaction of transactions" class="p-8">
-    <div class="flex gap-4">
-      <img
-        [src]="transaction.book.image"
-        alt="book cover"
-        class="w-24 h-32 object-cover"
-      />
-      <div class="w-1/2">
-        <h2 class="text-xl font-lato font-thin">
-          {{ transaction.book.title }}
-        </h2>
-        <p class="text-gray-600">{{ transaction.book.author }}</p>
-      </div>
-
-      <div class="flex justify-between w-full">
-        <div class="flex gap-4">
-          <div>
-            <p class="text-gray-600">Checkout Date</p>
-            <p class="text-lg font-lato font-thin">
-              {{ transaction.checkOutTime.slice(0, 10) }}
-            </p>
-          </div>
-          <div>
-            <p class="text-gray-600">Return Date</p>
-            <p class="text-lg font-lato font-thin">
-              {{ transaction.dueTime?.slice(0, 10) }}
-            </p>
-          </div>
+  <div class="mt-4 max-h-full overflow-y-scroll">
+    <div *ngFor="let transaction of transactions" class="p-8">
+      <div class="flex gap-4">
+        <img
+          [src]="transaction.book.image"
+          alt="book cover"
+          class="h-32 w-24 object-cover"
+        />
+        <div class="w-1/2">
+          <h2 class="font-lato text-xl font-thin">
+            {{ transaction.book.title }}
+          </h2>
+          <p class="text-gray-600">{{ transaction.book.author }}</p>
         </div>
-        <div>
-          <div *ngIf="transaction.isOverdue" class="flex flex-col items-center">
-            <span
-              class="icon-[ph--warning-duotone] bg-red-500 w-10 h-10 mx-auto"
-            ></span>
-            <span class="text-red-500 mx-auto">Overdue</span>
-          </div>
-          <div
-            *ngIf="!transaction.isCheckedIn && !transaction.isOverdue"
-            class="flex flex-col items-center"
-          >
-            <span
-              class="icon-[solar--bell-bold-duotone] bg-yellow-500 w-10 h-10 mx-auto"
-            ></span>
-            <span class="text-yellow-500 mx-auto whitespace-nowrap"
-              >Due Soon</span
-            >
-          </div>
 
-          <div
-            *ngIf="transaction.isCheckedIn"
-            class="flex flex-col items-center"
-          >
-            <span
-              class="icon-[solar--bill-check-bold-duotone] bg-green-500 w-10 h-10 mx-auto"
-            ></span>
-            <span class="text-green-500 mx-auto">Returned</span>
+        <div class="flex w-full justify-between">
+          <div class="flex gap-4">
+            <div>
+              <p class="text-gray-600">Checkout Date</p>
+              <p class="font-lato text-lg font-thin">
+                {{ transaction.checkOutTime.slice(0, 10) }}
+              </p>
+            </div>
+            <div>
+              <p class="text-gray-600">Return Date</p>
+              <p class="font-lato text-lg font-thin">
+                {{ transaction.dueTime?.slice(0, 10) }}
+              </p>
+            </div>
+          </div>
+          <div>
+            <div
+              *ngIf="transaction.isOverdue"
+              class="flex flex-col items-center"
+            >
+              <span
+                class="icon-[ph--warning-duotone] mx-auto h-10 w-10 bg-red-500"
+              ></span>
+              <span class="mx-auto text-red-500">Overdue</span>
+            </div>
+            <div
+              *ngIf="!transaction.isCheckedIn && !transaction.isOverdue"
+              class="flex flex-col items-center"
+            >
+              <span
+                class="icon-[solar--bell-bold-duotone] mx-auto h-10 w-10 bg-yellow-500"
+              ></span>
+              <span class="mx-auto whitespace-nowrap text-yellow-500"
+                >Due Soon</span
+              >
+            </div>
+
+            <div
+              *ngIf="transaction.isCheckedIn"
+              class="flex flex-col items-center"
+            >
+              <span
+                class="icon-[solar--bill-check-bold-duotone] mx-auto h-10 w-10 bg-green-500"
+              ></span>
+              <span class="mx-auto text-green-500">Returned</span>
+            </div>
           </div>
         </div>
       </div>

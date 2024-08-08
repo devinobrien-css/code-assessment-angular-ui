@@ -1,17 +1,17 @@
 <div
-  class="bg-gray-800 bg-opacity-40 h-full w-full absolute top-0 z-[100] backdrop-blur-sm flex items-center"
+  class="absolute top-0 z-[100] flex h-full w-full items-center bg-gray-800 bg-opacity-40 backdrop-blur-sm"
 >
   <div
-    class="bg-white h-screen md:h-3/5 md:w-3/5 mx-auto rounded-lg overflow-y-auto"
+    class="mx-auto h-screen overflow-y-auto rounded-lg bg-white md:h-3/5 md:w-3/5"
   >
     <div
-      class="flex justify-between shadow sticky top-0 p-4 bg-white z-50 border w-full"
+      class="sticky top-0 z-50 flex w-full justify-between border bg-white p-4 shadow"
     >
-      <h1 class="text-3xl font-lato font-thin">New Book</h1>
+      <h1 class="font-lato text-3xl font-thin">New Book</h1>
 
       <a href="/book-manager" class="my-auto">
         <span
-          class="icon-[basil--cancel-solid] w-10 h-10 bg-gray-400 hover:bg-blue-300"
+          class="icon-[basil--cancel-solid] h-10 w-10 bg-gray-400 hover:bg-blue-300"
         ></span>
       </a>
     </div>
@@ -19,89 +19,89 @@
     <div class="p-4">
       <div>
         <div class="flex flex-col space-y-2">
-          <div class="flex justify-between gap-4 md:flex-nowrap flex-wrap">
-            <div class="flex flex-col md:w-1/2 w-full">
+          <div class="flex flex-wrap justify-between gap-4 md:flex-nowrap">
+            <div class="flex w-full flex-col md:w-1/2">
               <label for="title" class="text-md">Title</label>
               <input
                 type="text"
                 id="title"
                 name="title"
                 [formControl]="title"
-                class="p-1 border border-gray-300 rounded-lg"
+                class="rounded-lg border border-gray-300 p-1"
                 required
               />
             </div>
 
-            <div class="flex flex-col md:w-1/2 w-full">
+            <div class="flex w-full flex-col md:w-1/2">
               <label for="author" class="text-md">Author</label>
               <input
                 type="text"
                 id="author"
                 name="author"
                 [formControl]="author"
-                class="p-1 border border-gray-300 rounded-lg"
+                class="rounded-lg border border-gray-300 p-1"
                 required
               />
             </div>
           </div>
-          <div class="flex justify-between gap-4 md:flex-nowrap flex-wrap">
-            <div class="flex flex-col md:w-1/2 w-full">
+          <div class="flex flex-wrap justify-between gap-4 md:flex-nowrap">
+            <div class="flex w-full flex-col md:w-1/2">
               <label for="publisher" class="text-md">Publisher</label>
               <input
                 type="text"
                 id="publisher"
                 name="publisher"
                 [formControl]="publisher"
-                class="p-1 border border-gray-300 rounded-lg"
+                class="rounded-lg border border-gray-300 p-1"
                 required
               />
             </div>
-            <div class="flex flex-col md:w-1/2 w-full">
+            <div class="flex w-full flex-col md:w-1/2">
               <label for="year" class="text-md">Year Published</label>
               <input
                 type="text"
                 id="year"
                 name="year"
                 [formControl]="year"
-                class="p-1 border border-gray-300 rounded-lg"
+                class="rounded-lg border border-gray-300 p-1"
                 required
               />
             </div>
           </div>
 
-          <div class="flex justify-between gap-4 md:flex-nowrap flex-wrap">
-            <div class="flex flex-col md:w-1/2 w-full">
+          <div class="flex flex-wrap justify-between gap-4 md:flex-nowrap">
+            <div class="flex w-full flex-col md:w-1/2">
               <label for="isbn" class="text-md">ISBN</label>
               <input
                 type="text"
                 id="isbn"
                 name="isbn"
                 [formControl]="isbn"
-                class="p-1 border border-gray-300 rounded-lg"
+                class="rounded-lg border border-gray-300 p-1"
                 required
               />
             </div>
-            <div class="flex flex-col md:w-1/2 w-full">
+            <div class="flex w-full flex-col md:w-1/2">
               <label for="image" class="text-md">Image URL</label>
               <input
                 type="text"
                 id="image"
                 name="image"
                 [formControl]="image"
-                class="p-1 border border-gray-300 rounded-lg"
+                class="rounded-lg border border-gray-300 p-1"
                 required
               />
             </div>
           </div>
 
-          <div class="flex justify-between gap-4 md:flex-nowrap flex-wrap">
-            <div class="flex flex-col w-full md:w-1/2">
+          <div class="flex flex-wrap justify-between gap-4 md:flex-nowrap">
+            <div class="flex w-full flex-col md:w-1/2">
               <label for="genre" class="text-md">Genre</label>
               <select
                 id="genre"
                 name="genre"
                 [formControl]="genre"
-                class="p-1 border border-gray-300 rounded-lg"
+                class="rounded-lg border border-gray-300 p-1"
                 required
               >
                 <option *ngFor="let genre of genres" [value]="genre.id">
@@ -109,14 +109,14 @@
                 </option>
               </select>
             </div>
-            <div class="flex flex-col md:w-1/2 w-full">
+            <div class="flex w-full flex-col md:w-1/2">
               <label for="pages" class="text-md">Pages</label>
               <input
                 type="text"
                 id="pages"
                 name="pages"
                 [formControl]="pages"
-                class="p-1 border border-gray-300 rounded-lg"
+                class="rounded-lg border border-gray-300 p-1"
                 required
               />
             </div>
@@ -128,7 +128,7 @@
               id="description"
               name="description"
               [formControl]="description"
-              class="p-1 border border-gray-300 rounded-lg"
+              class="rounded-lg border border-gray-300 p-1"
               required
             ></textarea>
           </div>
@@ -137,7 +137,7 @@
             <button
               (click)="addBook()"
               type="button"
-              class="bg-blue-500 text-white p-1 rounded-lg"
+              class="rounded-lg bg-blue-500 p-1 text-white"
             >
               Confirm
             </button>

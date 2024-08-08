@@ -10,6 +10,7 @@ export const loggedOutGuardGuard: CanActivateFn = () => {
     return true;
   }
 
-  router.navigate(['']);
+  // TODO: redirect to explore
+  router.navigate(['/explore']);
   return false;
 };

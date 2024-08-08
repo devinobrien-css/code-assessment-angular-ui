@@ -1,70 +1,72 @@
 <router-outlet />
-<div class="bg-white w-4/5 h-4/5 overflow-y-auto mx-auto rounded">
-  <div
-    class="flex justify-between bg-white sticky top-0 p-8 border shadow z-50"
-  >
-    <h1 class="text-3xl font-lato font-thin">Manage Books</h1>
-    <div class="flex gap-x-4">
-      <a
-        routerLink="/book-manager/add"
-        class="text-blue-400 text-sm flex flex-col hover:scale-105 active:scale-95 cursor-pointer"
-        title="add book"
-      >
-        <span
-          class="icon-[solar--add-square-bold-duotone] w-8 h-8 m-auto"
-        ></span>
-        <span class="m-auto"> add book </span>
-      </a>
-      <input
-        type="text"
-        class="p-2 shadow border-gray-300 font-light rounded"
-        placeholder="Search"
-        [formControl]="search"
-      />
+<div class="h-screen px-6 pt-6">
+  <div class="flex max-h-full flex-col">
+    <div
+      class="sticky top-0 flex max-h-full justify-between rounded bg-white p-8 shadow"
+    >
+      <h1 class="font-lato text-3xl font-thin">Manage Books</h1>
+      <div class="flex gap-x-4">
+        <a
+          routerLink="/book-manager/add"
+          class="flex cursor-pointer flex-col text-sm text-blue-400 hover:scale-105 active:scale-95"
+          title="add book"
+        >
+          <span
+            class="icon-[solar--add-square-bold-duotone] m-auto h-8 w-8"
+          ></span>
+          <span class="m-auto"> add book </span>
+        </a>
+        <input
+          type="text"
+          class="rounded border-gray-300 p-2 font-light shadow"
+          placeholder="Search"
+          [formControl]="search"
+        />
+      </div>
     </div>
-  </div>
 
-  <div class="flex flex-col space-y-2 divide-y-2">
-    <div *ngFor="let book of getBooks()" class="p-2">
-      <div class="flex justify-between">
-        <div class="flex gap-2">
-          <img
-            [src]="book.image"
-            alt="book cover"
-            class="w-18 h-24 rounded shadow-lg"
-          />
-          <div class="flex flex-col justify-between">
-            <div>
-              <p class="text-xl">{{ book.title }}</p>
-              <p class="font-light">{{ book.author }}</p>
+    <div class="max-h-full overflow-scroll bg-white">
+      <div *ngFor="let book of getBooks()" class="p-2 odd:bg-blue-50">
+        <div class="flex justify-between">
+          <div class="flex gap-2">
+            <img
+              [src]="book.image"
+              alt="book cover"
+              class="w-18 h-24 rounded shadow-lg"
+            />
+            <div class="flex flex-col justify-between">
+              <div>
+                <p class="text-xl">{{ book.title }}</p>
+                <p class="font-light">{{ book.author }}</p>
+              </div>
+              <p class="font-light">
+                <span class="font-bold">ISBN: </span>{{ book.isbn }}
+              </p>
             </div>
-            <p class="font-light">
-              <span class="font-bold">ISBN: </span>{{ book.isbn }}
-            </p>
           </div>
-        </div>
-        <div class="flex flex-col items-center mr-4">
-          <div class="flex gap-6 my-auto">
-            <a
-              routerLink="/book-manager/edit/{{ book.id }}"
-              class="text-blue-400 text-sm flex flex-col hover:scale-105 active:scale-95 cursor-pointer"
-              title="edit book"
-            >
-              <span
-                class="icon-[solar--server-square-update-bold-duotone] w-8 h-8 m-auto"
-              ></span>
-              <span class="m-auto"> edit </span>
-            </a>
-            <button
-              class="text-red-400 text-sm flex flex-col hover:scale-105 active:scale-95 cursor-pointer"
-              (click)="onConfirmDelete(book.id)"
-              title="delete book"
-            >
-              <span
-                class="icon-[solar--trash-bin-trash-bold-duotone] w-8 h-8 m-auto"
-              ></span>
-              <span class="m-auto"> delete </span>
-            </button>
+          <div class="mr-4 flex flex-col items-center">
+            <div class="my-auto flex gap-6">
+              <a
+                routerLink="/book-manager/edit/{{ book.id }}"
+                class="flex cursor-pointer flex-col text-sm text-blue-400 hover:scale-105 active:scale-95"
+                title="edit book"
+              >
+                <span
+                  class="icon-[solar--server-square-update-bold-duotone] m-auto h-8 w-8"
+                ></span>
+                <span class="m-auto"> edit </span>
+              </a>
+              <button
+                class="flex cursor-pointer flex-col text-sm text-red-400 hover:scale-105 active:scale-95"
+                (click)="onConfirmDelete(book.id)"
+                title="delete book"
+              >
+                <span
+                  class="icon-[solar--trash-bin-trash-bold-duotone] m-auto h-8 w-8"
+                ></span>
+                <span class="m-auto"> delete </span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -79,15 +81,15 @@
   class="fixed"
 >
   <ng-template let-message pTemplate="message" class="border">
-    <div class="flex flex-col w-full">
-      <div class="text-center mx-auto">
+    <div class="flex w-full flex-col">
+      <div class="mx-auto text-center">
         <h4 class="text-lg font-bold">{{ message.summary }}</h4>
         <p>{{ message.detail }}</p>
       </div>
       <br />
       <div class="flex gap-x-2">
         <div
-          class="w-1/2 text-center p-2 rounded bg-red-100 hover:bg-red-200 active:ring-red-300 active:ring-2 text-red-500 hover:text-white transition-all"
+          class="w-1/2 rounded bg-red-100 p-2 text-center text-red-500 transition-all hover:bg-red-200 hover:text-white active:ring-2 active:ring-red-300"
           label="Yes"
           type="button"
           (click)="onDelete()"
@@ -95,7 +97,7 @@
           Confirm
         </div>
         <button
-          class="w-1/2 text-center p-2 rounded text-gray-500 bg-gray-100 hover:bg-gray-200 active:ring-blue-300 active:ring-2 transition-all"
+          class="w-1/2 rounded bg-gray-100 p-2 text-center text-gray-500 transition-all hover:bg-gray-200 active:ring-2 active:ring-blue-300"
           label="No"
           type="button"
           (click)="onCanceledDelete()"

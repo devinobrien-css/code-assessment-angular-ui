@@ -1,13 +1,13 @@
-<div class="hover:shadow bg-gray-50 p-4 rounded relative">
+<div class="relative rounded bg-gray-50 p-4 hover:shadow">
   <button class="my-auto" title="Favorite" (click)="remove()">
     <p
       *ngIf="!book?.isAvailable"
-      class="text-sm font-lato font-thin absolute left-0 top-16 p-2 bg-gray-500 text-white"
+      class="absolute left-0 top-16 bg-gray-500 p-2 font-lato text-sm font-thin text-white"
     >
       Unavailable
     </p>
     <span
-      class="icon-[solar--star-bold-duotone] w-10 h-10 hover:scale-105 transition-all active:scale-95 absolute top-2 right-2"
+      class="icon-[solar--star-bold-duotone] absolute right-2 top-2 h-10 w-10 transition-all hover:scale-105 active:scale-95"
       [ngClass]="{
         'bg-yellow-400': isFavorite,
         'bg-gray-400': !isFavorite,
@@ -16,7 +16,7 @@
   </button>
   <a
     *ngIf="book?.isAvailable"
-    class="rounded p-2 shadow bg-blue-400 text-white absolute top-2 left-2 hover:scale-105 active:scale-95"
+    class="absolute left-2 top-2 rounded bg-blue-400 p-2 text-white shadow hover:scale-105 active:scale-95"
     href="browse/{{ book?.id }}/checkout/{{ current_user_id }}"
   >
     Borrow
@@ -30,11 +30,11 @@
     />
   </div>
   <p
-    class="text-sm md:text-lg font-lato font-light pt-2 overflow-x-clip text-ellipsis whitespace-nowrap"
+    class="overflow-x-clip text-ellipsis whitespace-nowrap pt-2 font-lato text-sm font-light md:text-lg"
   >
     {{ book?.title }}
   </p>
-  <p class="text-sm md:text-md font-lato font-thin whitespace-nowrap">
+  <p class="md:text-md whitespace-nowrap font-lato text-sm font-thin">
     {{ book?.author }}
   </p>
 </div>

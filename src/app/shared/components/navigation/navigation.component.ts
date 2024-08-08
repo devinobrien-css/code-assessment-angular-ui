@@ -12,7 +12,6 @@ import { NgClass, NgIf } from '@angular/common';
   templateUrl: './navigation.component.html',
 })
 export class NavigationComponent {
-  show_nav = false;
   is_employee = false;
 
   constructor(
@@ -21,11 +20,15 @@ export class NavigationComponent {
     private router: Router,
   ) {}
 
-  ngOnInit() {
-    this.router.events.subscribe(() => {
-      this.show_nav = false;
-    });
+  isNavVisible() {
+    return localStorage.getItem('show_nav') === 'true';
+  }
 
+  setNavVisible() {
+    localStorage.setItem('show_nav', 'true');
+  }
+
+  ngOnInit() {
     this.userService
       .getCurrentUser()
       .subscribe((response: CurrentUserInfoResponse) => {
@@ -34,7 +37,12 @@ export class NavigationComponent {
   }
 
   toggleNav() {
-    this.show_nav = !this.show_nav;
+    const show_nav = localStorage.getItem('show_nav');
+    if (show_nav === 'true') {
+      localStorage.setItem('show_nav', 'false');
+    } else {
+      localStorage.setItem('show_nav', 'true');
+    }
   }
 
   logout() {

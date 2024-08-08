@@ -25,6 +25,7 @@
     "@angular/platform-browser-dynamic": "^17.3.0",
     "@angular/router": "^17.3.0",
     "@iconify/json": "^2.2.228",
+    "gsap": "^3.12.5",
     "husky": "^9.1.1",
     "primeng": "^17.18.4",
     "rxjs": "~7.8.0",
@@ -49,7 +50,8 @@
     "karma-jasmine-html-reporter": "~2.1.0",
     "lint-staged": "^15.2.7",
     "postcss": "^8.4.39",
-    "prettier": "3.3.3",
+    "prettier": "^3.3.3",
+    "prettier-plugin-tailwindcss": "^0.6.5",
     "tailwindcss": "^3.4.5",
     "typescript": "~5.4.2",
     "typescript-eslint": "^7.16.1"

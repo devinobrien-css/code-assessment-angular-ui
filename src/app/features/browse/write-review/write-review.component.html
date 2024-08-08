@@ -1,25 +1,25 @@
 <div
-  class="bg-gray-800 bg-opacity-40 h-full w-full absolute top-0 z-[100] backdrop-blur-sm flex items-center"
+  class="absolute left-0 top-0 z-[100] flex h-full w-full items-center bg-gray-800 bg-opacity-40 backdrop-blur-sm"
 >
   <div
-    class="bg-white h-fit max-h-[80%] md:w-3/5 mx-auto rounded-lg overflow-y-auto"
+    class="mx-auto h-fit max-h-[80%] overflow-y-auto rounded-lg bg-white md:w-3/5"
   >
     <div
-      class="flex justify-between shadow sticky top-0 p-4 bg-white z-50 border w-full"
+      class="sticky top-0 z-50 flex w-full justify-between border bg-white p-4 shadow"
     >
-      <h1 class="text-3xl font-lato font-thin">Write a Review</h1>
+      <h1 class="font-lato text-3xl font-thin">Write a Review</h1>
 
       <a href="/browse/{{ bookId }}" class="my-auto">
         <span
-          class="icon-[solar--arrow-to-down-right-line-duotone] w-10 h-10 bg-gray-400 hover:bg-blue-300 rotate-90"
+          class="icon-[solar--arrow-to-down-right-line-duotone] h-10 w-10 rotate-90 bg-gray-400 hover:bg-blue-300"
         ></span>
       </a>
     </div>
 
     <div class="flex gap-2">
-      <img [src]="book?.image" alt="Book Cover" class="rounded-lg w-1/4 m-8" />
+      <img [src]="book?.image" alt="Book Cover" class="m-8 w-1/4 rounded-lg" />
       <div class="p-8">
-        <h2 class="text-2xl font-lato font-light">
+        <h2 class="font-lato text-2xl font-light">
           Rate your experience with this book
         </h2>
         <div class="flex gap-2">
@@ -29,7 +29,7 @@
             (click)="setRating(star)"
           >
             <span
-              class="icon-[solar--star-bold-duotone] my-auto w-10 h-10 hover:scale-105 transition-all active:scale-95"
+              class="icon-[solar--star-bold-duotone] my-auto h-10 w-10 transition-all hover:scale-105 active:scale-95"
               [ngClass]="{
                 'bg-yellow-400': rating.value && star <= rating.value,
                 'bg-gray-400': rating.value && star > rating.value,
@@ -39,16 +39,16 @@
         </div>
         <br />
 
-        <h2 class="text-2xl font-lato font-light mb-2">Write a review</h2>
+        <h2 class="mb-2 font-lato text-2xl font-light">Description</h2>
         <textarea
-          class="w-full p-2 border rounded-lg"
+          class="w-full rounded-lg border p-2"
           [formControl]="description"
           placeholder="Write your review here..."
         ></textarea>
 
-        <div class="flex justify-center mt-4">
+        <div class="mt-4 flex justify-center">
           <button
-            class="bg-blue-400 text-white p-2 rounded-lg hover:scale-105 active:scale-95 transition-all"
+            class="rounded-lg bg-blue-400 p-2 text-white transition-all hover:scale-105 active:scale-95"
             (click)="submit()"
           >
             Submit

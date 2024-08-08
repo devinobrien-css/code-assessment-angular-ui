@@ -24,9 +24,16 @@ import { NotFoundErrorComponent } from './shared/components/error/not-found-erro
 import { ViewBookComponent } from './features/browse/view-book-modal/view-book-modal.component';
 import { CheckoutComponent } from './features/browse/checkout/checkout.component';
 import { ViewUserModalComponent } from './features/user-manager/view-user-modal/view-user-modal.component';
+import { LandingComponent } from './features/landing/landing.component';
+import { MainComponent } from './component-library/main/main.component';
 
 export const routes: Routes = [
-  { path: '', component: HomePageComponent, canActivate: [loggedInGuardGuard] },
+  { path: '', component: LandingComponent, canActivate: [loggedOutGuardGuard] },
+  {
+    path: 'explore',
+    component: HomePageComponent,
+    canActivate: [loggedInGuardGuard],
+  },
   {
     path: 'login',
     component: LoginComponent,
@@ -127,6 +134,10 @@ export const routes: Routes = [
     path: 'unauthorized',
     component: UnauthorizedErrorComponent,
     canActivate: [loggedInGuardGuard],
+  },
+  {
+    path: 'component-library',
+    component: MainComponent,
   },
   {
     path: '**',

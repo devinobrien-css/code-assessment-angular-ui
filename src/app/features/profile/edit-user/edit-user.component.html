@@ -1,14 +1,14 @@
 <div>
   <div class="flex">
     <img
-      class="shadow rounded-full border w-24"
+      class="w-24 rounded-full border shadow"
       [src]="user?.profileAvatar?.url"
       alt="avatar"
       onerror="this.src='https://robohash.org/35'"
     />
 
     <button
-      class="underline p-2 rounded text-blue-300 hover:text-blue-500"
+      class="rounded p-2 text-blue-300 underline hover:text-blue-500"
       (click)="onSelectNewAvatar()"
     >
       Change Avatar
@@ -16,17 +16,17 @@
 
     <div
       *ngIf="select_avatar"
-      class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center backdrop-blur-sm"
+      class="absolute left-0 top-0 flex h-full w-full items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm"
     >
-      <div class="w-4/5 h-4/5 bg-white rounded overflow-y-auto">
-        <div class="flex justify-between bg-white sticky top-0 p-4 border">
-          <h2 class="text-2xl font-light my-auto">Select Avatar</h2>
+      <div class="h-4/5 w-4/5 overflow-y-auto rounded bg-white">
+        <div class="sticky top-0 flex justify-between border bg-white p-4">
+          <h2 class="my-auto text-2xl font-light">Select Avatar</h2>
           <button
             class="p-2 text-red-500 hover:text-red-700"
             (click)="onCancelSelectNewAvatar()"
           >
             <span
-              class="icon-[basil--cancel-solid] w-10 h-10 bg-gray-400 hover:bg-blue-300"
+              class="icon-[basil--cancel-solid] h-10 w-10 bg-gray-400 hover:bg-blue-300"
             ></span>
           </button>
         </div>
@@ -37,7 +37,7 @@
             (click)="onUpdateAvatar(avatar)"
           >
             <img
-              class="w-24 h-24 rounded-full border shadow"
+              class="h-24 w-24 rounded-full border shadow"
               [src]="avatar.url"
               alt="avatar"
             />
@@ -48,30 +48,30 @@
   </div>
   <br />
   <div class="flex flex-col">
-    <label for="first_name" class="font-light text-sm">First Name</label>
+    <label for="first_name" class="text-sm font-light">First Name</label>
     <input
       id="first_name"
-      class="border p-2 rounded w-64"
+      class="w-64 rounded border p-2"
       type="text"
       [formControl]="first_name"
     />
   </div>
   <br />
   <div class="flex flex-col">
-    <label for="last_name" class="font-light text-sm">Last Name</label>
+    <label for="last_name" class="text-sm font-light">Last Name</label>
     <input
       id="last_name"
-      class="border p-2 rounded w-64"
+      class="w-64 rounded border p-2"
       type="text"
       [formControl]="last_name"
     />
   </div>
   <br />
   <div class="flex flex-col">
-    <label for="email" class="font-light text-sm">Email</label>
+    <label for="email" class="text-sm font-light">Email</label>
     <input
       id="email"
-      class="border p-2 rounded w-64 cursor-not-allowed text-gray-700"
+      class="w-64 cursor-not-allowed rounded border p-2 text-gray-700"
       type="email"
       [formControl]="email"
     />
@@ -79,13 +79,13 @@
   <br />
   <div class="flex gap-2">
     <button
-      class="bg-blue-500 text-white p-2 rounded disabled:opacity-50 disabled:cursor-not-allowed"
+      class="rounded bg-blue-500 p-2 text-white disabled:cursor-not-allowed disabled:opacity-50"
       (click)="onUpdateUser()"
     >
       Update
     </button>
     <button
-      class="bg-red-500 text-white p-2 rounded disabled:opacity-50 disabled:cursor-not-allowed"
+      class="rounded bg-red-500 p-2 text-white disabled:cursor-not-allowed disabled:opacity-50"
       (click)="resetForm()"
     >
       Cancel
