@@ -87,7 +87,6 @@ export class AuthenticationService {
     this.router.navigate(['/login']);
   }
 
-  //TODO
   async emailExists(email: string) {
     return this.http.get<EmailExistsResponse>(
       `/api/account/email-exists?email=${email}`,

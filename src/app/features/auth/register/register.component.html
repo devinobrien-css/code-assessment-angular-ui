@@ -221,6 +221,16 @@
               ></span>
               <span class="my-auto">At least 1 special character</span>
             </div>
+            <div class="flex gap-2">
+              <span
+                [ngClass]="{
+                  'text-red-500': passwordErrors().includes('match'),
+                  'text-blue-500': !passwordErrors().includes('match'),
+                }"
+                class="icon-[solar--shield-warning-bold-duotone] my-auto h-8 w-8"
+              ></span>
+              <span class="my-auto">Passwords match</span>
+            </div>
           </div>
         </form>
 

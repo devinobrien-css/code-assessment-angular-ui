@@ -106,6 +106,15 @@ export class RegisterComponent {
     }
 
     if (this.passwordErrors().length > 0) {
+      if (this.password !== this.confirmPassword) {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Passwords do not match',
+        });
+        return;
+      }
+
       this.messageService.add({
         severity: 'error',
         summary: 'Error',
