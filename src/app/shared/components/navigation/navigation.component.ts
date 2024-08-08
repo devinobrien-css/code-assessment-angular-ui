@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { UserService } from '../../../core/services/user.service';
 import { AuthenticationService } from '../../../core/services/authentication.service';
 import { Router, RouterModule } from '@angular/router';
 import { CurrentUserInfoResponse } from '../../models/user';
 import { NgClass, NgIf } from '@angular/common';
+import gsap from 'gsap';
 
 @Component({
   selector: 'app-navigation',
@@ -13,6 +14,8 @@ import { NgClass, NgIf } from '@angular/common';
 })
 export class NavigationComponent {
   is_employee = false;
+
+  tl = gsap.timeline();
 
   constructor(
     private userService: UserService,
@@ -34,6 +37,29 @@ export class NavigationComponent {
       .subscribe((response: CurrentUserInfoResponse) => {
         this.is_employee = response.roles.includes('Employee');
       });
+
+    this.router.events.subscribe((event) => {
+      if (this.isNavVisible() && window.innerWidth < 1100) {
+        this.toggleNav();
+      }
+    });
+  }
+
+  isEmployee() {
+    return this.is_employee;
+  }
+
+  ngAfterViewInit() {
+    this.tl.from('#navi', { ease: 'linear', autoAlpha: 0, duration: 0.3 });
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(): void {
+    if (window.innerWidth < 1100 && this.isNavVisible()) {
+      localStorage.setItem('show_nav', 'false');
+    } else if (window.innerWidth > 1100 && !this.isNavVisible()) {
+      localStorage.setItem('show_nav', 'true');
+    }
   }
 
   toggleNav() {

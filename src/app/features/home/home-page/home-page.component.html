@@ -1,7 +1,9 @@
 <div class="flex max-h-full flex-col gap-8 overflow-scroll px-6 pt-6">
-  <div class="rounded border bg-white p-4 shadow">
+  <app-advertisement-lounge />
+
+  <div class="rounded-lg border bg-white p-4 shadow">
     <h1 class="font-lato text-3xl font-thin">Featured Reading</h1>
-    <div class="mt-4 flex overflow-x-scroll">
+    <div class="mt-4 flex overflow-scroll">
       <a
         href="/browse/{{ book.id }}"
         *ngFor="let book of getFeaturedBooks()"
@@ -18,7 +20,9 @@
     </div>
   </div>
 
-  <div class="rounded border bg-white p-4 shadow">
+  <app-advertisement-online />
+
+  <div class="rounded-lg border bg-white p-4 shadow">
     <h1 class="font-lato text-3xl font-thin">Popular Books</h1>
     <div class="mt-4 flex overflow-x-scroll">
       <a
@@ -37,12 +41,14 @@
     </div>
   </div>
 
-  <div class="rounded border bg-white p-4 shadow">
-    <h1 class="font-lato text-3xl font-thin">Highly Rated (TODO)</h1>
+  <app-advertisement-book-day />
+
+  <div class="rounded-lg border bg-white p-4 shadow">
+    <h1 class="font-lato text-3xl font-thin">Highly Rated Books</h1>
     <div class="mt-4 flex overflow-x-scroll">
       <a
         href="/browse/{{ book.id }}"
-        *ngFor="let book of getBestSellingBooks()"
+        *ngFor="let book of getHighlyRatedBooks()"
         class="min-w-64 p-4"
       >
         <img
@@ -55,4 +61,8 @@
       </a>
     </div>
   </div>
+
+  <app-advertisement-office />
+
+  <br />
 </div>

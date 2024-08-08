@@ -1,4 +1,4 @@
-<div class="flex max-h-full flex-col gap-8 px-6 pt-6">
+<div class="flex max-h-full flex-col px-6 pt-6">
   <div
     class="sticky top-0 z-50 flex justify-between rounded-md border bg-white p-8 shadow"
   >
@@ -18,13 +18,13 @@
       >Browse Books</a
     >
   </div>
-  <div class="mt-4 max-h-full overflow-y-scroll">
-    <div *ngFor="let transaction of transactions" class="p-8">
+  <div class="max-h-full overflow-y-scroll">
+    <div *ngFor="let transaction of transactions" class="p-2 odd:bg-blue-50">
       <div class="flex gap-4">
         <img
           [src]="transaction.book.image"
           alt="book cover"
-          class="h-32 w-24 object-cover"
+          class="h-20 w-16 object-cover"
         />
         <div class="w-1/2">
           <h2 class="font-lato text-xl font-thin">

@@ -1,48 +1,80 @@
 <nav
+  id="navi"
   *ngIf="isAuthenticated()"
-  class="z-[100] h-full overflow-clip p-4 text-gray-600 transition-all ease-linear"
+  class="fixed top-4 z-[100] h-screen w-fit overflow-clip text-gray-600 transition-all ease-linear lg:bg-none"
   [ngClass]="{
-    'w-[0%] p-0': !isNavVisible(),
-    '': isNavVisible(),
+    'bg-none': !isNavVisible(),
+    'bg-landing bg-cover': isNavVisible(),
   }"
 >
-  <div class="my-2 flex flex-col gap-y-4 text-gray-500">
+  <button
+    class="ml-4 mt-4 flex flex-col items-center rounded border bg-white p-2 shadow-md"
+    (click)="toggleNav()"
+  >
+    <span
+      class="icon-[solar--map-arrow-up-bold-duotone] mx-auto h-6 w-8 transition-all ease-linear"
+      [ngClass]="{
+        'rotate-90': !isNavVisible(),
+        '-rotate-90': isNavVisible(),
+      }"
+    ></span>
+  </button>
+
+  <div
+    class="my-2 flex flex-col gap-y-4 overflow-clip text-gray-500 transition-all ease-linear"
+    [ngClass]="{
+      'h-[0%] w-[0%] p-0': !isNavVisible(),
+      'h-[100%] w-[100%] p-4': isNavVisible(),
+    }"
+  >
     <div class="flex flex-col gap-y-4 rounded-md border bg-white p-2 shadow">
-      <h2 class="border-b text-3xl font-light">Browse the Library</h2>
+      <h2 class="whitespace-nowrap border-b text-2xl font-light">
+        Browse the Library
+      </h2>
       <a routerLink="/explore" routerLinkActive="text-blue-300">
-        <h2 class="flex gap-1 text-xl font-light hover:text-blue-200">
+        <h2
+          class="flex gap-1 whitespace-nowrap text-xl font-light hover:text-blue-200"
+        >
           <span class="icon-[solar--book-bold-duotone] my-auto"></span>Explore
         </h2>
       </a>
       <a routerLink="/browse" routerLinkActive="text-blue-300">
-        <h2 class="flex gap-1 text-xl font-light hover:text-blue-200">
-          <span class="icon-[solar--book-bold-duotone] my-auto"></span>Browse
-          Books
+        <h2
+          class="flex gap-1 whitespace-nowrap text-xl font-light hover:text-blue-200"
+        >
+          <span class="icon-[solar--card-search-bold-duotone] my-auto"></span
+          >Browse Books
         </h2>
       </a>
     </div>
     <!-- <a routerLink="/events" routerLinkActive="text-blue-300">
-        <h2 class="text-xl hover:text-blue-200 font-light flex gap-1">
+        <h2 class="text-xl hover:text-blue-200 font-light whitespace-nowrap flex gap-1">
           <span class="icon-[solar--calendar-bold-duotone] my-auto"></span
           >Upcoming Events
         </h2>
       </a> -->
 
     <div class="flex flex-col gap-y-4 rounded-md border bg-white p-2 shadow">
-      <h2 class="border-b text-3xl font-light">Your Data</h2>
+      <h2 class="whitespace-nowrap border-b text-2xl font-light">Your Data</h2>
       <a routerLink="/favorites" routerLinkActive="text-blue-300">
-        <h2 class="flex gap-1 text-xl font-light hover:text-blue-200">
+        <h2
+          class="flex gap-1 whitespace-nowrap text-xl font-light hover:text-blue-200"
+        >
           <span class="icon-[solar--star-bold-duotone] my-auto"></span>Favorites
         </h2>
       </a>
       <a routerLink="/checked-out-books" routerLinkActive="text-blue-300">
-        <h2 class="flex gap-1 text-xl font-light hover:text-blue-200">
+        <h2
+          class="flex gap-1 whitespace-nowrap text-xl font-light hover:text-blue-200"
+        >
           <span class="icon-[solar--cart-bold-duotone] my-auto"></span>Checked
           Out
         </h2>
       </a>
       <a routerLink="/settings/profile" routerLinkActive="text-blue-300">
-        <h2 class="flex gap-1 text-xl font-light hover:text-blue-200">
+        <h2
+          class="flex gap-1 whitespace-nowrap text-xl font-light hover:text-blue-200"
+        >
           <span class="icon-[solar--settings-bold-duotone] my-auto"></span
           >Settings
         </h2>
@@ -50,48 +82,60 @@
     </div>
 
     <div
-      *ngIf="is_employee"
+      *ngIf="isEmployee()"
       class="flex flex-col gap-y-4 rounded-md border bg-white p-2 shadow"
     >
-      <h2 *ngIf="is_employee" class="text-3xl font-light">Administrative</h2>
+      <h2 *ngIf="isEmployee()" class="whitespace-nowrap text-2xl font-light">
+        Administrative
+      </h2>
 
       <a
-        *ngIf="is_employee"
+        *ngIf="isEmployee()"
         routerLink="/returns"
         routerLinkActive="text-blue-300"
       >
-        <h2 class="flex gap-1 text-xl font-light hover:text-blue-200">
+        <h2
+          class="flex gap-1 whitespace-nowrap text-xl font-light hover:text-blue-200"
+        >
           <span class="icon-[solar--clipboard-bold-duotone] my-auto"></span>
           Manage Returns
         </h2>
       </a>
       <a
-        *ngIf="is_employee"
+        *ngIf="isEmployee()"
         routerLink="/user-manager"
         routerLinkActive="text-blue-300"
       >
-        <h2 class="flex gap-1 text-xl font-light hover:text-blue-200">
+        <h2
+          class="flex gap-1 whitespace-nowrap text-xl font-light hover:text-blue-200"
+        >
           <span class="icon-[solar--user-bold-duotone] my-auto"></span>
           Manage Users
         </h2>
       </a>
       <a
-        *ngIf="is_employee"
+        *ngIf="isEmployee()"
         routerLink="/book-manager"
         routerLinkActive="text-blue-300"
       >
-        <h2 class="flex gap-1 text-xl font-light hover:text-blue-200">
+        <h2
+          class="flex gap-1 whitespace-nowrap text-xl font-light hover:text-blue-200"
+        >
           <span class="icon-[solar--folder-2-bold-duotone] my-auto"></span
           >Manage Books
         </h2>
       </a>
     </div>
 
-    <hr />
-    <button (click)="logout()">
-      <h2 class="flex gap-1 text-xl font-light hover:text-blue-200">
-        <span class="icon-[solar--logout-3-bold-duotone] my-auto"></span>Logout
-      </h2>
-    </button>
+    <div class="flex flex-col gap-y-4 rounded-md border bg-white p-2 shadow">
+      <button (click)="logout()">
+        <h2
+          class="flex gap-1 whitespace-nowrap text-xl font-light hover:text-blue-200"
+        >
+          <span class="icon-[solar--logout-3-bold-duotone] my-auto"></span
+          >Logout
+        </h2>
+      </button>
+    </div>
   </div>
 </nav>

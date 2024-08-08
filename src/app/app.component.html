@@ -1,14 +1,9 @@
-<img
-  src="assets/top-banner.svg"
-  alt="hero"
-  class="absolute top-0 z-0 h-64 w-full object-cover"
-/>
-<main id="root" class="invisible fixed h-screen w-screen transition-all">
-  <div class="flex h-full w-full flex-nowrap overflow-clip">
-    <div class="w-1/4">
+<main id="root" class="invisible bg-blue-100 transition-all">
+  <div class="flex flex-wrap justify-between md:flex-nowrap">
+    <div class="absolute transition-all lg:relative">
       <app-navigation />
     </div>
-    <div class="w-3/4">
+    <div class="w-5/6 transition-all">
       <router-outlet />
     </div>
   </div>
